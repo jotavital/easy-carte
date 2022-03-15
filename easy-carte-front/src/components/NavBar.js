@@ -20,7 +20,7 @@ const NavBar = () => {
                     <Button className='text-white' component={RouterLink} to='/login' underline='none'>
                         Login
                     </Button>
-                    <Button className='text-white' component={RouterLink} to='/login' underline='none'>
+                    <Button className='text-white' component={RouterLink} to='/register' underline='none'>
                         Cadastro
                     </Button>
                 </Toolbar>

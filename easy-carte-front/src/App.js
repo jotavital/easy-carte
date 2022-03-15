@@ -1,10 +1,9 @@
 import './App.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useTheme } from '@mui/material';
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from './components/AppRoutes';
 import NavBar from './components/NavBar';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from './components/Home';
-import Login from './components/Login';
 
 function App() {
 
@@ -16,10 +15,7 @@ function App() {
             <div className="App">
                 <BrowserRouter>
                     <NavBar />
-                    <Routes>
-                        <Route path='/' element={<Home />}></Route>
-                        <Route path='/login' element={<Login />}></Route>
-                    </Routes>
+                    <AppRoutes />
                 </BrowserRouter>
             </div>
         </>

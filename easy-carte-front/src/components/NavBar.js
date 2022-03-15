@@ -7,7 +7,7 @@ const NavBar = () => {
 
     return (
         <Grid container>
-            <AppBar position="static" color='warning'>
+            <AppBar position="static" color='warning' className='app-navbar'>
                 <Toolbar>
                     <Grid item xs={2} justifyContent='center'>
                         <Typography textAlign='center' variant='h4'>LOGO</Typography>

@@ -1,15 +1,26 @@
 import './App.css';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material';
+import NavBar from './components/NavBar';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from './components/Home';
+import Login from './components/Login';
 
 function App() {
+
+    const theme = useTheme();
+
     return (
         <>
             <CssBaseline />
             <div className="App">
-                <h1>This means home.</h1>
-                <Button variant="contained">Olá Mundo</Button>
+                <BrowserRouter>
+                    <NavBar />
+                    <Routes>
+                        <Route path='/' element={<Home />}></Route>
+                        <Route path='/login' element={<Login />}></Route>
+                    </Routes>
+                </BrowserRouter>
             </div>
         </>
     );

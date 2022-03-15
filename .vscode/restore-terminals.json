@@ -1,0 +1,29 @@
+{
+    "artificialDelayMilliseconds": 300,
+    "keepExistingTerminalsOpen": false,
+    "runOnStartup": true,
+    "terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "name": "laravel",
+                    "commands": [
+                        "cd easy-carte-core",
+                        "php artisan serve --port=8000"
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "react",
+                    "commands": [
+                        "cd easy-carte-front",
+                        "npm start"
+                    ]
+                }
+            ]
+        }
+    ]
+}

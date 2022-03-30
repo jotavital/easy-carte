@@ -7,32 +7,45 @@ import ptBrLocale from 'date-fns/locale/pt-BR';
 
 function Register() {
 
-    const [dataNascimento, setDataNascimento] = useState('');
+    const [formValues, setFormValues] = useState({});
+    const [birthDate, setBirthDate] = useState('');
+
+    const handleBirthDateChange = (value) => {
+        setBirthDate(value);
+    }
+
+    const handleInputChanges = (e) => {
+        const { name, value } = e.target;
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBrLocale} >
             <Grid className="full-body-height" item xs={12} container alignItems='center' justifyContent='center'>
                 <Grid item xs={10} sm={6} md={4} lg={3} >
-                    <Stack spacing={3}>
-                        <Typography variant="h3" textAlign='center'>Cadastro</Typography>
-                        <TextField fullWidth label='Nome completo' type='text' required />
-                        <DatePicker
-                            disableFuture
-                            label="Data de nascimento"
-                            openTo="year"
-                            views={['year', 'month', 'day']}
-                            value={dataNascimento}
-                            onChange={(dataSelecionada) => {
-                                setDataNascimento(dataSelecionada);
-                            }}
-                            renderInput={(params) => <TextField {...params} />}
-                        />
-                        <TextField fullWidth label='E-mail' type='email' required />
-                        <TextField fullWidth label='Senha' type='password' required />
-                        <Grid mt={2} container justifyContent='center'>
-                            <Button variant="contained" color='success'>Enviar</Button>
-                        </Grid>
-                    </Stack>
+                    <form onSubmit={handleFormSubmit}>
+                        <Stack spacing={3}>
+                            <Typography variant="h3" textAlign='center'>Cadastro</Typography>
+                            <TextField fullWidth label='Nome completo' type='text' name="full_name" onChange={handleInputChanges} required />
+                            <DatePicker
+                                disableFuture
+                                label="Data de nascimento"
+                                openTo="year"
+                                views={['year', 'month', 'day']}
+                                onChange={handleBirthDateChange}
+                                value={birthDate}
+                                renderInput={(props) => <TextField {...props} />}
+                            />
+                            <TextField fullWidth label='E-mail' type='email' name='email' onChange={handleInputChanges} required />
+                            <TextField fullWidth label='Senha' type='password' name='password' onChange={handleInputChanges} required />
+                            <Grid mt={2} container justifyContent='center'>
+                                <Button variant='contained' color='success' type='submit'>Enviar</Button>
+                            </Grid>
+                        </Stack>
+                    </form>
                 </Grid>
             </Grid>
         </LocalizationProvider>

@@ -4,23 +4,28 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { useState } from 'react';
 import ptBrLocale from 'date-fns/locale/pt-BR';
+import { format } from 'date-fns';
 
 function Register() {
 
     const [formValues, setFormValues] = useState({});
     const [birthDate, setBirthDate] = useState('');
 
-    const handleBirthDateChange = (value) => {
-        setBirthDate(value);
-    }
-
     const handleInputChanges = (e) => {
         const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    }
+
+    const handleBirthDateChanges = (value) => {
+        setFormValues({ ...formValues, 'birthDate': value });
+        setBirthDate(value);
     }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
     }
+
+    console.log(formValues);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBrLocale} >
@@ -35,7 +40,9 @@ function Register() {
                                 label="Data de nascimento"
                                 openTo="year"
                                 views={['year', 'month', 'day']}
-                                onChange={handleBirthDateChange}
+                                onChange={(value) => {
+                                    handleBirthDateChanges(value);
+                                }}
                                 value={birthDate}
                                 renderInput={(props) => <TextField {...props} />}
                             />

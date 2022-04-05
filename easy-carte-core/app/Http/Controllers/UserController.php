@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,17 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return (User::all());
-    }
+        $users = User::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return (response()->json($users));
     }
 
     /**
@@ -36,7 +29,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // ! aqui registro o usuário no banco!
-        
+
     }
 
     /**
@@ -47,7 +40,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -82,5 +74,22 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $userLogged = Auth::user();
+
+            $token = $userLogged->createToken('JWT');
+
+            return response()->json([
+                'token' => $token->plainTextToken
+            ], 200);
+        } else {
+            return response()->json([
+                'error' => 'E-mail ou senha incorretos.'
+            ], 401);
+        }
     }
 }

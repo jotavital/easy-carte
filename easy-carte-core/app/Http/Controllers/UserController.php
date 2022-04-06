@@ -83,13 +83,9 @@ class UserController extends Controller
 
             $token = $userLogged->createToken('JWT');
 
-            return response()->json([
-                'token' => $token->plainTextToken
-            ], 200);
+            return response()->json($token->plainTextToken, 200);
         } else {
-            return response()->json([
-                'error' => 'E-mail ou senha incorretos.'
-            ], 401);
+            return response()->json('E-mail ou senha incorretos.', 401);
         }
     }
 }

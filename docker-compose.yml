@@ -2,7 +2,9 @@ version: '3.2'
 
 services:
   easy-carte-api:
+    build: ./easy-carte-api
+    command: php artisan serve
     ports:
       - "8000:8000"
     volumes:
-      - ./easy-carte-api:/app
+      - ./easy-carte-api:/easy-carte-api

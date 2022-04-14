@@ -1,0 +1,8 @@
+version: '3.2'
+
+services:
+  easy-carte-api:
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./easy-carte-api:/app

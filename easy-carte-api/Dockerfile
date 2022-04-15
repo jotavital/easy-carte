@@ -15,4 +15,9 @@ RUN mv composer.phar /usr/local/bin/composer
 
 CMD composer install
 
+RUN mkdir .docker
+
+COPY /.docker/entrypoint.sh ./.docker
+ENTRYPOINT ["sh", "./.docker/entrypoint.sh"]
+
 EXPOSE 8000

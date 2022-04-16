@@ -6,21 +6,9 @@
         {
             "splitTerminals": [
                 {
-                    "name": "laravel",
+                    "name": "compose up",
                     "commands": [
-                        "cd easy-carte-api",
-                        "php artisan serve --port=8000"
-                    ]
-                }
-            ]
-        },
-        {
-            "splitTerminals": [
-                {
-                    "name": "react",
-                    "commands": [
-                        "cd easy-carte-front",
-                        "npm start"
+                        "docker-compose up"
                     ]
                 }
             ]

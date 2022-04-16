@@ -29,7 +29,11 @@ services:
     # command: ./.docker/entrypoint.sh
     ports:
       - "3306:3306"
+    volumes:
+      - ./.docker/dbdata:/var/lib/mysql
+      - ./.docker/mysql:/docker-entrypoint-initdb.d
     environment:
+      MYSQL_DATABASE: easy_carte
       MYSQL_ROOT_PASSWORD: "123"
     networks:
       - easy-carte-network

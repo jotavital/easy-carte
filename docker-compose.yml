@@ -10,6 +10,8 @@ services:
       - ./easy-carte-api:/easy-carte-api
       - /easy-carte-api/node_modules
       - /easy-carte-api/vendor
+    networks:
+      - easy-carte-network
 
   easy-carte-front:
     build: ./easy-carte-front
@@ -19,3 +21,19 @@ services:
     volumes:
       - ./easy-carte-front:/easy-carte-front
       - /easy-carte-front/node_modules
+    networks:
+      - easy-carte-network
+
+  easy-carte-mysql:
+    build: ./.docker/mysql
+    # command: ./.docker/entrypoint.sh
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+    networks:
+      - easy-carte-network
+
+networks:
+  easy-carte-network:
+      driver: bridge

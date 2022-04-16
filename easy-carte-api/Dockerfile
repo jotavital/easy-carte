@@ -13,8 +13,6 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
-CMD composer install
-
 RUN mkdir .docker
 
 COPY /.docker/entrypoint.sh ./.docker

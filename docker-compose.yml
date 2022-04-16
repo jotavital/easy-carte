@@ -8,6 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./easy-carte-api:/easy-carte-api
+      - /easy-carte-api/node_modules
+      - /easy-carte-api/vendor
 
   easy-carte-front:
     build: ./easy-carte-front
@@ -16,3 +18,4 @@ services:
       - "3000:3000"
     volumes:
       - ./easy-carte-front:/easy-carte-front
+      - /easy-carte-front/node_modules

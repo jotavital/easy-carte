@@ -1,6 +1,6 @@
 import { Grid, Button, TextField, Stack } from "@mui/material";
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { apiClient } from '../providers/apiClient';
 
 function LoginForm() {
 
@@ -9,7 +9,7 @@ function LoginForm() {
     const onSubmit = (data) => {
         console.log(data);
         
-        axios.post('/login', data)
+        apiClient.post('/login', data)
             .then((response) => {
                 console.log(response);
             })

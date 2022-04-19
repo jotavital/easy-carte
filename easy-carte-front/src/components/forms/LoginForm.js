@@ -2,15 +2,14 @@ import { Grid, Button, TextField, Stack } from "@mui/material";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-
 function LoginForm() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
-        const url = process.env.REACT_APP_API_URL + '/login';
-        axios.post(url, data)
+        
+        axios.post('/login', data)
             .then((response) => {
                 console.log(response);
             })

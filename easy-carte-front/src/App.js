@@ -4,10 +4,13 @@ import { useTheme } from '@mui/material';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './components/AppRoutes';
 import NavBar from './components/NavBar';
+import axios from 'axios';
 
 function App() {
 
     const theme = useTheme();
+
+    axios.defaults.baseURL = 'http://localhost:8000/api';
 
     return (
         <>

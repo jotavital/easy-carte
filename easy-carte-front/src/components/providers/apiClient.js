@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8000/api'
+    baseURL: 'http://easycarte:8000/api',
+    withCredentials: true
 });
 
 export { apiClient };

@@ -8,14 +8,16 @@ function LoginForm() {
 
     const onSubmit = (data) => {
         console.log(data);
-        
-        apiClient.post('/login', data)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
+        apiClient.get(process.env.REACT_APP_SANCTUM_CSRF_COOKIE).then(response => {
+            apiClient.post('/login', data)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
     }
 
     return (

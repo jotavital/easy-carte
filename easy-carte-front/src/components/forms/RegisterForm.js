@@ -5,6 +5,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import ptBrLocale from 'date-fns/locale/pt-BR';
+import { apiClient } from '../providers/apiClient';
 
 function RegisterForm() {
 
@@ -12,6 +13,11 @@ function RegisterForm() {
 
     const onSubmit = (data) => {
         data.birth_date = formatDate(data.birth_date, 'yyyy-MM-dd');
+
+        apiClient.post('/user', data)
+            .then((response) => {
+                console.log(response.data);
+            });
     }
 
     return (

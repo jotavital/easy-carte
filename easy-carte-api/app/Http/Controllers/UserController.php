@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -28,8 +29,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // ! aqui registro o usuário no banco!
+        $user = new User;
 
+        $user->full_name = $request->full_name;
+        $user->birth_date = $request->birth_date;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        return response()->json(
+            $user->save()
+        );
     }
 
     /**

@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return (response()->json($users));
+        return response()->json($users);
     }
 
     /**
@@ -36,9 +36,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
-        return response()->json(
-            $user->save()
-        );
+        if ($user->save()) {
+            return response()->json(true, 200);
+        } else {
+            return response()->json(false, 500);
+        }
     }
 
     /**
@@ -90,9 +92,7 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $userLogged = Auth::user();
 
-            $token = $userLogged->createToken('JWT');
-
-            return response()->json($token->plainTextToken, 200);
+            return response()->json($userLogged->id, 200);
         } else {
             return response()->json('E-mail ou senha incorretos.', 401);
         }

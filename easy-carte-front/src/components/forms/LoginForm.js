@@ -13,8 +13,12 @@ function LoginForm() {
 
         apiClient.get(process.env.REACT_APP_SANCTUM_CSRF_COOKIE).then(response => {
             apiClient.post('/login', data)
-                .then((response) => {
-                    navigate('/');
+                .then((res) => {
+                    if (res.status === 200) {
+                        localStorage.setItem("isUserLoggedIn", true);
+                        localStorage.setItem("userId", JSON.stringify(res.data));
+                        navigate('/');
+                    }
                 })
                 .catch((error) => {
                     console.log(error);

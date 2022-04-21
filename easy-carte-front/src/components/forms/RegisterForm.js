@@ -6,17 +6,22 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import ptBrLocale from 'date-fns/locale/pt-BR';
 import { apiClient } from '../providers/apiClient';
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
 
     const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         data.birth_date = formatDate(data.birth_date, 'yyyy-MM-dd');
 
         apiClient.post('/user', data)
-            .then((response) => {
-                console.log(response.data);
+            .then(() => {
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.error(error);
             });
     }
 

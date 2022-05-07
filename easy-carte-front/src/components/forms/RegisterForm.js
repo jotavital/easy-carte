@@ -16,13 +16,15 @@ function RegisterForm() {
     const onSubmit = (data) => {
         data.birth_date = formatDate(data.birth_date, 'yyyy-MM-dd');
 
-        apiClient.post('/user', data)
-            .then(() => {
-                navigate('/login');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        apiClient.get(process.env.REACT_APP_SANCTUM_CSRF_COOKIE).then(response => {
+            apiClient.post('/user', data)
+                .then(() => {
+                    navigate('/login');
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
     }
 
     return (

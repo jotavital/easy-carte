@@ -18,17 +18,13 @@ export const AuthProvider = ({ children }) => {
     const login = (data) => {
         apiClient.post('/login', data)
             .then((response) => {
-                if (response.status === 200 && !response.data === false) {
-                    setUser(response.data[0]);
-                    localStorage.setItem('authenticatedUser', JSON.stringify(response.data[0]));
+                setUser(response.data[0]);
+                localStorage.setItem('authenticatedUser', JSON.stringify(response.data[0]));
 
-                    navigate('/');
-                } else {
-                    console.error('Credenciais incorretas. Tente novamente.');
-                }
+                navigate('/home');
             })
             .catch((error) => {
-                console.error('Credenciais incorretas. Tente novamente.');
+                console.log(error);
             });
     }
 

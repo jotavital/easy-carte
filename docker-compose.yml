@@ -12,6 +12,8 @@ services:
       - /easy-carte-api/vendor
     networks:
       - easy-carte-network
+    depends_on:
+      - "easy-carte-mysql"
 
   easy-carte-front:
     build: ./easy-carte-front
@@ -23,6 +25,8 @@ services:
       - /easy-carte-front/node_modules
     networks:
       - easy-carte-network
+    depends_on:
+      - "easy-carte-api"
 
   easy-carte-mysql:
     build: ./.docker/mysql

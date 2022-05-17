@@ -11,6 +11,7 @@ import FullNameInput from './inputs/FullNameInput';
 import EmailInput from './inputs/EmailInput';
 import PasswordInput from './inputs/PasswordInput';
 import BirthDateInput from "./inputs/BirthDateInput";
+import SuccessButton from "../buttons/SuccessButton";
 
 function RegisterForm() {
 
@@ -49,9 +50,7 @@ function RegisterForm() {
                             <Link marginLeft={1} href='/login'>Entrar</Link>
                         </Typography>
                     </Grid>
-                    <Grid mt={2} container justifyContent='center'>
-                        <Button variant='contained' color='success' type='submit'>Enviar</Button>
-                    </Grid>
+                    <SuccessButton text="Enviar" />
                 </Stack>
             </form>
         </LocalizationProvider>

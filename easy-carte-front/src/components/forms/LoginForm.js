@@ -1,41 +1,34 @@
-import { Grid, Button, TextField, Stack } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import { Grid, Button, Stack, Typography, Link } from "@mui/material";
+import { useContext } from "react";
 import { useForm } from 'react-hook-form';
-import { apiClient } from '../../providers/apiClient';
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth";
+import EmailInput from "./inputs/EmailInput";
+import PasswordInput from "./inputs/PasswordInput";
+import SuccessButton from "../buttons/SuccessButton";
 
 function LoginForm() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+    const theme = useTheme();
 
     const onSubmit = (data) => {
-        console.log(data);
-
-        apiClient.get(process.env.REACT_APP_SANCTUM_CSRF_COOKIE).then(response => {
-            apiClient.post('/login', data)
-                .then((res) => {
-                    if (res.status === 200) {
-                        localStorage.setItem("isUserLoggedIn", true);
-                        localStorage.setItem("userId", JSON.stringify(res.data));
-                        navigate('/');
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        });
+        login(data);
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={3}>
-                <TextField fullWidth label='E-mail' type='email' {...register('email', { required: true })} />
-                {errors.email && "Campo obrigatório"}
-                <TextField fullWidth label='Senha' type='password' {...register('password', { required: true })} />
-                {errors.password && "Campo obrigatório"}
-                <Grid container justifyContent='center'>
-                    <Button variant='contained' color='success' type='submit'>Entrar</Button>
+                <EmailInput register={register} errors={errors}  />
+                <PasswordInput register={register} errors={errors} />
+                <Grid container>
+                    <Typography color={theme.palette.info.main}>
+                        Ainda não tem login?
+                        <Link marginLeft={1} href='/register'>Cadastre-se</Link>
+                    </Typography>
                 </Grid>
+                <SuccessButton text="Entrar" />
             </Stack>
         </form>
     );

@@ -1,24 +1,27 @@
 import './App.css';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useTheme } from '@mui/material';
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from './components/AppRoutes';
+import AppRoutes from './components/router/AppRoutes';
 import NavBar from './components/NavBar';
+import { ThemeProvider, createTheme } from '@mui/material';
+import { AuthProvider } from './contexts/auth';
+
+const theme = createTheme({});
 
 function App() {
 
-    const theme = useTheme();
-
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <div className="App">
                 <BrowserRouter>
-                    <NavBar />
-                    <AppRoutes />
+                    <AuthProvider>
+                        <NavBar />
+                        <AppRoutes />
+                    </AuthProvider>
                 </BrowserRouter>
             </div>
-        </>
+        </ThemeProvider>
     );
 }
 

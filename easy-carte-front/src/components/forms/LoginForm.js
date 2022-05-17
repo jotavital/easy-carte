@@ -1,6 +1,6 @@
 import { Grid, Button, TextField, Stack } from "@mui/material";
 import { useForm } from 'react-hook-form';
-import { apiClient } from '../providers/apiClient';
+import { apiClient } from '../../providers/apiClient';
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {

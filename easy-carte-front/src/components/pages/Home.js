@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
-import { apiClient } from './providers/apiClient';
+import { apiClient } from '../../providers/apiClient';
 
 function Home() {
 

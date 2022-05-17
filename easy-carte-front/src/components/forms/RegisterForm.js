@@ -5,7 +5,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import ptBrLocale from 'date-fns/locale/pt-BR';
-import { apiClient } from '../providers/apiClient';
+import { apiClient } from '../../providers/apiClient';
 import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {

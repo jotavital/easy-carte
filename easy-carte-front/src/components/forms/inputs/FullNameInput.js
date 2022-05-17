@@ -1,18 +1,18 @@
 import { TextField } from '@mui/material';
 
-function NameInput({ errors, register }) {
+function FullNameInput({ errors, register }) {
     return (
         <TextField
             fullWidth
             error={!!errors.name}
             helperText={errors.name?.message}
-            label='Nome'
+            label='Nome completo'
             type='text'
-            {...register('name',
+            {...register('full_name',
                 {
                     required: {
                         value: true,
-                        message: 'Informe o seu nome'
+                        message: 'Informe o seu nome completo'
                     }
                 }
             )}
@@ -20,4 +20,4 @@ function NameInput({ errors, register }) {
     );
 }
 
-export default NameInput;
+export default FullNameInput;

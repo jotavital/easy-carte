@@ -16,9 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
-        return response()->json($users);
+        return response()->json(User::all());
     }
 
     /**
@@ -29,13 +27,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
+        $user = new User();
 
         $user->full_name = $request->full_name;
         $user->birth_date = $request->birth_date;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
+        
         if ($user->save()) {
             return response()->json(true, 200);
         } else {
@@ -50,16 +48,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -89,12 +77,29 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $userLogged = Auth::user();
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-            return response()->json($userLogged->id, 200);
-        } else {
-            return response()->json('E-mail ou senha incorretos.', 401);
+        if (Auth::attempt($credentials)) {
+            return response()->json([
+                Auth::user()
+            ], 200);
         }
+
+        return response()->json(false, 401);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        return response()->json(true, 200);
+    }
+
+    public function checkIfUserAuthenticated()
+    {
+        return response()->json(Auth::check(), 200);
     }
 }

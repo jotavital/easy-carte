@@ -1,60 +1,54 @@
-import { Grid, Button, TextField, Stack } from "@mui/material";
-import { useForm, Controller } from 'react-hook-form';
+import { Grid, Button, Stack, Typography, Link } from "@mui/material";
+import { useForm } from 'react-hook-form';
 import { format as formatDate } from 'date-fns';
-import DatePicker from '@mui/lab/DatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import ptBrLocale from 'date-fns/locale/pt-BR';
 import { apiClient } from '../../providers/apiClient';
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@emotion/react";
+import FullNameInput from './inputs/FullNameInput';
+import EmailInput from './inputs/EmailInput';
+import PasswordInput from './inputs/PasswordInput';
+import BirthDateInput from "./inputs/BirthDateInput";
 
 function RegisterForm() {
 
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const theme = useTheme();
 
     const onSubmit = (data) => {
         data.birth_date = formatDate(data.birth_date, 'yyyy-MM-dd');
 
-        apiClient.get(process.env.REACT_APP_SANCTUM_CSRF_COOKIE).then(response => {
-            apiClient.post('/user', data)
-                .then(() => {
+        apiClient.post('/user', data)
+            .then((response) => {
+                console.log(response.data);
+                if (response.status === 200 && response.data === true) {
                     navigate('/login');
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        });
+                } else {
+                    console.error('Não foi possível se cadastrar agora. Tente novamente.');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBrLocale} >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={3}>
-                    <TextField fullWidth label='Nome completo' type='text' {...register('full_name', { required: true })} />
-                    {errors.full_name && "Campo obrigatório"}
-                    <Controller
-                        control={control}
-                        name="birth_date"
-                        defaultValue={null}
-                        rules={{ required: true }}
-                        render={({ field: { onChange, value } }) => (
-                            <DatePicker
-                                disableFuture
-                                label="Data de nascimento"
-                                openTo="year"
-                                views={['year', 'month', 'day']}
-                                onChange={onChange}
-                                value={value}
-                                renderInput={(props) => <TextField {...props} />}
-                            />
-                        )}
-                    />
-                    {errors.birth_date && "Campo obrigatório"}
-                    <TextField fullWidth label='E-mail' type='email' {...register('email', { required: true })} />
-                    {errors.email && "Campo obrigatório"}
-                    <TextField fullWidth label='Senha' type='password' {...register('password', { required: true })} />
-                    {errors.password && "Campo obrigatório"}
+                    <FullNameInput register={register} errors={errors} />
+                    <BirthDateInput control={control} />
+                    <EmailInput register={register} errors={errors} />
+                    <PasswordInput register={register} errors={errors} />
+                    <Grid container>
+                        <Typography color={theme.palette.info.main}>
+                            Já é cadastrado?
+                            <Link marginLeft={1} href='/login'>Entrar</Link>
+                        </Typography>
+                    </Grid>
                     <Grid mt={2} container justifyContent='center'>
                         <Button variant='contained' color='success' type='submit'>Enviar</Button>
                     </Grid>

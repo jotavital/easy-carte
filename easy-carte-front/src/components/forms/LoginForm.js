@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Grid, Button, Stack, Typography, Link } from "@mui/material";
+import { Grid, Stack, Typography, Link } from "@mui/material";
 import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from "../../contexts/auth";

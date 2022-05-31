@@ -1,4 +1,4 @@
-import { Grid, Button, Stack, Typography, Link } from "@mui/material";
+import { Grid, Stack, Typography, Link } from "@mui/material";
 import { useForm } from 'react-hook-form';
 import { format as formatDate } from 'date-fns';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -12,10 +12,12 @@ import EmailInput from './inputs/EmailInput';
 import PasswordInput from './inputs/PasswordInput';
 import BirthDateInput from "./inputs/BirthDateInput";
 import SuccessButton from "../buttons/SuccessButton";
+import { useDispatch } from 'react-redux';
+import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
 
 function RegisterForm() {
-
     const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const theme = useTheme();
 
@@ -27,12 +29,17 @@ function RegisterForm() {
                 console.log(response.data);
                 if (response.status === 200 && response.data === true) {
                     navigate('/login');
-                } else {
-                    console.error('Não foi possível se cadastrar agora. Tente novamente.');
                 }
             })
             .catch((error) => {
-                console.error(error);
+                dispatch(
+                    setSnackbar(
+                        true,
+                        'error',
+                        'Erro ao realizar cadastro! Tente novamente.',
+                        'left'
+                    )
+                );
             });
     }
 

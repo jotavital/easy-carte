@@ -1,35 +1,41 @@
-import { Component } from 'react';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSnackbar } from '../../redux/snackbars/snackbarsSlice';
 
-class CustomSnackBar extends Component {
-    constructor(props) {
-        super(props);
-    }
+export default function CustomSnackBar() {
+    const dispatch = useDispatch();
+    const snackbarOpen = useSelector(state => state.snackbars.snackbarOpen);
+    const snackbarType = useSelector(state => state.snackbars.snackbarType);
+    const snackbarMessage = useSelector(state => state.snackbars.snackbarMessage);
+    const snackbarHorizontal = useSelector(state => state.snackbars.snackbarHorizontal);
 
-    render() {
-        return (
-            <Stack spacing={2} sx={{ width: '100%' }}>
-                <Snackbar
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    open={this.props.isOpen}
-                    autoHideDuration={5000}
-                    onClose={this.props.handleCloseSnackbar}
+    const handleClose = (event, reason) => {
+      if (reason === "clickaway") {
+        return;
+      }
+      dispatch(setSnackbar(false, snackbarType, snackbarMessage, snackbarHorizontal));
+    };
+
+    return (
+        <Stack spacing={2} sx={{ width: '100%' }}>
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: snackbarHorizontal }}
+                open={snackbarOpen}
+                autoHideDuration={5000}
+                onClose={handleClose}
+            >
+                <MuiAlert
+                    elevation={6}
+                    variant="filled"
+                    severity={snackbarType}
+                    sx={{ width: '100%' }}
+                    // onClose={handleClose}
                 >
-                    <MuiAlert
-                        elevation={6}
-                        variant="filled"
-                        onClose={this.props.handleCloseSnackbar}
-                        severity={this.props.options.severity}
-                        sx={{ width: '100%' }}
-                    >
-                        {this.props.options.message}
-                    </MuiAlert>
-                </Snackbar>
-            </Stack>
-        );
-    }
+                    {snackbarMessage}
+                </MuiAlert>
+            </Snackbar>
+        </Stack>
+    );
 }
-
-export default CustomSnackBar;

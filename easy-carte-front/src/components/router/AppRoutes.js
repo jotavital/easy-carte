@@ -11,26 +11,27 @@ import PrivateRoute from './PrivateRoute';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
 
 function AppRoutes() {
-
     return (
-        <Routes>
-            <Route path='/login' element={
-                <UnauthenticatedRoute>
-                    <Login />
-                </UnauthenticatedRoute>
-            } />
-            <Route path='/register' element={
-                <UnauthenticatedRoute>
-                    <Register />
-                </UnauthenticatedRoute>
-            } />
-            <Route path='/home' element={
-                <PrivateRoute>
-                    <Home />
-                </PrivateRoute>
-            } />
-            <Route path="*" element={<NotFound />} />
-        </Routes>
+        <>
+            <Routes>
+                <Route path='/login' element={
+                    <UnauthenticatedRoute>
+                        <Login />
+                    </UnauthenticatedRoute>
+                } />
+                <Route path='/register' element={
+                    <UnauthenticatedRoute>
+                        <Register />
+                    </UnauthenticatedRoute>
+                } />
+                <Route path='/home' element={
+                    <PrivateRoute>
+                        <Home />
+                    </PrivateRoute>
+                } />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </>
     );
 }
 

@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { apiClient } from '../providers/apiClient';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSnackbar } from "../redux/snackbars/snackbarsSlice";
 
 export const AuthContext = createContext();
 
@@ -8,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isUserAuthenticated) {
@@ -24,7 +27,12 @@ export const AuthProvider = ({ children }) => {
                 navigate('/home');
             })
             .catch((error) => {
-                console.log(error);
+                dispatch(setSnackbar(
+                    true,
+                    'error',
+                    'Erro ao fazer login. Tente novamente.',
+                    'left'
+                ));
             });
     }
 

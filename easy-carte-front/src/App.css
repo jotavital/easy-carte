@@ -1,22 +1,9 @@
 :root{
-    --navBarHeight: 60px;
+    --navBarHeight: 60px !important;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-}
-
-.text-white {
-    color: #fff !important;
-}
-
-.bg-light-gray {
-    color: white;
-    background-color: rgb(215, 215, 226);
-}
-
-.bg-blue{
-    background-color: blue;
 }
 
 .app-navbar{
@@ -25,4 +12,12 @@ body {
 
 .full-body-height{
     height: calc(100vh - var(--navBarHeight));
+}
+
+.main-wrapper{
+    background-color: #fff;
+    padding-left: 140px;
+    padding-right: 140px;
+    width: 100vw;
+    min-height: calc(100vh - var(--navBarHeight));
 }

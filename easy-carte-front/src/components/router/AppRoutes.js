@@ -29,6 +29,11 @@ function AppRoutes() {
                         <Home />
                     </PrivateRoute>
                 } />
+                <Route path='/' element={
+                    <PrivateRoute>
+                        <Home />
+                    </PrivateRoute>
+                } />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

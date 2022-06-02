@@ -26,7 +26,7 @@ const NavBar = () => {
         pages.push(
             {
                 name: 'Home',
-                action: '/tasks'
+                action: '/home'
             }
         );
 
@@ -77,7 +77,7 @@ const NavBar = () => {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar className='app-navbar' position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography

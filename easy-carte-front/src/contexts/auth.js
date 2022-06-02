@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
                     true,
                     'error',
                     'Erro ao fazer login. Tente novamente.',
-                    'left'
+                    'center'
                 ));
             });
     }

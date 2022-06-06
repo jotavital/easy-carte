@@ -1,19 +1,19 @@
 import { Grid, Stack, Typography, Link } from "@mui/material";
 import { useForm } from 'react-hook-form';
 import { format as formatDate } from 'date-fns';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import ptBrLocale from 'date-fns/locale/pt-BR';
 import { apiClient } from '../../providers/apiClient';
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+import { useDispatch } from 'react-redux';
+import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import ptBrLocale from 'date-fns/locale/pt-BR';
 import FullNameInput from './inputs/FullNameInput';
 import EmailInput from './inputs/EmailInput';
 import PasswordInput from './inputs/PasswordInput';
 import BirthDateInput from "./inputs/BirthDateInput";
 import SuccessButton from "../buttons/SuccessButton";
-import { useDispatch } from 'react-redux';
-import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
 
 function RegisterForm() {
     const { register, handleSubmit, control, formState: { errors } } = useForm();

@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('users')->insertOrIgnore([
             'full_name' => 'João Vital',
             'birth_date' => '2000-07-21',
             'email' => 'jota@g.com',

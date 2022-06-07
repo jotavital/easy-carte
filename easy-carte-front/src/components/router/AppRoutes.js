@@ -25,14 +25,14 @@ function AppRoutes() {
                     </UnauthenticatedRoute>
                 } />
                 <Route path='/home' element={
-                    <PrivateRoute>
+                    <UnauthenticatedRoute>
                         <Home />
-                    </PrivateRoute>
+                    </UnauthenticatedRoute>
                 } />
                 <Route path='/' element={
-                    <PrivateRoute>
+                    <UnauthenticatedRoute>
                         <Home />
-                    </PrivateRoute>
+                    </UnauthenticatedRoute>
                 } />
                 <Route path="*" element={<NotFound />} />
             </Routes>

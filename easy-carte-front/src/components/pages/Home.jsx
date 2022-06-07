@@ -1,12 +1,21 @@
-import { Grid } from "@mui/material";
-import AllRestaurantsSection from "../sections/AllRestaurantsSection";
+import { Grid, Typography } from "@mui/material";
+import HomeRestaurantsSection from "../sections/HomeRestaurantsSection";
 import MainWrapper from '../MainWrapper';
+import CustomButton from '../buttons/CustomButton';
 
 function Home() {
     return (
         <Grid container>
             <MainWrapper>
-                <AllRestaurantsSection />
+                <Grid container justifyContent='center' paddingY={8}>
+                    <Grid item>
+                        <Typography variant="h6" marginBottom={3}>
+                            Escolha a sua cidade para continuar!
+                        </Typography>
+                        <CustomButton text='Escolher' color='info'/>
+                    </Grid>
+                </Grid>
+                <HomeRestaurantsSection />
             </MainWrapper>
         </Grid>
     );

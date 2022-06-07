@@ -3,7 +3,7 @@ import HomeRestaurantCard from '../cards/HomeRestaurantCard';
 import { apiClient } from '../../providers/apiClient';
 import { useState, useEffect } from 'react';
 
-function AllRestaurantsSection() {
+function HomeRestaurantsSection() {
     const [restaurants, setRestaurants] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
@@ -23,11 +23,11 @@ function AllRestaurantsSection() {
             {!isDataLoaded
                 ? <CircularProgress />
                 : restaurants.map((restaurant) => {
-                    return <HomeRestaurantCard name={restaurant.name} />
+                    return <HomeRestaurantCard key={restaurant.id} name={restaurant.name} />
                 })
             }
         </Grid>
     );
 }
 
-export default AllRestaurantsSection;
+export default HomeRestaurantsSection;

@@ -9,7 +9,8 @@ import {
     Avatar,
     MenuItem,
     Tooltip,
-    Button
+    Button,
+    Grid
 } from '@mui/material';
 import { useState, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -46,10 +47,10 @@ const NavBar = () => {
                 name: 'Login',
                 action: '/login'
             },
-            {
-                name: 'Cadastro',
-                action: '/register'
-            }
+            // {
+            //     name: 'Cadastro',
+            //     action: '/register'
+            // }
         );
     }
 
@@ -77,19 +78,10 @@ const NavBar = () => {
     }
 
     return (
-        <AppBar className='app-navbar' position="static">
+        <AppBar color='info' className='app-navbar' position="static">
             <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                    >
-                        EasyCarte
-                    </Typography>
-
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <Toolbar>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -128,16 +120,26 @@ const NavBar = () => {
                                 </MenuItem>
                             ))}
                         </Menu>
+                        <Grid container alignItems='center' justifyContent='right'>
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                component="div"
+                            >
+                                EasyCarte
+                            </Typography>
+                        </Grid>
                     </Box>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                    >
-                        DoIt
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', md: 'flex' }, justifyContent: 'right' }}>
+                        <Grid container alignItems='center' justifyContent='center'>
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                component="div"
+                            >
+                                EasyCarte
+                            </Typography>
+                        </Grid>
                         {pages.map((page) => (
                             <Button
                                 component={RouterLink} to={page.action}
@@ -187,7 +189,6 @@ const NavBar = () => {
                             </Menu>
                         </Box>
                     }
-
                 </Toolbar>
             </Container>
         </AppBar>

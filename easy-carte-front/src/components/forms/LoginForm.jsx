@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from "../../contexts/auth";
 import EmailInput from "./inputs/EmailInput";
 import PasswordInput from "./inputs/PasswordInput";
-import SuccessButton from "../buttons/SuccessButton";
+import CustomButton from "../buttons/CustomButton";
 
 function LoginForm() {
 
@@ -28,7 +28,7 @@ function LoginForm() {
                         <Link marginLeft={1} href='/register'>Cadastre-se</Link>
                     </Typography>
                 </Grid>
-                <SuccessButton text="Entrar" />
+                <CustomButton text="Entrar" type="submit" />
             </Stack>
         </form>
     );

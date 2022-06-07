@@ -13,7 +13,7 @@ import FullNameInput from './inputs/FullNameInput';
 import EmailInput from './inputs/EmailInput';
 import PasswordInput from './inputs/PasswordInput';
 import BirthDateInput from "./inputs/BirthDateInput";
-import SuccessButton from "../buttons/SuccessButton";
+import CustomButton from "../buttons/CustomButton";
 
 function RegisterForm() {
     const { register, handleSubmit, control, formState: { errors } } = useForm();
@@ -57,7 +57,7 @@ function RegisterForm() {
                             <Link marginLeft={1} href='/login'>Entrar</Link>
                         </Typography>
                     </Grid>
-                    <SuccessButton text="Enviar" />
+                    <CustomButton text="Enviar" type="submit" />
                 </Stack>
             </form>
         </LocalizationProvider>

@@ -8,6 +8,8 @@ body {
 
 .app-navbar{
     height: var(--navBarHeight);
+    display: flex;
+    justify-content: center;
 }
 
 .full-body-height{

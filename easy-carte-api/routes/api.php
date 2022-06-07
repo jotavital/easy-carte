@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(
     function () {
         Route::resource('user', UserController::class)->except(['store']);
-        Route::resource('restaurant', RestaurantController::class);
     }
 );
 
@@ -27,3 +26,5 @@ Route::post('/user', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/auth/check', [UserController::class, 'checkIfUserAuthenticated']);
+
+Route::resource('restaurant', RestaurantController::class);

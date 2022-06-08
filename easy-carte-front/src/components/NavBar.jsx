@@ -16,6 +16,7 @@ import { useState, useContext } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth';
+import NavBarLogo from './images/NavBarLogo';
 
 const NavBar = () => {
     const { isUserAuthenticated, logout } = useContext(AuthContext);
@@ -121,24 +122,19 @@ const NavBar = () => {
                             ))}
                         </Menu>
                         <Grid container alignItems='center' justifyContent='right'>
-                            <Typography
+                            {/* <Typography
                                 variant="h5"
                                 noWrap
                                 component="div"
                             >
                                 EasyCarte
-                            </Typography>
+                            </Typography> */}
+                            <NavBarLogo />
                         </Grid>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', md: 'flex' }, justifyContent: 'right' }}>
                         <Grid container alignItems='center' justifyContent='center'>
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="div"
-                            >
-                                EasyCarte
-                            </Typography>
+                            <NavBarLogo />
                         </Grid>
                         {pages.map((page) => (
                             <Button

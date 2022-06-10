@@ -27,3 +27,17 @@ body {
 .navbar-logo{
     width: 200px;
 }
+
+/* Debugging classes */
+
+.bg-red{
+    background-color: red;
+}
+
+.bg-blue{
+    background-color: blue;
+}
+
+.bg-green{
+    background-color: green;
+}

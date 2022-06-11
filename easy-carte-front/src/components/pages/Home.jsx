@@ -1,5 +1,4 @@
 import { Grid, Typography } from "@mui/material";
-import HomeRestaurantsSection from "../sections/HomeRestaurantsSection";
 import MainWrapper from '../MainWrapper';
 import SelectEstados from '../forms/inputs/selects/SelectEstados';
 import SelectCidades from '../forms/inputs/selects/SelectCidades';
@@ -9,8 +8,8 @@ function Home() {
         <Grid container>
             <MainWrapper>
                 <Grid container justifyContent='center' paddingY={8}>
-                    <Grid item container sm={12} xs={12} md={6}>
-                        <Typography variant="h6" marginBottom={3}>
+                    <Grid item sm={12} xs={12} md={6}>
+                        <Typography variant="h6" marginBottom={3} textAlign="center">
                             Escolha a sua cidade para continuar!
                         </Typography>
                         <Grid item container spacing={1} xs={12}>
@@ -23,7 +22,6 @@ function Home() {
                         </Grid>
                     </Grid>
                 </Grid>
-                <HomeRestaurantsSection />
             </MainWrapper>
         </Grid>
     );

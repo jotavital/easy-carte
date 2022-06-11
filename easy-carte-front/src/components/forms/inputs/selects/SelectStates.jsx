@@ -2,33 +2,33 @@ import { useState, useEffect } from 'react';
 import { externalApiClient } from '../../../../providers/externalApiClient';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-function SelectEstados({ selectedEstadoId, setSelectedEstadoId }) {
-    const [estados, setEstados] = useState({});
+function SelectStates({ selectedStateId, setSelectedStateId }) {
+    const [states, setStates] = useState({});
 
-    const handleChangeEstado = (event) => {
-        setSelectedEstadoId(event.target.value);
+    const handleChangeState = (event) => {
+        setSelectedStateId(event.target.value);
     }
 
     useEffect(() => {
         externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
             .then((response) => {
-                setEstados(response.data);
+                setStates(response.data);
             });
     }, []);
 
     return (
         <FormControl fullWidth>
-            <InputLabel id='estados'>Estado</InputLabel>
+            <InputLabel id='state'>Estado</InputLabel>
             <Select
-                labelId='estados'
-                id='estados'
+                labelId='state'
+                id='state'
                 label='Estado'
-                value={selectedEstadoId}
-                onChange={handleChangeEstado}
+                value={selectedStateId}
+                onChange={handleChangeState}
             >
                 <MenuItem value={0}>Selecione</MenuItem>
                 {
-                    estados.length > 0 && estados.map((item) => {
+                    states.length > 0 && states.map((item) => {
                         return <MenuItem key={item.id} value={item.id}>{item.nome}</MenuItem>
                     })
                 }
@@ -37,4 +37,4 @@ function SelectEstados({ selectedEstadoId, setSelectedEstadoId }) {
     );
 }
 
-export default SelectEstados;
+export default SelectStates;

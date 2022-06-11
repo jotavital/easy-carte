@@ -1,7 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import MainWrapper from '../MainWrapper';
-import SelectEstados from '../forms/inputs/selects/SelectEstados';
-import SelectCidades from '../forms/inputs/selects/SelectCidades';
+import SelectEstadoCidade from '../forms/inputs/selects/SelectEstadoCidade';
 
 function Home() {
     return (
@@ -12,14 +11,7 @@ function Home() {
                         <Typography variant="h6" marginBottom={3} textAlign="center">
                             Escolha a sua cidade para continuar!
                         </Typography>
-                        <Grid item container spacing={1} xs={12}>
-                            <Grid item xs={6}>
-                                <SelectEstados />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <SelectCidades />
-                            </Grid>
-                        </Grid>
+                        <SelectEstadoCidade />
                     </Grid>
                 </Grid>
             </MainWrapper>

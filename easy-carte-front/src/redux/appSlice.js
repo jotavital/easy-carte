@@ -1,4 +1,4 @@
-import { externalApiClient } from "../providers/externalApiClient";
+import { apiClient } from "../providers/apiClient";
 
 const CITY_SELECTED = 'app/citySelected';
 
@@ -8,8 +8,7 @@ export const citySelected = (selectedCityId) => ({
 });
 
 const initialState = {
-    isCitySelected: false,
-    selectedCityId: null
+    isCitySelected: !!localStorage.getItem('selected_city')
 };
 
 export default function appReducer(state = initialState, action) {
@@ -17,15 +16,17 @@ export default function appReducer(state = initialState, action) {
         case CITY_SELECTED:
             const { selectedCityId } = action;
 
-            externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios/' + selectedCityId)
-                .then(({ data }) => {
-                    localStorage.setItem('selected_city', JSON.stringify(data));
-                });
+            if(!state.isCitySelected){
+                apiClient.get('/city/' + selectedCityId)
+                    .then(({ data }) => {
+                        // !! write a middleware to store the city in local storage asynchronously
+                        localStorage.setItem('selected_city', JSON.stringify(data));
+                    });
+            }
 
             return {
                 ...state,
-                isCitySelected: true,
-                selectedCityId
+                isCitySelected: true
             };
         default:
             return state

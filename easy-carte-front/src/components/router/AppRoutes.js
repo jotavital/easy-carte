@@ -12,32 +12,30 @@ import Restaurants from '../pages/Restaurants';
 
 function AppRoutes() {
     return (
-        <>
-            <Routes>
-                {/* public routes */}
-                <Route path='/login' element={
-                    <UnauthenticatedRoute>
-                        <Login />
-                    </UnauthenticatedRoute>
-                } />
-                <Route path='/register' element={
-                    <UnauthenticatedRoute>
-                        <Register />
-                    </UnauthenticatedRoute>
-                } />
-                <Route path='/' element={
-                    <UnauthenticatedRoute>
-                        <Home />
-                    </UnauthenticatedRoute>
-                } />
-                <Route path='/:city' element={
-                    <UnauthenticatedRoute>
-                        <Restaurants />
-                    </UnauthenticatedRoute>
-                } />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </>
+        <Routes>
+            {/* public routes */}
+            <Route path='/login' element={
+                <UnauthenticatedRoute>
+                    <Login />
+                </UnauthenticatedRoute>
+            } />
+            <Route path='/register' element={
+                <UnauthenticatedRoute>
+                    <Register />
+                </UnauthenticatedRoute>
+            } />
+            <Route path='/' element={
+                <UnauthenticatedRoute>
+                    <Home />
+                </UnauthenticatedRoute>
+            } />
+            <Route path='/:city' element={
+                <UnauthenticatedRoute>
+                    <Restaurants />
+                </UnauthenticatedRoute>
+            } />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
     );
 }
 

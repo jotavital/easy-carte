@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,10 +22,16 @@ Route::middleware('auth:sanctum')->group(
     }
 );
 
-Route::post('/user', [UserController::class, 'store']);
-
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/auth/check', [UserController::class, 'checkIfUserAuthenticated']);
 
+// !! user routes
+Route::post('/user', [UserController::class, 'store']);
+
+// !! restaurant routes
 Route::resource('restaurant', RestaurantController::class);
+Route::get('city/{cityId}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
+
+// !! city routes
+Route::get('/city/{id}', [CityController::class, 'show']);

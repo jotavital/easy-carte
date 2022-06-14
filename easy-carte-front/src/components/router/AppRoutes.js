@@ -7,13 +7,14 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
-import PrivateRoute from './PrivateRoute';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
+import Restaurants from '../pages/Restaurants';
 
 function AppRoutes() {
     return (
         <>
             <Routes>
+                {/* public routes */}
                 <Route path='/login' element={
                     <UnauthenticatedRoute>
                         <Login />
@@ -24,14 +25,14 @@ function AppRoutes() {
                         <Register />
                     </UnauthenticatedRoute>
                 } />
-                <Route path='/home' element={
+                <Route path='/' element={
                     <UnauthenticatedRoute>
                         <Home />
                     </UnauthenticatedRoute>
                 } />
-                <Route path='/' element={
+                <Route path='/:city' element={
                     <UnauthenticatedRoute>
-                        <Home />
+                        <Restaurants />
                     </UnauthenticatedRoute>
                 } />
                 <Route path="*" element={<NotFound />} />

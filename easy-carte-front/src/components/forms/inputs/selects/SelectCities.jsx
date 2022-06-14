@@ -8,24 +8,24 @@ function SelectCities({ selectedStateId }) {
     const dispatch = useDispatch();
     const [cities, setCities] = useState({});
     const [selectedCityId, setSelectedCityId] = useState(0);
+    const [disabled, setDisabled] = useState(true);
 
     const handleChangeCity = (event) => {
         setSelectedCityId(event.target.value);
-
-        externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios/' + event.target.value)
-            .then((response) => {
-                localStorage.setItem('selected_city', JSON.stringify(response.data));
-            });
-
-        dispatch(citySelected(true));
+        dispatch(citySelected(event.target.value));
     }
 
     useEffect(() => {
-        setSelectedCityId(0);
-        externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + selectedStateId + '/municipios')
-            .then((response) => {
-                setCities(response.data);
-            });
+        if (selectedStateId) {
+            setSelectedCityId(0);
+            externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + selectedStateId + '/municipios')
+                .then((response) => {
+                    setCities(response.data);
+                    setDisabled(false);
+                });
+        } else {
+            setDisabled(true);
+        }
     }, [selectedStateId]);
 
     return (
@@ -37,6 +37,7 @@ function SelectCities({ selectedStateId }) {
                 label='Cidade'
                 value={selectedCityId}
                 onChange={handleChangeCity}
+                disabled={disabled}
             >
                 <MenuItem value={0}>Selecione</MenuItem>
                 {

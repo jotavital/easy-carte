@@ -82,4 +82,11 @@ class RestaurantController extends Controller
     {
         //
     }
+
+    public function getRestaurantsByCity($cityId)
+    {
+        $restaurants = Restaurant::all()->where('city_id', '=', $cityId);
+
+        return response()->json($restaurants);
+    }
 }

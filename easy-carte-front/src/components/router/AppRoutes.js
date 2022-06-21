@@ -5,7 +5,7 @@ import {
 
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import Home from '../pages/Home';
+import SelectCity from '../pages/SelectCity';
 import NotFound from '../pages/NotFound';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
 import Restaurants from '../pages/Restaurants';
@@ -26,7 +26,7 @@ function AppRoutes() {
             } />
             <Route path='/' element={
                 <UnauthenticatedRoute>
-                    <Home />
+                    <SelectCity />
                 </UnauthenticatedRoute>
             } />
             <Route path='/:city_url' element={

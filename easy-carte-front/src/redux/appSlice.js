@@ -1,10 +1,8 @@
-import { apiClient } from "../providers/apiClient";
+const SELECT_CITY = 'app/selectCity';
 
-const CITY_SELECTED = 'app/citySelected';
-
-export const citySelected = (selectedCityId) => ({
-    type: CITY_SELECTED,
-    selectedCityId
+export const selectCity = (payload) => ({
+    type: SELECT_CITY,
+    payload
 });
 
 const initialState = {
@@ -13,17 +11,8 @@ const initialState = {
 
 export default function appReducer(state = initialState, action) {
     switch (action.type) {
-        case CITY_SELECTED:
-            const { selectedCityId } = action;
-
-            if(!state.isCitySelected){
-                apiClient.get('/city/' + selectedCityId)
-                    .then(({ data }) => {
-                        // !! write a middleware to store the city in local storage asynchronously
-                        localStorage.setItem('selected_city', JSON.stringify(data));
-                    });
-            }
-
+        case SELECT_CITY:
+            // ? additional code is in the file setCityLocalStorageMiddleware.js
             return {
                 ...state,
                 isCitySelected: true

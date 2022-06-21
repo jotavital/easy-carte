@@ -29,7 +29,7 @@ function AppRoutes() {
                     <Home />
                 </UnauthenticatedRoute>
             } />
-            <Route path='/:city' element={
+            <Route path='/:city_url' element={
                 <UnauthenticatedRoute>
                     <Restaurants />
                 </UnauthenticatedRoute>

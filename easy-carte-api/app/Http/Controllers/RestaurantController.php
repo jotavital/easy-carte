@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -83,9 +84,17 @@ class RestaurantController extends Controller
         //
     }
 
-    public function getRestaurantsByCity($cityId)
+    public static function getCityIdByCityUrl($cityUrl)
     {
-        $restaurants = Restaurant::all()->where('city_id', '=', $cityId);
+        $cityId = City::where('city_url', $cityUrl)->first()['id'];
+
+        return $cityId;
+    }
+
+    public function getRestaurantsByCity($cityUrl)
+    {
+        $cityId = self::getCityIdByCityUrl($cityUrl);
+        $restaurants = Restaurant::all()->where('city_id', $cityId);
 
         return response()->json($restaurants);
     }

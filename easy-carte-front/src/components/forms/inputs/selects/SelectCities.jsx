@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { externalApiClient } from '../../../../providers/externalApiClient';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { citySelected } from '../../../../redux/appSlice';
+import { selectCity } from '../../../../redux/appSlice';
 import { useDispatch } from 'react-redux';
 
 function SelectCities({ selectedStateId }) {
@@ -12,7 +12,7 @@ function SelectCities({ selectedStateId }) {
 
     const handleChangeCity = (event) => {
         setSelectedCityId(event.target.value);
-        dispatch(citySelected(event.target.value));
+        dispatch(selectCity(event.target.value));
     }
 
     useEffect(() => {

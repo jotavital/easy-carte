@@ -4,7 +4,7 @@ import SelectStateCity from '../forms/inputs/selects/SelectStateCity';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-function SelectCity() {
+function SelectCityPage() {
     const isCitySelected = useSelector(state => state.app.isCitySelected);
 
     if (isCitySelected) {
@@ -31,4 +31,4 @@ function SelectCity() {
 
 }
 
-export default SelectCity;
+export default SelectCityPage;

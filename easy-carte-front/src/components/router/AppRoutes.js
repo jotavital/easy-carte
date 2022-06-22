@@ -3,12 +3,12 @@ import {
     Route
 } from 'react-router-dom';
 
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import SelectCity from '../pages/SelectCity';
-import NotFound from '../pages/NotFound';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import SelectCityPage from '../pages/SelectCityPage';
+import PageNotFound from '../pages/PageNotFound';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
-import Restaurants from '../pages/Restaurants';
+import RestaurantsPage from '../pages/RestaurantsPage';
 
 function AppRoutes() {
     return (
@@ -16,25 +16,25 @@ function AppRoutes() {
             {/* public routes */}
             <Route path='/login' element={
                 <UnauthenticatedRoute>
-                    <Login />
+                    <LoginPage />
                 </UnauthenticatedRoute>
             } />
             <Route path='/register' element={
                 <UnauthenticatedRoute>
-                    <Register />
+                    <RegisterPage />
                 </UnauthenticatedRoute>
             } />
             <Route path='/' element={
                 <UnauthenticatedRoute>
-                    <SelectCity />
+                    <SelectCityPage />
                 </UnauthenticatedRoute>
             } />
             <Route path='/:city_url' element={
                 <UnauthenticatedRoute>
-                    <Restaurants />
+                    <RestaurantsPage />
                 </UnauthenticatedRoute>
             } />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<PageNotFound />} />
         </Routes>
     );
 }

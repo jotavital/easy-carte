@@ -8,10 +8,10 @@ function SelectStateCity() {
 
     return (
         <Grid item container spacing={1} xs={12}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} marginBottom={{ xs: 3 }}>
                 <SelectStates selectedStateId={selectedStateId} setSelectedStateId={setSelectedStateId} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
                 <SelectCities selectedStateId={selectedStateId} />
             </Grid>
         </Grid>

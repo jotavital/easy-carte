@@ -9,6 +9,7 @@ import SelectCityPage from '../pages/SelectCityPage';
 import PageNotFound from '../pages/PageNotFound';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
 import RestaurantsPage from '../pages/RestaurantsPage';
+import MainWrapper from '../MainWrapper';
 
 function AppRoutes() {
     return (
@@ -16,22 +17,30 @@ function AppRoutes() {
             {/* public routes */}
             <Route path='/login' element={
                 <UnauthenticatedRoute>
-                    <LoginPage />
+                    <MainWrapper>
+                        <LoginPage />
+                    </MainWrapper>
                 </UnauthenticatedRoute>
             } />
             <Route path='/register' element={
                 <UnauthenticatedRoute>
-                    <RegisterPage />
+                    <MainWrapper>
+                        <RegisterPage />
+                    </MainWrapper>
                 </UnauthenticatedRoute>
             } />
             <Route path='/' element={
                 <UnauthenticatedRoute>
-                    <SelectCityPage />
+                    <MainWrapper>
+                        <SelectCityPage />
+                    </MainWrapper>
                 </UnauthenticatedRoute>
             } />
             <Route path='/:city_url' element={
                 <UnauthenticatedRoute>
-                    <RestaurantsPage />
+                    <MainWrapper>
+                        <RestaurantsPage />
+                    </MainWrapper>
                 </UnauthenticatedRoute>
             } />
             <Route path="*" element={<PageNotFound />} />

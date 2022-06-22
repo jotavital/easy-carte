@@ -3,15 +3,16 @@ import HomeRestaurantCard from '../cards/HomeRestaurantCard';
 import { apiClient } from '../../providers/apiClient';
 import { useState, useEffect } from 'react';
 
-function HomeRestaurantsSection() {
+function HomeRestaurantsSection({ cityUrl }) {
     const [restaurants, setRestaurants] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     const getRestaurants = () => {
-        apiClient.get('/restaurant').then((response) => {
-            setRestaurants(response.data);
-            setIsDataLoaded(true);
-        });
+        apiClient.get('city/' + cityUrl + '/restaurants')
+            .then((response) => {
+                setRestaurants(response.data);
+                setIsDataLoaded(true);
+            });
     }
 
     useEffect(() => {

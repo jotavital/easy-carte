@@ -20,6 +20,7 @@ body {
     background-color: #fff;
     width: 100vw;
     min-height: calc(100vh - var(--navBarHeight));
+    padding: 10px;
 }
 
 .navbar-logo{

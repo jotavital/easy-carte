@@ -1,12 +1,14 @@
 import { InputAdornment, TextField } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRestaurantSearchQuery } from '../../../redux/restaurants/restaurantsSlice';
 
 function SearchInput() {
-    const [searchQuery, setSearchQuery] = useState();
+    const restaurantSearchQuery = useSelector(state => state.restaurants.restaurantSearchQuery);
+    const dispatch = useDispatch();
 
     const handleInputChange = (event) => {
-        setSearchQuery(event.target.value);
+        dispatch(setRestaurantSearchQuery(event.target.value));
     }
 
     return (
@@ -20,7 +22,7 @@ function SearchInput() {
                     </InputAdornment>
                 ),
             }}
-            value={searchQuery}
+            value={restaurantSearchQuery}
             onChange={handleInputChange}
         />
     );

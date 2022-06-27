@@ -6,9 +6,9 @@ use App\Models\City;
 
 class CityController extends Controller
 {
-    public function show($id)
+    public function show($idOrUrl)
     {
-        $city = City::find($id)->first();
+        $city = City::where('id', $idOrUrl)->orWhere('city_url', $idOrUrl)->first();
 
         return response()->json($city);
     }

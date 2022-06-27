@@ -1,10 +1,11 @@
 import { apiClient } from "../../providers/apiClient";
 
 export const setCityLocalStorageMiddleware = (store) => (next) => (action) => {
+    const { app } = store.getState();
+
     switch (action.type) {
         case 'app/selectCity':
             const selectedCityId = action.payload;
-            const { app } = store.getState();
 
             if (!app.isCitySelected) {
                 apiClient.get('/city/' + selectedCityId)
@@ -14,7 +15,6 @@ export const setCityLocalStorageMiddleware = (store) => (next) => (action) => {
                     });
             }
             break;
-
         default:
             next(action);
             break;

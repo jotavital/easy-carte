@@ -34,4 +34,4 @@ Route::resource('restaurant', RestaurantController::class);
 Route::get('city/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
 
 // !! city routes
-Route::get('/city/{id}', [CityController::class, 'show']);
+Route::get('/city/{idOrUrl}', [CityController::class, 'show']);

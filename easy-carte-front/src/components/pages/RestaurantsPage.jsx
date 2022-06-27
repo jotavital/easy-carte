@@ -8,7 +8,11 @@ function RestaurantsPage() {
 
     return (
         <Grid container>
-            <SearchInput />
+            <Grid container item justifyContent='end'>
+                <Grid item sm={4}>
+                    <SearchInput />
+                </Grid>
+            </Grid>
             <HomeRestaurantsSection cityUrl={city_url} />
         </Grid>
     );

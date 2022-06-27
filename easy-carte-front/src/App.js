@@ -1,4 +1,5 @@
 import './App.css';
+import './css/debuggingStyles.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './components/router/AppRoutes';

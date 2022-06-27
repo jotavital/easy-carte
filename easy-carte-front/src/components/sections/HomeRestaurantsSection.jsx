@@ -20,7 +20,7 @@ function HomeRestaurantsSection({ cityUrl }) {
     }, []);
 
     return (
-        <Grid container justifyContent='center' alignItems='center' spacing={1} sx={{ minHeight: 200 }} padding={1}>
+        <Grid container justifyContent='center' alignItems='center' spacing={1} sx={{ minHeight: 200 }} paddingY={3}>
             {!isDataLoaded
                 ? <CircularProgress />
                 : restaurants.map((restaurant) => {

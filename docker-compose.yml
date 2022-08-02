@@ -3,13 +3,14 @@ version: '3.2'
 services:
   easy-carte-api:
     build: ./easy-carte-api
+    container_name: easy-carte-api
     command: ./.docker/entrypoint.sh
     ports:
       - "8000:8000"
     volumes:
       - ./easy-carte-api:/easy-carte-api
-      - /easy-carte-api/node_modules
-      - /easy-carte-api/vendor
+      # - /easy-carte-api/node_modules
+      # - /easy-carte-api/vendor
     networks:
       - easy-carte-network
     depends_on:
@@ -17,12 +18,13 @@ services:
 
   easy-carte-front:
     build: ./easy-carte-front
+    container_name: easy-carte-front
     command: ./.docker/entrypoint.sh
     ports:
       - "3000:3000"
     volumes:
       - ./easy-carte-front:/easy-carte-front
-      - /easy-carte-front/node_modules
+      # - /easy-carte-front/node_modules
     networks:
       - easy-carte-network
     depends_on:
@@ -30,6 +32,7 @@ services:
 
   easy-carte-mysql:
     build: ./.docker/mysql
+    container_name: easy-carte-mysql
     # command: ./.docker/entrypoint.sh
     ports:
       - "3306:3306"

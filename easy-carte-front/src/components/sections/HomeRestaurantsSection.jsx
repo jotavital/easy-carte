@@ -8,7 +8,7 @@ function HomeRestaurantsSection({ cityUrl }) {
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     const getRestaurants = () => {
-        apiClient.get('city/' + cityUrl + '/restaurants')
+        apiClient.get('cities/' + cityUrl + '/restaurants')
             .then((response) => {
                 setRestaurants(response.data);
                 setIsDataLoaded(true);

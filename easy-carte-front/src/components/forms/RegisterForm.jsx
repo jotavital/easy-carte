@@ -24,7 +24,7 @@ function RegisterForm() {
     const onSubmit = (data) => {
         data.birth_date = formatDate(data.birth_date, 'yyyy-MM-dd');
 
-        apiClient.post('/user', data)
+        apiClient.post('/users', data)
             .then((response) => {
                 console.log(response.data);
                 if (response.status === 200 && response.data === true) {

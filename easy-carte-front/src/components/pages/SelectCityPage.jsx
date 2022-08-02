@@ -9,6 +9,7 @@ function SelectCityPage() {
 
     if (isCitySelected) {
         const { city_url } = JSON.parse(localStorage.getItem('selected_city'));
+        
         return (
             <Navigate to={city_url} />
         );

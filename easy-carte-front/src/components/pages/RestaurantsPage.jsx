@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Grid } from '@mui/material';
 import HomeRestaurantsSection from '../sections/HomeRestaurantsSection';
 import SearchInput from '../forms/inputs/SearchInput';

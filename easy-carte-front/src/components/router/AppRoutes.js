@@ -14,7 +14,7 @@ import MainWrapper from '../MainWrapper';
 function AppRoutes() {
     return (
         <Routes>
-            {/* public routes */}
+            {/* unauthenticated-only routes */}
             <Route path='/login' element={
                 <UnauthenticatedRoute>
                     <MainWrapper>
@@ -29,21 +29,21 @@ function AppRoutes() {
                     </MainWrapper>
                 </UnauthenticatedRoute>
             } />
+
+            {/* public routes */}
             <Route path='/' element={
-                <UnauthenticatedRoute>
-                    <MainWrapper>
-                        <SelectCityPage />
-                    </MainWrapper>
-                </UnauthenticatedRoute>
+                <MainWrapper>
+                    <SelectCityPage />
+                </MainWrapper>
             } />
             <Route path='/:city_url' element={
-                <UnauthenticatedRoute>
-                    <MainWrapper>
-                        <RestaurantsPage />
-                    </MainWrapper>
-                </UnauthenticatedRoute>
+                <MainWrapper>
+                    <RestaurantsPage />
+                </MainWrapper>
             } />
             <Route path="*" element={<PageNotFound />} />
+
+            {/* private routes */}
         </Routes>
     );
 }

@@ -28,7 +28,7 @@ const NavBar = () => {
         pages.push(
             {
                 name: 'Home',
-                action: '/home'
+                action: '/'
             }
         );
 

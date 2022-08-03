@@ -7,7 +7,7 @@ const UnauthenticatedRoute = ({ children }) => {
     const { isUserAuthenticated } = useContext(AuthContext);
 
     if (isUserAuthenticated()) {
-        return <Navigate to={-1} replace={true} />
+        return <Navigate to='/' replace={true} />
     }
     return children;
 }

@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
                 setUser(response.data[0]);
                 localStorage.setItem('authenticatedUser', JSON.stringify(response.data[0]));
 
-                navigate('/home');
+                navigate('/');
             })
             .catch((error) => {
                 dispatch(setSnackbar(

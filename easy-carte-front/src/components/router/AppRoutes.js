@@ -8,8 +8,9 @@ import RegisterPage from '../pages/RegisterPage';
 import SelectCityPage from '../pages/SelectCityPage';
 import PageNotFound from '../pages/PageNotFound';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
-import RestaurantsPage from '../pages/RestaurantsPage';
+import RestaurantsListPage from '../pages/RestaurantsListPage';
 import MainWrapper from '../MainWrapper';
+import RestaurantPage from './../pages/RestaurantPage';
 
 function AppRoutes() {
     return (
@@ -38,7 +39,12 @@ function AppRoutes() {
             } />
             <Route path='/:city_url' element={
                 <MainWrapper>
-                    <RestaurantsPage />
+                    <RestaurantsListPage />
+                </MainWrapper>
+            } />
+            <Route path='/restaurants/:restaurant_id' element={
+                <MainWrapper>
+                    <RestaurantPage />
                 </MainWrapper>
             } />
             <Route path="*" element={<PageNotFound />} />

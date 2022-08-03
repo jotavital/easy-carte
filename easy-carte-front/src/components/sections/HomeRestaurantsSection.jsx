@@ -12,7 +12,6 @@ function HomeRestaurantsSection({ cityUrl }) {
     const getRestaurants = () => {
         apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search'))
             .then((response) => {
-                console.log(response);
                 setRestaurants(response.data);
                 setIsDataLoaded(true);
             });

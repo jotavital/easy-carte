@@ -4,10 +4,10 @@ import HomeRestaurantsSection from '../sections/HomeRestaurantsSection';
 import SearchInput from '../forms/inputs/SearchInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCity } from "../../redux/appSlice";
-import WhereAreYou from './../sections/WhereAreYou';
+import WhereAreYou from '../sections/WhereAreYou';
 import { useState } from "react";
 
-function RestaurantsPage() {
+function RestaurantsListPage() {
     const dispatch = useDispatch();
     const { city_url } = useParams();
     const isCitySelected = useSelector((state) => state.app.isCitySelected);
@@ -44,4 +44,4 @@ function RestaurantsPage() {
     );
 }
 
-export default RestaurantsPage;
+export default RestaurantsListPage;

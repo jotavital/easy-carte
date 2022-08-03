@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
                 console.error('Não foi possível fazer o logout.');
             });
 
-        navigate('/login');
+        navigate('/');
     }
 
     const isUserAuthenticated = () => {

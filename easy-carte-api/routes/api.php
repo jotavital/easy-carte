@@ -31,7 +31,7 @@ Route::get('/auth/check', [UserController::class, 'checkIfUserAuthenticated']);
 Route::post('/users', [UserController::class, 'store']);
 
 // !! restaurant routes
-Route::resource('restaurant', RestaurantController::class);
+Route::resource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
 
 // !! city routes

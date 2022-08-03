@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { externalApiClient } from '../../../../providers/externalApiClient';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { selectCity } from '../../../../redux/appSlice';
 import { useDispatch } from 'react-redux';
+import { apiClient } from '../../../../providers/apiClient';
 
 function SelectCities({ selectedStateId }) {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function SelectCities({ selectedStateId }) {
     useEffect(() => {
         if (selectedStateId) {
             setSelectedCityId(0);
-            externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + selectedStateId + '/municipios')
+            apiClient.get('/states/' + selectedStateId + '/cities')
                 .then((response) => {
                     setCities(response.data);
                     setDisabled(false);
@@ -42,7 +42,7 @@ function SelectCities({ selectedStateId }) {
                 <MenuItem value={0}>Selecione</MenuItem>
                 {
                     cities.length > 0 && cities.map((item) => {
-                        return <MenuItem key={item.id} value={item.id}>{item.nome}</MenuItem>
+                        return <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                     })
                 }
             </Select>

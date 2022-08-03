@@ -1,14 +1,12 @@
-import { InputAdornment, TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch, useSelector } from 'react-redux';
-import { setRestaurantSearchQuery } from '../../../redux/restaurants/restaurantsSlice';
+import { useState } from 'react';
 
 function SearchInput() {
-    const restaurantSearchQuery = useSelector(state => state.restaurants.restaurantSearchQuery);
-    const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
 
-    const handleInputChange = (event) => {
-        dispatch(setRestaurantSearchQuery(event.target.value));
+    const handleInputChange = ({ target }) => {
+        setSearch(target.value);
     }
 
     return (
@@ -18,11 +16,13 @@ function SearchInput() {
             InputProps={{
                 endAdornment: (
                     <InputAdornment position="start">
-                        <SearchIcon />
+                        <IconButton>
+                            <SearchIcon />
+                        </IconButton>
                     </InputAdornment>
                 ),
             }}
-            value={restaurantSearchQuery}
+            value={search}
             onChange={handleInputChange}
         />
     );

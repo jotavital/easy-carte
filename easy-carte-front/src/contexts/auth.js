@@ -41,9 +41,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('authenticatedUser');
 
         apiClient.post('/logout')
-            .then((response) => {
-                console.log(response);
-            })
             .catch((error) => {
                 console.error('Não foi possível fazer o logout.');
             });

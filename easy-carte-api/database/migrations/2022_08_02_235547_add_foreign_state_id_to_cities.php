@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cities', function (Blueprint $table) {
-            $table->unsignedBigInteger('state_id')->nullable()->default(null)->after('city_url');
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('cities', function (Blueprint $table) {
-            $table->dropColumn('state_id');
+            $table->dropForeign('state_id');
         });
     }
 };

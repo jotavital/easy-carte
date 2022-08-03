@@ -26,7 +26,6 @@ function RegisterForm() {
 
         apiClient.post('/users', data)
             .then((response) => {
-                console.log(response.data);
                 if (response.status === 200 && response.data === true) {
                     navigate('/login');
                 }

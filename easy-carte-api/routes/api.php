@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,7 @@ Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRes
 // !! city routes
 Route::get('/cities', [CityController::class, 'index']);
 Route::get('/cities/{idOrUrl}', [CityController::class, 'show']);
+
+// !! state routes
+Route::get('/states', [StateController::class, 'index']);
+Route::get('/states/{stateId}/cities', [StateController::class, 'getCitiesByState']);

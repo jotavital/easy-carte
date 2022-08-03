@@ -17,7 +17,7 @@ function RestaurantsPage() {
     return (
         <Grid container>
             <Grid container item justifyContent='end'>
-                <Grid item sm={4}>
+                <Grid item sm={5}>
                     <SearchInput />
                 </Grid>
             </Grid>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { externalApiClient } from '../../../../providers/externalApiClient';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { apiClient } from '../../../../providers/apiClient';
 
 function SelectStates({ selectedStateId, setSelectedStateId }) {
     const [states, setStates] = useState({});
@@ -10,7 +10,7 @@ function SelectStates({ selectedStateId, setSelectedStateId }) {
     }
 
     useEffect(() => {
-        externalApiClient.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+        apiClient.get('/states')
             .then((response) => {
                 setStates(response.data);
             });
@@ -29,7 +29,7 @@ function SelectStates({ selectedStateId, setSelectedStateId }) {
                 <MenuItem value={0}>Selecione</MenuItem>
                 {
                     states.length > 0 && states.map((item) => {
-                        return <MenuItem key={item.id} value={item.id}>{item.nome}</MenuItem>
+                        return <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                     })
                 }
             </Select>

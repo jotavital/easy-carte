@@ -10,11 +10,19 @@
                     "commands": [
                         "docker-compose up"
                     ]
+                }
+            ],
+            "splitTerminals": [
+                {
+                    "name": "start back",
+                    "commands": [
+                        "start-back.bat"
+                    ]
                 },
                 {
-                    "name": "start windows",
+                    "name": "start front",
                     "commands": [
-                        "start.bat"
+                        "start-front.bat"
                     ]
                 }
             ]

@@ -1,0 +1,1 @@
+cd easy-carte-front & yarn & yarn start

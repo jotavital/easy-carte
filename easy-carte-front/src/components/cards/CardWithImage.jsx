@@ -1,14 +1,14 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
-function CardWithImage({ src, cardTitle, cardText, iconFontSize = 130 }) {
+function CardWithImage({ action, src, cardTitle, cardText }) {
     return (
-        <Card sx={{ maxWidth: 300 }}>
-            <CardActionArea>
+        <Card sx={{ width: 300 }}>
+            <CardActionArea onClick={action}>
                 <CardMedia
                     component="img"
                     src={src}
                     alt={src}
-                    height={250}
+                    sx={{ maxHeight: 150 }}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" textAlign='center' component="div">

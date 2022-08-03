@@ -1,4 +1,4 @@
-:root{
+:root {
     --navBarHeight: 60px !important;
 }
 
@@ -6,37 +6,37 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.app-navbar{
+.app-navbar {
     height: var(--navBarHeight);
     display: flex;
     justify-content: center;
 }
 
-.full-body-height{
+.full-body-height {
     height: calc(100vh - var(--navBarHeight));
 }
 
-.main-wrapper{
+.main-wrapper {
     background-color: #fff;
     width: 100vw;
     min-height: calc(100vh - var(--navBarHeight));
     padding: 10px;
 }
 
-.navbar-logo{
+.navbar-logo {
     width: 200px;
 }
 
 /* Debugging classes */
 
-.bg-red{
+.bg-red {
     background-color: red;
 }
 
-.bg-blue{
+.bg-blue {
     background-color: blue;
 }
 
-.bg-green{
+.bg-green {
     background-color: green;
 }

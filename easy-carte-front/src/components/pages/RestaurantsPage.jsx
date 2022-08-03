@@ -4,6 +4,7 @@ import HomeRestaurantsSection from '../sections/HomeRestaurantsSection';
 import SearchInput from '../forms/inputs/SearchInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCity } from "../../redux/appSlice";
+import WhereAreYou from './../sections/WhereAreYou';
 
 function RestaurantsPage() {
     const dispatch = useDispatch();
@@ -16,12 +17,13 @@ function RestaurantsPage() {
 
     return (
         <Grid container>
-            <Grid container item justifyContent='end'>
-                <Grid item sm={5}>
+            <WhereAreYou />
+            {/* <Grid container item justifyContent='end'>
+                <Grid item sm={6} xs={12}>
                     <SearchInput />
                 </Grid>
             </Grid>
-            <HomeRestaurantsSection cityUrl={city_url} />
+            <HomeRestaurantsSection cityUrl={city_url} /> */}
         </Grid>
     );
 }

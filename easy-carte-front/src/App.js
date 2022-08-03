@@ -7,8 +7,9 @@ import NavBar from './components/NavBar';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { AuthProvider } from './contexts/auth';
 import CustomSnackBar from './components/snackbars/CustomSnackbar';
+import { themeOptions } from './providers/themeOptions';
 
-const theme = createTheme({});
+const theme = createTheme(themeOptions);
 
 function App() {
     return (

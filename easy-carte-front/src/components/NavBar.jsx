@@ -79,7 +79,7 @@ const NavBar = () => {
     }
 
     return (
-        <AppBar color='info' className='app-navbar' position="static">
+        <AppBar color='primary' className='app-navbar' position="static">
             <Container maxWidth="xl">
                 <Toolbar>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none', md: 'none' } }}>

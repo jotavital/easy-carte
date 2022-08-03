@@ -91,9 +91,15 @@ class RestaurantController extends Controller
         return $cityId;
     }
 
-    public function getRestaurantsByCity($cityUrl)
+    public function getRestaurantsByCity(Request $request, $cityUrl)
     {
         $cityId = self::getCityIdByCityUrl($cityUrl);
+
+        if ($request->search !== 'null' && $request->search != '') {
+            $restaurants = Restaurant::where('city_id', $cityId)->where('name', 'like', "%$request->search%")->get();
+            return response()->json($restaurants);
+        }
+
         $restaurants = Restaurant::all()->where('city_id', $cityId);
 
         return response()->json($restaurants);

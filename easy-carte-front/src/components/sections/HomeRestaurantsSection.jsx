@@ -2,14 +2,18 @@ import { Grid, CircularProgress } from '@mui/material';
 import HomeRestaurantCard from '../cards/HomeRestaurantCard';
 import { apiClient } from '../../providers/apiClient';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 function HomeRestaurantsSection({ cityUrl }) {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [restaurants, setRestaurants] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
+    // !!! i need to get the rests everytime the search updates.... 
     const getRestaurants = () => {
-        apiClient.get('cities/' + cityUrl + '/restaurants')
+        apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search'))
             .then((response) => {
+                console.log(response);
                 setRestaurants(response.data);
                 setIsDataLoaded(true);
             });

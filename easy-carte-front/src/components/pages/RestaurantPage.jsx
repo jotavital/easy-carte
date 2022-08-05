@@ -8,16 +8,12 @@ function RestaurantPage() {
     const [restaurant, setRestaurant] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-    const getRestaurants = () => {
+    useEffect(() => {
         apiClient.get('/restaurants/' + restaurant_id)
             .then(({ data }) => {
                 setRestaurant(data);
                 setIsDataLoaded(true);
             });
-    }
-
-    useEffect(() => {
-        getRestaurants();
     }, [restaurant_id]);
 
     return (

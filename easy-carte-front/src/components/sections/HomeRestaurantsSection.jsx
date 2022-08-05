@@ -5,21 +5,17 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function HomeRestaurantsSection({ cityUrl }) {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const [restaurants, setRestaurants] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-    const getRestaurants = () => {
+    useEffect(() => {
         apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search'))
             .then((response) => {
                 setRestaurants(response.data);
                 setIsDataLoaded(true);
             });
-    }
-
-    useEffect(() => {
-        getRestaurants();
-    }, [searchParams]);
+    }, [cityUrl, searchParams]);
 
     return (
         <Grid container justifyContent='center' alignItems='center' spacing={1} sx={{ minHeight: 200 }} paddingY={3}>
@@ -27,7 +23,7 @@ function HomeRestaurantsSection({ cityUrl }) {
                 ? <CircularProgress />
                 : (restaurants.length)
                     ? restaurants.map((restaurant) => {
-                        return <HomeRestaurantCard key={restaurant.id} name={restaurant.name} />
+                        return <HomeRestaurantCard key={restaurant.id} restaurant={restaurant} />
                     })
                     : <Typography variant='h6'>Nenhum resultado encontrado.</Typography>
             }

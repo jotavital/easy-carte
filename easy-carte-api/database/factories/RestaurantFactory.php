@@ -17,7 +17,8 @@ class RestaurantFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->firstName()
+            'name' => $this->faker->firstName(),
+            'description' => $this->faker->text(150),
         ];
     }
 }

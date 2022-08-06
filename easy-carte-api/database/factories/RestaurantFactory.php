@@ -19,6 +19,8 @@ class RestaurantFactory extends Factory
         return [
             'name' => $this->faker->firstName(),
             'description' => $this->faker->text(150),
+            'opening_time' => fake()->time('H:i'),
+            'closing_time' => fake()->time('H:i')
         ];
     }
 }

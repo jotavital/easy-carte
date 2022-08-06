@@ -23,11 +23,11 @@ function RestaurantPage() {
                 <CircularProgress />
                 :
                 <Grid container item xs={12} justifyContent='center' className="bg-purple">
-                    <Grid container className="bg-red" xs={10} sx={{ maxHeight: 150 }}>
-                        <Grid container className="bg-green" justifyContent='center' padding xs={4}>
-                            <img width={150} class="img-rounded" src={restaurant.logo_url} alt={restaurant.name} />
+                    <Grid container item className="bg-red" xs={10} sx={{ maxHeight: 150 }}>
+                        <Grid container item className="bg-green" justifyContent='center' padding xs={4}>
+                            <img width={150} className="img-rounded" src={restaurant.logo_url} alt={restaurant.name} />
                         </Grid>
-                        <Grid className="bg-yellow" padding xs={8}>
+                        <Grid item className="bg-yellow" padding xs={8}>
                             <Typography variant='h5'>
                                 {restaurant.name}
                             </Typography>

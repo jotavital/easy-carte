@@ -14,7 +14,6 @@ function HomeRestaurantsSection({ cityUrl }) {
             .then((response) => {
                 setRestaurants(response.data);
                 setIsDataLoaded(true);
-                console.log(response);
             });
     }, [cityUrl, searchParams]);
 

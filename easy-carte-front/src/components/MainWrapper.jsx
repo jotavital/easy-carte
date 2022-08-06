@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import CenterWrapper from './CenterWrapper';
 
 function MainWrapper({ children }) {
     return (

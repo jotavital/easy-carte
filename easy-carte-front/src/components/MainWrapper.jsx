@@ -4,9 +4,7 @@ import CenterWrapper from './CenterWrapper';
 function MainWrapper({ children }) {
     return (
         <Grid className='main-wrapper' paddingX={5}>
-            <CenterWrapper>
-                {children}
-            </CenterWrapper>
+            {children}
         </Grid>
     );
 }

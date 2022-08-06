@@ -1,4 +1,5 @@
 import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
+import RestaurantOpenClosed from '../text/RestaurantOpenClosed';
 
 function HomeRestaurantCard({ restaurant }) {
     return (
@@ -8,17 +9,17 @@ function HomeRestaurantCard({ restaurant }) {
                     <CardMedia
                         component="img"
                         height="100"
-                        image="https://static.remove.bg/remove-bg-web/6ad52d54336ad62d58e7bd1317d40fb98e377ad5/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg"
-                        alt={restaurant.name}
+                        image={restaurant.logo_url}
+                        alt={restaurant.logo_url}
                     />
                     <CardContent>
                         <Typography textAlign='center' fontWeight='bold'>
                             {restaurant.name}
                         </Typography>
-                        <Typography textAlign='center'>
-                            8 as 18
-                            Aberto
+                        <Typography textAlign='center' variant='body2'>
+                            {restaurant.opening_hours}
                         </Typography>
+                        <RestaurantOpenClosed isOpen={restaurant.is_open} />
                     </CardContent>
                 </Card>
             </CardActionArea>

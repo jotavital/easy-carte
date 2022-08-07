@@ -1,5 +1,6 @@
 import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 import RestaurantOpenClosed from '../text/RestaurantOpenClosed';
+import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
 
 function HomeRestaurantCard({ restaurant }) {
     return (
@@ -16,9 +17,9 @@ function HomeRestaurantCard({ restaurant }) {
                         <Typography textAlign='center' fontWeight='bold'>
                             {restaurant.name}
                         </Typography>
-                        <Typography textAlign='center' variant='body2'>
-                            {restaurant.opening_hours}
-                        </Typography>
+                        <Grid container justifyContent='center'>
+                            <RestaurantOpeningHours opening_hours={restaurant.opening_hours} />
+                        </Grid>
                         <RestaurantOpenClosed isOpen={restaurant.is_open} />
                     </CardContent>
                 </Card>

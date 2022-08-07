@@ -122,13 +122,6 @@ const NavBar = () => {
                             ))}
                         </Menu>
                         <Grid container alignItems='center' justifyContent='right'>
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="div"
-                            >
-                                EasyCarte
-                            </Typography>
                             <NavBarLogo />
                         </Grid>
                     </Box>

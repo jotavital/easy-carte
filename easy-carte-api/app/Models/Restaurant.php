@@ -14,6 +14,11 @@ class Restaurant extends Model
 
     protected $appends = ['logo_url', 'opening_hours', 'is_open'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function getIsOpenAttribute()
     {
         $now = Carbon::now();

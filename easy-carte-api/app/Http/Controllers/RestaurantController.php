@@ -84,6 +84,11 @@ class RestaurantController extends Controller
         //
     }
 
+    public function getProducts($id)
+    {
+        return response()->json(Restaurant::find($id)->products);
+    }
+
     public static function getCityIdByCityUrl($cityUrl)
     {
         $cityId = City::where('city_url', $cityUrl)->first()['id'];

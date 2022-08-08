@@ -33,6 +33,7 @@ Route::post('/users', [UserController::class, 'store']);
 // !! restaurant routes
 Route::resource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
+Route::get('restaurants/{id}/products', [RestaurantController::class, 'getProducts']);
 
 // !! city routes
 Route::get('/cities', [CityController::class, 'index']);

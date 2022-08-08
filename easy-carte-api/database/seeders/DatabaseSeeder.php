@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             StateSeeder::class,
             CitySeeder::class,
-            RestaurantSeeder::class
+            RestaurantSeeder::class,
+            ProductSeeder::class
         ]);
     }
 }

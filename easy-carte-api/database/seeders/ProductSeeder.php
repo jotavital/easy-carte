@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Restaurant;
+use App\Models\Product;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RestaurantSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,6 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        Restaurant::factory(24)->create([
-            'city_id' => 3168606
-        ]);
+        Product::factory(400)->create();
     }
 }

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Card, CircularProgress, Grid, Typography, CardContent } from '@mui/material';
+import { Card, CircularProgress, Grid, Typography, CardContent, Box } from '@mui/material';
 import { apiClient } from '../../providers/apiClient';
 import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
 import RestaurantRating from '../misc/RestaurantRating';
@@ -16,39 +16,45 @@ function RestaurantPage() {
                 setRestaurant(data);
                 setIsDataLoaded(true);
             });
+
+        apiClient.get('/restaurants/' + restaurant_id + '/products')
+            .then(({ data }) => {
+                console.log(data);
+            });
     }, [restaurant_id]);
 
     return (
         <Card>
-            <CardContent>
-                <Grid container className="min-h-100" justifyContent='center' paddingY={1}>
-                    {!isDataLoaded
-                        ?
-                        <CircularProgress />
-                        :
-                        <Grid container item xs={12} justifyContent='center'>
-                            <Grid container item xs={10} sx={{ maxHeight: 150 }}>
-                                <Grid container item justifyContent='center' padding xs={4}>
-                                    <img width={150} className="img-rounded" src={restaurant.logo_url} alt={restaurant.name} />
-                                </Grid>
-                                <Grid item padding xs={8}>
-                                    <Typography variant='h5'>
-                                        {restaurant.name}
-                                    </Typography>
-                                    <Typography variant='h5'>
-                                        <RestaurantRating />
-                                    </Typography>
-                                    <Typography variant='body2'>
-                                        {restaurant.description}
-                                    </Typography>
-                                    <Grid xs={3} container marginTop>
-                                        <RestaurantOpeningHours opening_hours={restaurant.opening_hours} />
-                                    </Grid>
+            <CardContent component={Grid} container item justifyContent='center' paddingY={1}>
+                {!isDataLoaded
+                    ?
+                    <CircularProgress />
+                    :
+                    <Grid container justifyContent='center'>
+                        <Grid container>
+                            <Grid item container alignItems='center' padding xs={4} sm={3} md={2}>
+                                <Box
+                                    component="img"
+                                    src={restaurant.logo_url}
+                                    alt={restaurant.name}
+                                    className="img-responsive img-rounded"
+                                />
+                            </Grid>
+                            <Grid item padding xs={8}>
+                                <Typography variant='h5'>
+                                    {restaurant.name}
+                                </Typography>
+                                <RestaurantRating />
+                                <Typography variant='body2'>
+                                    {restaurant.description}
+                                </Typography>
+                                <Grid container item marginTop>
+                                    <RestaurantOpeningHours opening_hours={restaurant.opening_hours} />
                                 </Grid>
                             </Grid>
                         </Grid>
-                    }
-                </Grid>
+                    </Grid>
+                }
             </CardContent>
         </Card>
     );

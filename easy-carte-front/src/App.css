@@ -17,7 +17,7 @@ body {
 }
 
 .main-wrapper {
-    background-color: #fff;
+    background-color: #f8f9fa;
     width: 100vw;
     min-height: calc(100vh - var(--navBarHeight));
     height: calc(100vh - var(--navBarHeight));

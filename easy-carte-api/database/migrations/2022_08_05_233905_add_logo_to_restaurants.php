@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->string('logo')->nullable()->default('default_logo.png')->after('description');
+            $table->string('logo')->nullable()->default('default_logo_black.jpg')->after('description');
         });
     }
 

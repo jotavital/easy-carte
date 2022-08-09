@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectCity } from "../../redux/appSlice";
 import WhereAreYou from '../sections/WhereAreYou';
 import { useState } from "react";
+import RestaurantCategories from '../sections/RestaurantCategories';
 
 function RestaurantsListPage() {
     const dispatch = useDispatch();
@@ -26,11 +27,12 @@ function RestaurantsListPage() {
         <Grid container>
             {(userLocation === 'home') ?
                 <>
-                    <Grid container item justifyContent='end'>
+                    <Grid padding container item justifyContent='end'>
                         <Grid item sm={6} xs={12}>
                             <SearchInput />
                         </Grid>
                     </Grid>
+                    <RestaurantCategories />
                     <HomeRestaurantsSection cityUrl={city_url} />
                 </>
                 :

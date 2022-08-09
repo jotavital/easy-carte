@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\RestaurantCategoriesController;
+use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
@@ -34,6 +36,9 @@ Route::post('/users', [UserController::class, 'store']);
 Route::resource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
 Route::get('restaurants/{id}/products', [RestaurantController::class, 'getProducts']);
+
+// !! restaurant categories routes
+Route::resource('/restaurant-categories', RestaurantCategoryController::class);
 
 // !! city routes
 Route::get('/cities', [CityController::class, 'index']);

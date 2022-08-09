@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             StateSeeder::class,
             CitySeeder::class,
+            RestaurantCategorySeeder::class,
             RestaurantSeeder::class,
             ProductSeeder::class
         ]);

@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id')->nullable()->default(null)->after('name');
-
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->unsignedBigInteger('restaurant_category_id')->default(1)->after('city_id');
+            $table->foreign('restaurant_category_id')->references('id')->on('restaurant_categories');
         });
     }
 
@@ -28,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->dropForeign(['city_id']);
-            $table->dropColumn('city_id');
+            $table->dropForeign(['restaurant_category_id']);
+            $table->dropColumn('restaurant_category_id');
         });
     }
 };

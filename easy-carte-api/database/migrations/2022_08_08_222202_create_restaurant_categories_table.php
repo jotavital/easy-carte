@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('cities', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states');
+        Schema::create('restaurant_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('cities', function (Blueprint $table) {
-            $table->dropForeign(['state_id']);
-        });
+        Schema::dropIfExists('restaurant_categories');
     }
 };

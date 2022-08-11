@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router-dom";
 
 function RoundedCategoryIcon({ categoryId = 0, icon, subtitle }) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const isCategorySelected = !!(searchParams.get('category') == categoryId);
+    const isCategorySelected = !!(searchParams.get('category') == categoryId)
+        || (!searchParams.get('category') && subtitle == 'Todas');
 
     const handleCategoryChange = (categoryId) => {
         var newSearchParams = new URLSearchParams(searchParams.toString());

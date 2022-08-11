@@ -11,16 +11,11 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $appends = ['formatted_price', 'productImages'];
+    protected $appends = ['formatted_price'];
 
     public function getFormattedPriceAttribute()
     {
         return formatCurrencyToReal($this->price);
-    }
-
-    public function getProductImagesAttribute()
-    {
-        return $this->productImages();
     }
 
     public function productImages()

@@ -1,6 +1,8 @@
+import { CircularProgress } from "@mui/material";
+
 function CustomLoading() {
     return (
-        <CustomLoading />
+        <CircularProgress />
     );
 }
 

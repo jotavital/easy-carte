@@ -1,11 +1,11 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
-function ProductCard() {
+function ProductCard({ product }) {
     const navigate = useNavigate();
 
     return (
-        <Grid item lg={2}>
+        <Grid item>
             <Card>
                 <CardActionArea onClick={() => navigate('/restaurants/')}>
                     <CardMedia
@@ -16,10 +16,10 @@ function ProductCard() {
                     />
                     <CardContent>
                         <Typography textAlign='center' variant="h6">
-                            kkkkk
+                            {product.name}
                         </Typography>
                         <Typography textAlign='center' fontWeight='bold'>
-                            R$ 0,00
+                            {product.formatted_price}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

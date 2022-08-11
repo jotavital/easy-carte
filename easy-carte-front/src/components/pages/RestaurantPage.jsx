@@ -68,7 +68,7 @@ function RestaurantPage() {
                                     <CustomLoading />
                                     :
                                     products.map((product) => {
-                                        return <ProductCard />
+                                        return <ProductCard product={product} />
                                     })
                                 }
                             </Grid>

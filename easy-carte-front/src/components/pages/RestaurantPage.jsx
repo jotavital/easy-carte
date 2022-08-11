@@ -25,6 +25,7 @@ function RestaurantPage() {
             .then(({ data }) => {
                 setProducts(data);
                 setAreProductsLoaded(true);
+                console.log(data);
             });
     }, [restaurant_id]);
 
@@ -68,7 +69,7 @@ function RestaurantPage() {
                                     <CustomLoading />
                                     :
                                     products.map((product) => {
-                                        return <ProductCard product={product} />
+                                        return <ProductCard key={product.id} product={product} />
                                     })
                                 }
                             </Grid>

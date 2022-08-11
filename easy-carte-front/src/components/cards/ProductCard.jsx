@@ -5,13 +5,13 @@ function ProductCard({ product }) {
     const navigate = useNavigate();
 
     return (
-        <Grid item>
+        <Grid padding item>
             <Card>
                 <CardActionArea onClick={() => navigate('/restaurants/')}>
                     <CardMedia
                         component="img"
                         height="100"
-                        image='imageproducot'
+                        image={product.main_image}
                         alt='alt'
                     />
                     <CardContent>

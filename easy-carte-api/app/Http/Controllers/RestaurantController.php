@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Product;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 

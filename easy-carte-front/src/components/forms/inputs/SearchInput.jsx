@@ -14,7 +14,9 @@ function SearchInput() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        setSearchParams({ search: search })
+        var newSearchParams = new URLSearchParams(searchParams.toString());
+        newSearchParams.set('search', search);
+        setSearchParams(newSearchParams.toString());
     }
 
     return (

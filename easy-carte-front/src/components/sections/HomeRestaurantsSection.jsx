@@ -10,11 +10,10 @@ function HomeRestaurantsSection({ cityUrl }) {
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     useEffect(() => {
-        apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search'))
-            .then((response) => {
-                setRestaurants(response.data);
+        apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search') + '&category=' + searchParams.get('category'))
+            .then(({ data }) => {
+                setRestaurants(data);
                 setIsDataLoaded(true);
-                console.log(response.data);
             });
     }, [cityUrl, searchParams]);
 

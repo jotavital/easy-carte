@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Icon } from "@mui/material";
-import RoundedIconAvatar from "../misc/RoundedIconAvatar";
+import RoundedCategoryIcon from "../misc/RoundedCategoryIcon";
 import { useState, useEffect } from 'react';
 import { apiClient } from "../../providers/apiClient";
 
@@ -10,27 +10,37 @@ function RestaurantCategories() {
     useEffect(() => {
         apiClient.get('/restaurant-categories')
             .then(({ data }) => {
-                console.log(data);
                 setCategories(data);
                 setIsDataLoaded(true);
             })
     }, []);
 
-    return (
-        <Grid container gap padding justifyContent='center'>
-            {!isDataLoaded ?
+    if (!isDataLoaded) {
+        return (
+            <Grid container gap padding justifyContent='center'>
                 <CircularProgress />
-                :
-                categories.map((category) => {
-                    return <RoundedIconAvatar
-                        key={category.id}
-                        icon={<Icon>{category.icon}</Icon>}
-                        subtitle={category.name}
-                    />
-                })
-            }
-        </Grid>
-    );
+            </Grid>
+        )
+    } else {
+        return (
+            <Grid container gap padding justifyContent='center'>
+                <RoundedCategoryIcon
+                    icon={<Icon>star</Icon>}
+                    subtitle='Todas'
+                />
+                {
+                    categories.map((category) => {
+                        return <RoundedCategoryIcon
+                            key={category.id}
+                            categoryId={category.id}
+                            icon={<Icon>{category.icon}</Icon>}
+                            subtitle={category.name}
+                        />
+                    })
+                }
+            </Grid>
+        );
+    }
 }
 
 export default RestaurantCategories;

@@ -1,4 +1,5 @@
-import { CircularProgress, Grid, Icon } from "@mui/material";
+import { Grid, Icon } from "@mui/material";
+import CustomLoading from "../misc/CustomLoading";
 import RoundedCategoryIcon from "../misc/RoundedCategoryIcon";
 import { useState, useEffect } from 'react';
 import { apiClient } from "../../providers/apiClient";
@@ -18,7 +19,7 @@ function RestaurantCategories() {
     if (!isDataLoaded) {
         return (
             <Grid container gap padding justifyContent='center'>
-                <CircularProgress />
+                <CustomLoading />
             </Grid>
         )
     } else {

@@ -1,4 +1,5 @@
-import { Grid, CircularProgress, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import CustomLoading from '../misc/CustomLoading';
 import HomeRestaurantCard from '../cards/HomeRestaurantCard';
 import { apiClient } from '../../providers/apiClient';
 import { useState, useEffect } from 'react';
@@ -20,7 +21,7 @@ function HomeRestaurantsSection({ cityUrl }) {
     return (
         <Grid container justifyContent='center' alignItems='center' spacing={1} sx={{ minHeight: 200 }} paddingY={3}>
             {!isDataLoaded
-                ? <CircularProgress />
+                ? <CustomLoading />
                 : (restaurants.length)
                     ? restaurants.map((restaurant) => {
                         return <HomeRestaurantCard key={restaurant.id} restaurant={restaurant} />

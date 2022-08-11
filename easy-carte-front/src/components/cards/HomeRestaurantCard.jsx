@@ -1,12 +1,15 @@
 import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 import RestaurantOpenClosed from '../text/RestaurantOpenClosed';
 import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
+import { useNavigate } from 'react-router-dom';
 
 function HomeRestaurantCard({ restaurant }) {
+    const navigate = useNavigate();
+
     return (
         <Grid item lg={2}>
-            <CardActionArea onClick={() => window.location.href = '/restaurants/' + restaurant.id}>
-                <Card>
+            <Card>
+                <CardActionArea onClick={() => navigate('/restaurants/' + restaurant.id)}>
                     <CardMedia
                         component="img"
                         height="100"
@@ -22,8 +25,8 @@ function HomeRestaurantCard({ restaurant }) {
                         </Grid>
                         <RestaurantOpenClosed isOpen={restaurant.is_open} />
                     </CardContent>
-                </Card>
-            </CardActionArea>
+                </CardActionArea>
+            </Card>
         </Grid>
     );
 }

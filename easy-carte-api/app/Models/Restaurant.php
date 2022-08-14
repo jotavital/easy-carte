@@ -19,6 +19,11 @@ class Restaurant extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(RestaurantCategory::class, 'restaurant_category_id');
+    }
+
     public function getIsOpenAttribute()
     {
         $now = Carbon::now();

@@ -6,6 +6,7 @@ import { apiClient } from '../../providers/apiClient';
 import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
 import RestaurantRating from '../misc/RestaurantRating';
 import ProductCard from '../cards/ProductCard';
+import CustomDivider from '../misc/CustomDivider';
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
@@ -25,7 +26,6 @@ function RestaurantPage() {
             .then(({ data }) => {
                 setProducts(data);
                 setAreProductsLoaded(true);
-                console.log(data);
             });
     }, [restaurant_id]);
 
@@ -37,7 +37,7 @@ function RestaurantPage() {
                     <CustomLoading />
                     :
                     <Grid>
-                        <Grid container justifyContent='center'>
+                        <Grid container justifyContent='center' marginBottom={3}>
                             <Grid container>
                                 <Grid item container alignItems='center' padding xs={4} sm={3} md={2}>
                                     <Box
@@ -51,6 +51,9 @@ function RestaurantPage() {
                                     <Typography variant='h5'>
                                         {restaurant.name}
                                     </Typography>
+                                    <Typography variant='h6'>
+                                        {restaurant.category.name}
+                                    </Typography>
                                     <RestaurantRating />
                                     <Typography variant='body2'>
                                         {restaurant.description}
@@ -61,7 +64,8 @@ function RestaurantPage() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid container item justifyContent='center' paddingY={2}>
+                        <CustomDivider />
+                        <Grid container item justifyContent='center' paddingY>
                             <Typography paddingY variant='h4'>Produtos</Typography>
                             <Grid justifyContent='center' container item padding>
                                 {!areProductsLoaded

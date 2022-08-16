@@ -21,7 +21,8 @@ class ProductFactory extends Factory
             'description' => fake()->sentence(),
             'price' => randomFloat(5, 70),
             'main_image' => 'https://via.placeholder.com/100',
-            'restaurant_id' => rand(1, 24)
+            'restaurant_id' => rand(1, 24),
+            'product_category_id' => rand(1, env('COUNT_PRODUCT_CATEGORIES_TO_SEED'))
         ];
     }
 }

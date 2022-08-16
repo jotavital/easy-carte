@@ -40,7 +40,7 @@ function RestaurantPage() {
                     <Grid>
                         <Grid container justifyContent='center' marginBottom={3}>
                             <Grid container>
-                                <Grid item container alignItems='center' padding xs={4} sm={3} md={2}>
+                                <Grid item container alignItems='center' padding xs={12} sm={3} md={2}>
                                     <Box
                                         component="img"
                                         src={restaurant.logo_url}
@@ -48,7 +48,7 @@ function RestaurantPage() {
                                         className="img-responsive img-rounded"
                                     />
                                 </Grid>
-                                <Grid item padding xs={8}>
+                                <Grid item padding xs={12} sm={8}>
                                     <Typography variant='h5'>
                                         {restaurant.name}
                                     </Typography>
@@ -68,7 +68,6 @@ function RestaurantPage() {
                         </Grid>
                         <CustomDivider />
                         <Grid container item justifyContent='center' paddingY>
-                            <Typography paddingY variant='h4'>Produtos</Typography>
                             <Grid justifyContent='center' container item padding>
                                 {!areProductsLoaded
                                     ?

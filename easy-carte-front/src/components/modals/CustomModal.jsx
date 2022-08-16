@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton } from '@mui/material';
 
 export default function CustomModal({ openElement, title, content }) {
     const [open, setOpen] = React.useState(false);

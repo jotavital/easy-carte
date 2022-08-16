@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Card, Grid, Typography, CardContent, Box, Button } from '@mui/material';
+import { Card, Grid, Typography, CardContent, Box } from '@mui/material';
 import CustomLoading from '../misc/CustomLoading';
 import { apiClient } from '../../providers/apiClient';
 import RestaurantOpeningHours from '../text/RestaurantOpeningHours';

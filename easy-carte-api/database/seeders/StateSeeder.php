@@ -16,7 +16,8 @@ class StateSeeder extends Seeder
     {
         DB::table('states')->insertOrIgnore([
             'id' => 31,
-            'name' => 'Minas Gerais'
+            'name' => 'Minas Gerais',
+            'initials' => 'MG'
         ]);
     }
 }

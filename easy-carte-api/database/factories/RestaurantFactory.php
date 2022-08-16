@@ -22,6 +22,11 @@ class RestaurantFactory extends Factory
             'opening_time' => fake()->time('H:i'),
             'closing_time' => fake()->time('H:i'),
             'restaurant_category_id' => rand(1, 5),
+            'city_id' => 3168606,
+            'zip_code' => '39802-047',
+            'street' => 'Av. Luiz Boali Porto Salman',
+            'neighborhood' => 'Manoel Pimenta',
+            'number' => 1730
         ];
     }
 }

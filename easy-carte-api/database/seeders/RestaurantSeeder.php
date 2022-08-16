@@ -14,8 +14,6 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        Restaurant::factory(24)->create([
-            'city_id' => 3168606
-        ]);
+        Restaurant::factory(24)->create();
     }
 }

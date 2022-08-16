@@ -7,8 +7,7 @@ import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
 import RestaurantRating from '../misc/RestaurantRating';
 import ProductCard from '../cards/ProductCard';
 import CustomDivider from '../misc/CustomDivider';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import CustomModal from '../modals/CustomModal';
+import RestaurantMoreInfoModal from '../modals/RestaurantMoreInfoModal';
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
@@ -63,14 +62,7 @@ function RestaurantPage() {
                                     <Grid container item marginTop>
                                         <RestaurantOpeningHours opening_hours={restaurant.opening_hours} />
                                     </Grid>
-                                    <CustomModal
-                                        openElement={
-                                            <Button startIcon={<AddCircleOutlineIcon />}>
-                                                <Typography>Mais informações</Typography>
-                                            </Button>
-                                        }
-                                        title={"Mais informações de " + restaurant.name}
-                                    />
+                                    <RestaurantMoreInfoModal restaurant={restaurant} />
                                 </Grid>
                             </Grid>
                         </Grid>

@@ -12,7 +12,7 @@ class Restaurant extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $appends = ['logo_url', 'opening_hours', 'is_open'];
+    protected $appends = ['logo_url', 'opening_hours', 'is_open', 'formatted_address'];
 
     public function products()
     {
@@ -22,6 +22,17 @@ class Restaurant extends Model
     public function category()
     {
         return $this->belongsTo(RestaurantCategory::class, 'restaurant_category_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function getFormattedAddressAttribute()
+    {
+        return "$this->street, $this->number, $this->neighborhood - " . $this->city->name . " - " .
+            $this->city->state->initials . ", " . $this->zip_code;
     }
 
     public function getIsOpenAttribute()

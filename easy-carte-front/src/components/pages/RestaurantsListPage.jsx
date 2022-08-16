@@ -5,14 +5,25 @@ import SearchInput from '../forms/inputs/SearchInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCity } from "../../redux/appSlice";
 import WhereAreYou from '../sections/WhereAreYou';
-import { useState } from "react";
-import RestaurantCategories from '../sections/RestaurantCategories';
+import { useEffect, useState } from "react";
+import CategoriesListWithIcon from "../lists/CategoriesListWithIcon";
+import { apiClient } from "../../providers/apiClient";
 
 function RestaurantsListPage() {
     const dispatch = useDispatch();
     const { city_url } = useParams();
     const isCitySelected = useSelector((state) => state.app.isCitySelected);
     const [userLocation, setUserLocation] = useState(localStorage.getItem('user_location') ?? null);
+    const [areCategoriesLoaded, setAreCategoriesLoaded] = useState(false);
+    const [categories, setCategories] = useState({});
+
+    useEffect(() => {
+        apiClient.get('/restaurant-categories')
+            .then(({ data }) => {
+                setCategories(data);
+                setAreCategoriesLoaded(true);
+            })
+    }, []);
 
     const handleUserLocationChanged = (location) => {
         setUserLocation(location);
@@ -32,7 +43,7 @@ function RestaurantsListPage() {
                             <SearchInput />
                         </Grid>
                     </Grid>
-                    <RestaurantCategories />
+                    <CategoriesListWithIcon categories={categories} areCategoriesLoaded={areCategoriesLoaded} />
                     <HomeRestaurantsSection cityUrl={city_url} />
                 </>
                 :

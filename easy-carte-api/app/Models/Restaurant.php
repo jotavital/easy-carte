@@ -29,6 +29,11 @@ class Restaurant extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function productCategories()
+    {
+        return $this->hasMany(ProductCategory::class);
+    }
+
     public function getFormattedAddressAttribute()
     {
         return "$this->street, $this->number, $this->neighborhood - " . $this->city->name . " - " .

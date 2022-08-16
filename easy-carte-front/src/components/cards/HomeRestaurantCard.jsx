@@ -9,7 +9,7 @@ function HomeRestaurantCard({ restaurant }) {
     return (
         <Grid item lg={2}>
             <Card>
-                <CardActionArea onClick={() => navigate('/restaurants/' + restaurant.id)}>
+                <CardActionArea onClick={() => navigate('/restaurants/' + restaurant.id + '/products')}>
                     <CardMedia
                         component="img"
                         height="100"

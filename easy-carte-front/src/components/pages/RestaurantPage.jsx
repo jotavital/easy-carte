@@ -5,28 +5,20 @@ import CustomLoading from '../misc/CustomLoading';
 import { apiClient } from '../../providers/apiClient';
 import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
 import RestaurantRating from '../misc/RestaurantRating';
-import ProductCard from '../cards/ProductCard';
 import CustomDivider from '../misc/CustomDivider';
 import RestaurantMoreInfoModal from '../modals/RestaurantMoreInfoModal';
+import ProductList from '../lists/ProductList';
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
     const [restaurant, setRestaurant] = useState({});
-    const [products, setProducts] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const [areProductsLoaded, setAreProductsLoaded] = useState(false);
 
     useEffect(() => {
         apiClient.get('/restaurants/' + restaurant_id)
             .then(({ data }) => {
                 setRestaurant(data);
                 setIsDataLoaded(true);
-            });
-
-        apiClient.get('/restaurants/' + restaurant_id + '/products')
-            .then(({ data }) => {
-                setProducts(data);
-                setAreProductsLoaded(true);
             });
     }, [restaurant_id]);
 
@@ -67,18 +59,7 @@ function RestaurantPage() {
                             </Grid>
                         </Grid>
                         <CustomDivider />
-                        <Grid container item justifyContent='center' paddingY>
-                            <Grid justifyContent='center' container item padding>
-                                {!areProductsLoaded
-                                    ?
-                                    <CustomLoading />
-                                    :
-                                    products.map((product) => {
-                                        return <ProductCard key={product.id} product={product} />
-                                    })
-                                }
-                            </Grid>
-                        </Grid>
+                        <ProductList restaurantId={restaurant_id} />
                     </Grid>
                 }
             </CardContent>

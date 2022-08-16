@@ -1,22 +1,9 @@
 import { Grid, Icon } from "@mui/material";
 import CustomLoading from "../misc/CustomLoading";
 import RoundedCategoryIcon from "../misc/RoundedCategoryIcon";
-import { useState, useEffect } from 'react';
-import { apiClient } from "../../providers/apiClient";
 
-function RestaurantCategories() {
-    const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const [categories, setCategories] = useState({});
-
-    useEffect(() => {
-        apiClient.get('/restaurant-categories')
-            .then(({ data }) => {
-                setCategories(data);
-                setIsDataLoaded(true);
-            })
-    }, []);
-
-    if (!isDataLoaded) {
+function CategoriesListWithIcon({ categories, areCategoriesLoaded }) {
+    if (!areCategoriesLoaded) {
         return (
             <Grid container gap padding justifyContent='center'>
                 <CustomLoading />
@@ -44,4 +31,4 @@ function RestaurantCategories() {
     }
 }
 
-export default RestaurantCategories;
+export default CategoriesListWithIcon;

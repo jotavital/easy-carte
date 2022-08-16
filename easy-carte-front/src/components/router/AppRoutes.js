@@ -42,7 +42,7 @@ function AppRoutes() {
                     <RestaurantsListPage />
                 </MainWrapper>
             } />
-            <Route path='/restaurants/:restaurant_id' element={
+            <Route path='/restaurants/:restaurant_id/products' element={
                 <MainWrapper>
                     <RestaurantPage />
                 </MainWrapper>

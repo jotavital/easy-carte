@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -85,8 +86,14 @@ class RestaurantController extends Controller
         //
     }
 
-    public function getProducts($id)
+    public function getProducts(Request $request, $id)
     {
+        $categoryId = ($request->category !== 'null' && $request->category !== '') ? $request->category : null;
+
+        if ($categoryId) {
+            return response()->json(ProductCategory::find($categoryId)->products);
+        }
+
         return response()->json(Restaurant::find($id)->products);
     }
 
@@ -117,5 +124,12 @@ class RestaurantController extends Controller
             ->get();
 
         return response()->json($restaurants);
+    }
+
+    public function getProductCategories($id)
+    {
+        $restaurant = Restaurant::find($id);
+
+        return response()->json($restaurant->productCategories);
     }
 }

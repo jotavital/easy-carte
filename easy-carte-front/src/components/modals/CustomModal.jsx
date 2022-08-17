@@ -1,24 +1,11 @@
-import * as React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton } from '@mui/material';
 
-export default function CustomModal({ openElement, title, content }) {
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
+export default function CustomModal({ title = "Informação", content, open, handleCloseModal }) {
     return (
         <Grid item container>
-            <Grid onClick={handleClickOpen}>
-                {openElement}
-            </Grid>
             <Dialog
-                onClose={handleClose}
+                onClose={handleCloseModal}
                 aria-labelledby="customized-dialog-title"
                 open={open}
             >
@@ -26,7 +13,7 @@ export default function CustomModal({ openElement, title, content }) {
                     {title}
                     <IconButton
                         aria-label="close"
-                        onClick={handleClose}
+                        onClick={handleCloseModal}
                         sx={{
                             position: 'absolute',
                             right: 8,
@@ -41,7 +28,7 @@ export default function CustomModal({ openElement, title, content }) {
                     {content}
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button autoFocus onClick={handleCloseModal}>
                         Fechar
                     </Button>
                 </DialogActions>

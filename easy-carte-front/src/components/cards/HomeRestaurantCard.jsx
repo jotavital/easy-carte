@@ -7,7 +7,7 @@ function HomeRestaurantCard({ restaurant }) {
     const navigate = useNavigate();
 
     return (
-        <Grid item lg={2}>
+        <Grid padding item lg={2}>
             <Card>
                 <CardActionArea onClick={() => navigate('/restaurants/' + restaurant.id + '/products')}>
                     <CardMedia

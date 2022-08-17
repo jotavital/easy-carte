@@ -7,7 +7,6 @@ import UnauthenticatedRoute from './UnauthenticatedRoute';
 import RestaurantsListPage from '../pages/RestaurantsListPage';
 import MainWrapper from '../MainWrapper';
 import RestaurantPage from './../pages/RestaurantPage';
-import ProductPage from '../pages/ProductPage';
 
 function AppRoutes() {
     return (
@@ -44,13 +43,6 @@ function AppRoutes() {
             <Route path='/restaurants/:restaurant_id/products' element={
                 <MainWrapper>
                     <RestaurantPage />
-                </MainWrapper>
-            } />
-
-            {/* Product routes */}
-            <Route path='/restaurants/:restaurant_id/products/:product_id' element={
-                <MainWrapper>
-                    <ProductPage />
                 </MainWrapper>
             } />
 

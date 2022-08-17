@@ -1,14 +1,10 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
-import { useNavigate, useParams } from 'react-router-dom';
 
-function ProductCard({ product }) {
-    const { restaurant_id } = useParams();
-    const navigate = useNavigate();
-
+function ProductCard({ product, handleOpenModal }) {
     return (
         <Grid padding item>
             <Card>
-                <CardActionArea onClick={() => navigate('/restaurants/' + restaurant_id + '/products/' + product.id)}>
+                <CardActionArea onClick={() => handleOpenModal(product.id)}>
                     <CardMedia
                         component="img"
                         height="100"

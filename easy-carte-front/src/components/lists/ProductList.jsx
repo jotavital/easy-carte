@@ -5,6 +5,7 @@ import ProductCard from "../cards/ProductCard";
 import CustomLoading from "../misc/CustomLoading";
 import CategoriesListWithIcon from "./CategoriesListWithIcon";
 import { useSearchParams } from 'react-router-dom';
+import ProductModal from '../modals/ProductModal';
 
 function ProductList({ restaurantId }) {
     const [searchParams] = useSearchParams();
@@ -12,6 +13,23 @@ function ProductList({ restaurantId }) {
     const [areProductsLoaded, setAreProductsLoaded] = useState(false);
     const [areCategoriesLoaded, setAreCategoriesLoaded] = useState(false);
     const [categories, setCategories] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [productDataForModal, setProductDataForModal] = useState(null);
+
+    const handleOpenModal = (productId) => {
+        apiClient.get('products/' + productId)
+            .then(({ data }) => {
+                console.log(data);
+                setProductDataForModal(data);
+                setIsModalOpen(true);
+            });
+    }
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => {
+            setProductDataForModal(null);
+        }, 100);
+    }
 
     useEffect(() => {
         apiClient.get('/restaurants/' + restaurantId + '/products?category=' + searchParams.get('category'))
@@ -36,10 +54,11 @@ function ProductList({ restaurantId }) {
                     <CustomLoading />
                     :
                     products.map((product) => {
-                        return <ProductCard key={product.id} product={product} />
+                        return <ProductCard key={product.id} product={product} handleOpenModal={handleOpenModal} />
                     })
                 }
             </Grid>
+            <ProductModal open={isModalOpen} product={productDataForModal} handleCloseModal={handleCloseModal} />
         </Grid>
     );
 }

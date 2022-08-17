@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RestaurantCategoriesController;
 use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\RestaurantController;
@@ -35,8 +36,15 @@ Route::post('/users', [UserController::class, 'store']);
 // !! restaurant routes
 Route::resource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
-Route::get('restaurants/{id}/products', [RestaurantController::class, 'getProducts']);
-Route::get('restaurants/{id}/product-categories', [RestaurantController::class, 'getProductCategories']);
+Route::prefix('restaurants')->group(
+    function () {
+        Route::get('/{id}/products', [RestaurantController::class, 'getProducts']);
+        Route::get('/{id}/product-categories', [RestaurantController::class, 'getProductCategories']);
+    }
+);
+
+// !! product routes
+Route::resource('products', ProductController::class);
 
 // !! restaurant categories routes
 Route::resource('/restaurant-categories', RestaurantCategoryController::class);

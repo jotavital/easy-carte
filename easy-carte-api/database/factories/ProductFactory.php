@@ -20,7 +20,7 @@ class ProductFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->sentence(),
             'price' => randomFloat(5, 70),
-            'main_image' => 'https://via.placeholder.com/100',
+            'main_image' => 'https://via.placeholder.com/500',
             'restaurant_id' => rand(1, 24),
             'product_category_id' => rand(1, env('COUNT_PRODUCT_CATEGORIES_TO_SEED'))
         ];

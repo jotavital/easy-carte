@@ -1,15 +1,23 @@
-.bg-red {
-    background-color: red;
-}
 
-.bg-green {
-    background-color: green;
+
+/* Debugging classes */
+
+.bg-red {
+    background-color: #EF476F;
 }
 
 .bg-blue {
-    background-color: blue;
+    background-color: #118AB2;
 }
 
-.bg-purple {
-    background-color: purple;
+.bg-green {
+    background-color: #06D6A0;
+}
+
+.bg-yellow {
+    background-color: #FFD166;
+}
+
+.bg-lightgray{
+    background-color: #c2c2c2;
 }

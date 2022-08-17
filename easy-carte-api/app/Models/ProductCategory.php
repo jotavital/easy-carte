@@ -11,8 +11,15 @@ class ProductCategory extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $appends = ['products_count'];
+
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getProductsCountAttribute()
+    {
+        return count($this->products);
     }
 }

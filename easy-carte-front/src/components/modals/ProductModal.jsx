@@ -8,6 +8,7 @@ import Image from '../images/Image';
 function ProductModal({ open, handleCloseModal, product }) {
     return (
         <CustomModal
+            title={(product) ? 'Detalhes do produto: ' + product.name : null}
             open={open}
             handleCloseModal={handleCloseModal}
             content={
@@ -19,14 +20,14 @@ function ProductModal({ open, handleCloseModal, product }) {
                             <Grid padding={2} item xs={6}>
                                 <Image src={product.main_image} />
                             </Grid>
-                            <Grid item xs={6}>
-                                <Typography variant='h4'>
+                            <Grid padding item xs={6}>
+                                <Typography marginY variant='h4'>
                                     {product.name}
                                 </Typography>
-                                <Typography variant='body'>
+                                <Typography marginY variant='body'>
                                     {product.description}
                                 </Typography>
-                                <Typography variant='h4' fontWeight='bold'>
+                                <Typography marginY variant='h5' fontWeight='bold'>
                                     {product.formatted_price}
                                 </Typography>
                             </Grid>

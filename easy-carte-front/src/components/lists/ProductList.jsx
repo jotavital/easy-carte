@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { apiClient } from "../../providers/apiClient";
 import ProductCard from "../cards/ProductCard";
@@ -53,9 +53,12 @@ function ProductList({ restaurantId }) {
                     ?
                     <CustomLoading />
                     :
-                    products.map((product) => {
-                        return <ProductCard key={product.id} product={product} handleOpenModal={handleOpenModal} />
-                    })
+                    (!products.length) ?
+                        <Typography marginY={3} variant="h5">Nenhum produto encontrado.</Typography>
+                        :
+                        products.map((product) => {
+                            return <ProductCard key={product.id} product={product} handleOpenModal={handleOpenModal} />
+                        })
                 }
             </Grid>
             <ProductModal open={isModalOpen} product={productDataForModal} handleCloseModal={handleCloseModal} />

@@ -17,7 +17,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                         :
                         <>
                             <Grid padding item sm={6}>
-                                <ImageSliderWithThumbs />
+                                <ImageSliderWithThumbs mainImage={product.main_image} images={product.images} />
                             </Grid>
                             <Grid padding item sm={6}>
                                 <Typography marginY variant='h4'>

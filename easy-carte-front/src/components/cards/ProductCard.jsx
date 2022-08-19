@@ -8,7 +8,7 @@ function ProductCard({ product, handleOpenModal }) {
                     <CardMedia
                         component="img"
                         height="100"
-                        image={product.main_image}
+                        image={product.main_image ?? '/img/no_picture_product.webp'}
                         alt='alt'
                     />
                     <CardContent>

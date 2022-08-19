@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(
     function () {
-        Route::resource('users', UserController::class)->except(['store']);
+        Route::apiResource('users', UserController::class)->except(['store']);
     }
 );
 
@@ -34,7 +34,7 @@ Route::get('/auth/check', [UserController::class, 'checkIfUserAuthenticated']);
 Route::post('/users', [UserController::class, 'store']);
 
 // !! restaurant routes
-Route::resource('restaurants', RestaurantController::class);
+Route::apiResource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
 Route::prefix('restaurants')->group(
     function () {
@@ -44,10 +44,10 @@ Route::prefix('restaurants')->group(
 );
 
 // !! product routes
-Route::resource('products', ProductController::class);
+Route::apiResource('products', ProductController::class);
 
 // !! restaurant categories routes
-Route::resource('/restaurant-categories', RestaurantCategoryController::class);
+Route::apiResource('/restaurant-categories', RestaurantCategoryController::class);
 
 // !! city routes
 Route::get('/cities', [CityController::class, 'index']);

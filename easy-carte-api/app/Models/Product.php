@@ -13,6 +13,11 @@ class Product extends Model
 
     protected $appends = ['formatted_price'];
 
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     public function getFormattedPriceAttribute()
     {
         return formatCurrencyToReal($this->price);

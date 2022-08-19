@@ -9,8 +9,9 @@ import "swiper/css/zoom";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "../../css/swiperStyles.css";
+import ProductImageSlide from './ProductImageSlide';
 
-export default function ImageSliderWithThumbs() {
+export default function ImageSliderWithThumbs({ mainImage, images }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
@@ -26,13 +27,27 @@ export default function ImageSliderWithThumbs() {
                 modules={[FreeMode, Zoom, Navigation, Thumbs]}
                 className="product-image-swiper"
             >
-                <SwiperSlide zoom>
-                    <Image
-                        wrapperClass='swiper-zoom-target'
-                        src='https://swiperjs.com/demos/images/nature-1.jpg'
-                        title='Clique duas vezes para ampliar'
-                    />
-                </SwiperSlide>
+                {(!mainImage && !images) ?
+                    <SwiperSlide zoom>
+                        <ProductImageSlide src='/img/no_picture_product.webp' />
+                    </SwiperSlide>
+                    :
+                    (mainImage) ?
+                        <SwiperSlide zoom>
+                            <ProductImageSlide src={mainImage} />
+                        </SwiperSlide>
+                        :
+                        null
+                }
+                {(images) &&
+                    images.map((image) => {
+                        return (
+                            <SwiperSlide zoom>
+                                <ProductImageSlide src={image.path} />
+                            </SwiperSlide>
+                        )
+                    })
+                }
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -43,9 +58,27 @@ export default function ImageSliderWithThumbs() {
                 modules={[FreeMode, Thumbs]}
                 className="product-thumb-swiper"
             >
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                </SwiperSlide>
+                {(!mainImage && !images) ?
+                    <SwiperSlide zoom>
+                        <ProductImageSlide src='/img/no_picture_product.webp' />
+                    </SwiperSlide>
+                    :
+                    (mainImage) ?
+                        <SwiperSlide zoom>
+                            <ProductImageSlide src={mainImage} />
+                        </SwiperSlide>
+                        :
+                        null
+                }
+                {(images) &&
+                    images.map((image) => {
+                        return (
+                            <SwiperSlide zoom>
+                                <ProductImageSlide src={image.path} />
+                            </SwiperSlide>
+                        )
+                    })
+                }
             </Swiper>
         </>
     );

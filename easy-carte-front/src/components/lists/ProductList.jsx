@@ -17,7 +17,7 @@ function ProductList({ restaurantId }) {
     const [productDataForModal, setProductDataForModal] = useState(null);
 
     const handleOpenModal = (productId) => {
-        apiClient.get('products/' + productId)
+        apiClient.get('products/' + productId + '?withimages=1')
             .then(({ data }) => {
                 setProductDataForModal(data);
                 setIsModalOpen(true);

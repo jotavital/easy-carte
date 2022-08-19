@@ -19,7 +19,6 @@ function ProductList({ restaurantId }) {
     const handleOpenModal = (productId) => {
         apiClient.get('products/' + productId)
             .then(({ data }) => {
-                console.log(data);
                 setProductDataForModal(data);
                 setIsModalOpen(true);
             });

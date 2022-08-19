@@ -1,14 +1,13 @@
 import { Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { apiClient } from '../../providers/apiClient';
-import CustomLoading from '../misc/CustomLoading';
 import CustomModal from './CustomModal';
-import Image from '../images/Image';
+import CustomDivider from '../misc/CustomDivider';
+import CustomAccordion from '../misc/CustomAccordion';
+import ImageSliderWithThumbs from '../images/ImageSliderWithThumbs';
 
 function ProductModal({ open, handleCloseModal, product }) {
     return (
         <CustomModal
-            title={(product) ? 'Detalhes do produto: ' + product.name : null}
+            title={(product) ? product.name : null}
             open={open}
             handleCloseModal={handleCloseModal}
             content={
@@ -17,10 +16,10 @@ function ProductModal({ open, handleCloseModal, product }) {
                         <Typography>Erro ao carregar dados, tente novamente.</Typography>
                         :
                         <>
-                            <Grid padding={2} item xs={6}>
-                                <Image src={product.main_image} />
+                            <Grid padding item sm={6}>
+                                <ImageSliderWithThumbs />
                             </Grid>
-                            <Grid padding item xs={6}>
+                            <Grid padding item sm={6}>
                                 <Typography marginY variant='h4'>
                                     {product.name}
                                 </Typography>
@@ -30,6 +29,32 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 <Typography marginY variant='h5' fontWeight='bold'>
                                     {product.formatted_price}
                                 </Typography>
+                            </Grid>
+                            <CustomDivider />
+                            <Grid padding item sm={12}>
+                                <Typography variant='h6'>
+                                    Detalhes
+                                </Typography>
+                                {(product.ingredients) &&
+                                    <CustomAccordion
+                                        title="Ingredientes"
+                                        content={
+                                            <Typography>
+                                                {product.ingredients}
+                                            </Typography>
+                                        }
+                                    />
+                                }
+                                {(product.notes) &&
+                                    <CustomAccordion
+                                        title="Observações"
+                                        content={
+                                            <Typography>
+                                                {product.notes}
+                                            </Typography>
+                                        }
+                                    />
+                                }
                             </Grid>
                         </>
                     }

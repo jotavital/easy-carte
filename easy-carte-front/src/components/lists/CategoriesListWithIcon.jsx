@@ -3,7 +3,6 @@ import CustomLoading from "../misc/CustomLoading";
 import RoundedCategoryIcon from "../misc/RoundedCategoryIcon";
 
 function CategoriesListWithIcon({ categories, areCategoriesLoaded }) {
-    console.log(categories);
     if (!areCategoriesLoaded) {
         return (
             <Grid container gap padding justifyContent='center'>

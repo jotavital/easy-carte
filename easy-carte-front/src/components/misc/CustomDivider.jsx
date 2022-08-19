@@ -1,8 +1,10 @@
-import { Divider } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 
 function CustomDivider() {
     return (
-        <Divider variant="middle" />
+        <Grid item margin xs={12}>
+            <Divider variant="middle" />
+        </Grid>
     );
 }
 

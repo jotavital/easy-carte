@@ -8,6 +8,7 @@ export default function CustomModal({ title = "Informação", content, open, han
                 onClose={handleCloseModal}
                 aria-labelledby="customized-dialog-title"
                 open={open}
+                scroll='body'
             >
                 <DialogTitle sx={{ m: 0, p: 2 }}>
                     {title}

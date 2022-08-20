@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Zoom, Navigation, Thumbs } from "swiper";
-import Image from "./Image"
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/zoom";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "../../css/swiperStyles.css";
+
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Zoom, Navigation, Thumbs } from "swiper";
 import ProductImageSlide from './ProductImageSlide';
+import { Grid } from "@mui/material";
 
 export default function ImageSliderWithThumbs({ mainImage, images }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
-        <>
+        <Grid item>
             <Swiper
                 style={{
                     "--swiper-navigation-color": "#fff"
@@ -42,7 +42,7 @@ export default function ImageSliderWithThumbs({ mainImage, images }) {
                 {(images) &&
                     images.map((image) => {
                         return (
-                            <SwiperSlide zoom>
+                            <SwiperSlide key={image.id} zoom>
                                 <ProductImageSlide src={image.path} />
                             </SwiperSlide>
                         )
@@ -73,13 +73,13 @@ export default function ImageSliderWithThumbs({ mainImage, images }) {
                 {(images) &&
                     images.map((image) => {
                         return (
-                            <SwiperSlide zoom>
+                            <SwiperSlide key={image.id} zoom>
                                 <ProductImageSlide src={image.path} />
                             </SwiperSlide>
                         )
                     })
                 }
             </Swiper>
-        </>
+        </Grid>
     );
 }

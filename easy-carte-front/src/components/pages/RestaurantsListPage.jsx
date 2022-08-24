@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Grid } from '@mui/material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import HomeRestaurantsSection from '../sections/HomeRestaurantsSection';
 import SearchInput from '../forms/inputs/SearchInput';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,6 +8,10 @@ import WhereAreYou from '../sections/WhereAreYou';
 import { useEffect, useState } from "react";
 import CategoriesListWithIcon from "../lists/CategoriesListWithIcon";
 import { apiClient } from "../../providers/apiClient";
+import UserLocationText from '../text/UserLocationText';
+import CardWithImage from "../cards/CardWithImage";
+import Image from "../images/Image";
+import CustomButton from "../buttons/CustomButton";
 
 function RestaurantsListPage() {
     const dispatch = useDispatch();
@@ -38,7 +42,10 @@ function RestaurantsListPage() {
         <Grid container>
             {(userLocation === 'home') ?
                 <>
-                    <Grid padding container item justifyContent='end'>
+                    <Grid padding container item justifyContent='space-between'>
+                        <Grid alignItems='center' justifyContent={{ sm: 'left', xs: 'center' }} padding item container md={3} sm={6} xs={12}>
+                            <UserLocationText />
+                        </Grid>
                         <Grid item sm={6} xs={12}>
                             <SearchInput />
                         </Grid>
@@ -48,7 +55,27 @@ function RestaurantsListPage() {
                 </>
                 :
                 (userLocation === 'restaurant') ?
-                    <h1>ta no restaurrom</h1>
+                    <Grid item container justifyContent='center' alignItems='center'>
+                        <Grid container item sm={8} justifyContent='center' padding={2}>
+                            <Grid item sm={6}>
+                                <Image src="./illustrations/woman_cellphone.svg" />
+                            </Grid>
+                            <Grid container padding justifyContent='center'>
+                                <Typography variant="h5" fontWeight='bold'>
+                                    Código do restaurante
+                                </Typography>
+                            </Grid>
+                            <Grid container justifyContent='center'>
+                                <Typography>
+                                    Você deve encontrar o código do restaurante nas mesas ou no balcão
+                                </Typography>
+                            </Grid>
+                            <Grid container paddingTop={2} justifyContent='center'>
+                                <TextField label="Código do restaurante" />
+                            </Grid>
+                        </Grid>
+                        <CustomButton text='Pronto' color='primary' />
+                    </Grid>
                     :
                     <WhereAreYou handleUserLocationChanged={handleUserLocationChanged} />
             }

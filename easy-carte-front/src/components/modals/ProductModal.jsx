@@ -16,7 +16,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                         <Typography>Erro ao carregar dados, tente novamente.</Typography>
                         :
                         <>
-                            <Grid className='bg-red' padding item xs={12} sm={6}>
+                            <Grid padding item xs={12} sm={6}>
                                 <ImageSliderWithThumbs mainImage={product.main_image} images={product.images} />
                             </Grid>
                             <Grid padding item sm={6}>

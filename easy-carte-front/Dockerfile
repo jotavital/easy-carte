@@ -8,7 +8,7 @@ RUN mkdir .docker
 
 COPY package.json .
 
-COPY . .
+# COPY . .
 
 ENTRYPOINT ["sh", "./.docker/entrypoint.sh"]
 

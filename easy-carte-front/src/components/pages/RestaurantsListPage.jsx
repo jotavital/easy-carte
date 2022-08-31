@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import HomeRestaurantsSection from '../sections/HomeRestaurantsSection';
 import SearchInput from '../forms/inputs/SearchInput';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import CategoriesListWithIcon from "../lists/CategoriesListWithIcon";
 import { apiClient } from "../../providers/apiClient";
 import UserLocationText from '../text/UserLocationText';
-import CardWithImage from "../cards/CardWithImage";
 import Image from "../images/Image";
 import CustomButton from "../buttons/CustomButton";
 
@@ -44,7 +43,7 @@ function RestaurantsListPage() {
                 <>
                     <Grid padding container item justifyContent='space-between'>
                         <Grid alignItems='center' justifyContent={{ sm: 'left', xs: 'center' }} padding item container md={3} sm={6} xs={12}>
-                            <UserLocationText />
+                            <UserLocationText handleUserLocationChanged={handleUserLocationChanged} />
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <SearchInput />
@@ -79,7 +78,6 @@ function RestaurantsListPage() {
                     :
                     <WhereAreYou handleUserLocationChanged={handleUserLocationChanged} />
             }
-
         </Grid>
     );
 }

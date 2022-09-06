@@ -38,6 +38,7 @@ Route::apiResource('restaurants', RestaurantController::class);
 Route::get('cities/{cityUrl}/restaurants', [RestaurantController::class, 'getRestaurantsByCity']);
 Route::prefix('restaurants')->group(
     function () {
+        Route::get('/check-code/{code}', [RestaurantController::class, 'checkRestaurantCode']);
         Route::get('/{id}/products', [RestaurantController::class, 'getProducts']);
         Route::get('/{id}/product-categories', [RestaurantController::class, 'getProductCategories']);
     }

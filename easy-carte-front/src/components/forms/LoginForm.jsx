@@ -20,7 +20,7 @@ function LoginForm() {
     return (
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={3}>
-                <EmailInput register={register} errors={errors}  />
+                <EmailInput register={register} errors={errors} />
                 <PasswordInput register={register} errors={errors} />
                 <Grid container>
                     <Typography color={theme.palette.info.main}>

@@ -26,7 +26,8 @@ class RestaurantFactory extends Factory
             'zip_code' => '39802-047',
             'street' => 'Av. Luiz Boali Porto Salman',
             'neighborhood' => 'Manoel Pimenta',
-            'number' => 1730
+            'number' => 1730,
+            'code' => mt_rand(1111, 9999)
         ];
     }
 }

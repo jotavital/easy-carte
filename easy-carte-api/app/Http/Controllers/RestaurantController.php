@@ -21,27 +21,6 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -50,40 +29,6 @@ class RestaurantController extends Controller
     public function show($id)
     {
         return response()->json(Restaurant::with('category')->find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function getProducts(Request $request, $id)
@@ -131,5 +76,17 @@ class RestaurantController extends Controller
         $categories = Restaurant::find($id)->productCategories->where('products_count', '>', 0)->values();
 
         return response()->json($categories);
+    }
+
+    public function checkRestaurantCode($code)
+    {
+        $restaurant = Restaurant::where('code', $code)
+            ->first('id');
+
+        if (!$restaurant) {
+            return response()->json(false);
+        }
+
+        return response()->json(['id' => $restaurant->id]);
     }
 }

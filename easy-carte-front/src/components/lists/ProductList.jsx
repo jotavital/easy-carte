@@ -35,6 +35,7 @@ function ProductList({ restaurantId }) {
             .then(({ data }) => {
                 setProducts(data);
                 setAreProductsLoaded(true);
+                console.log(data);
             });
 
         apiClient.get('/restaurants/' + restaurantId + '/product-categories')

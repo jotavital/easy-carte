@@ -3,6 +3,8 @@ import CustomModal from './CustomModal';
 import CustomDivider from '../misc/CustomDivider';
 import CustomAccordion from '../misc/CustomAccordion';
 import ImageSliderWithThumbs from '../images/ImageSliderWithThumbs';
+import CustomButton from '../buttons/CustomButton';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 function ProductModal({ open, handleCloseModal, product }) {
     return (
@@ -29,6 +31,9 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 <Typography marginY variant='h5' fontWeight='bold'>
                                     {product.formatted_price}
                                 </Typography>
+                                <Grid item marginTop={3}>
+                                    <CustomButton text='Adicionar ao pedido' startIcon={<PlaylistAddIcon />} />
+                                </Grid>
                             </Grid>
                             <CustomDivider />
                             <Grid padding item sm={12}>

@@ -33,6 +33,7 @@ class RestaurantController extends Controller
 
     public function getProducts(Request $request, $id)
     {
+        // !!! está pegando produtos de outros restaurantes
         $categoryId = ($request->category !== 'null' && $request->category !== '') ? $request->category : null;
 
         if ($categoryId) {

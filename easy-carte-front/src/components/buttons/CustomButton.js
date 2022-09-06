@@ -6,7 +6,8 @@ function CustomButton({
     justifyContent = 'center',
     variant = 'contained',
     type = 'button',
-    onClick = null
+    onClick = null,
+    startIcon = null
 }) {
     return (
         <Grid container justifyContent={justifyContent}>
@@ -15,6 +16,7 @@ function CustomButton({
                 color={color}
                 type={type}
                 onClick={onClick}
+                startIcon={startIcon}
             >
                 {text}
             </Button>

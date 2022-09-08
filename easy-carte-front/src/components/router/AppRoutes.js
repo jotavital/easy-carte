@@ -7,6 +7,7 @@ import UnauthenticatedRoute from './UnauthenticatedRoute';
 import RestaurantsListPage from '../pages/RestaurantsListPage';
 import MainWrapper from '../MainWrapper';
 import RestaurantPage from './../pages/RestaurantPage';
+import WhereAreYou from '../sections/WhereAreYou';
 
 function AppRoutes() {
     return (
@@ -35,7 +36,8 @@ function AppRoutes() {
             } />
             <Route path='/:city_url' element={
                 <MainWrapper>
-                    <RestaurantsListPage />
+                    {/* <RestaurantsListPage /> */}
+                    <WhereAreYou />
                 </MainWrapper>
             } />
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { setSnackbar } from '../../redux/snackbars/snackbarsSlice';
 import { useDispatch } from "react-redux";
 
-function EnterRestaurantCode() {
+function EnterRestaurantCode({ handleUserLocationChanged }) {
     const { handleSubmit, formState: { errors }, register, setError } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function EnterRestaurantCode() {
         apiClient.get('/restaurants/check-code/' + code)
             .then(({ data }) => {
                 if (data) {
+                    localStorage.setItem('current_restaurant', data.id);
                     navigate('/restaurants/' + data.id + '/products');
                 } else {
                     dispatch(setSnackbar(true, 'error', 'Código de restaurante inválido', 'right'));
@@ -64,7 +65,10 @@ function EnterRestaurantCode() {
                                 }
                             )}
                         />
-                        <CustomButton text='Pronto' color='primary' type='submit' />
+                        <Grid container justifyContent='center' gap>
+                            <CustomButton text='Voltar' color='primary' onClick={() => handleUserLocationChanged('')} />
+                            <CustomButton text='Pronto' type='submit' />
+                        </Grid>
                     </Stack>
                 </form>
             </Grid>

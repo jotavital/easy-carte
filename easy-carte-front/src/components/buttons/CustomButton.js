@@ -10,7 +10,7 @@ function CustomButton({
     startIcon = null
 }) {
     return (
-        <Grid container justifyContent={justifyContent}>
+        <Grid item justifyContent={justifyContent}>
             <Button
                 variant={variant}
                 color={color}

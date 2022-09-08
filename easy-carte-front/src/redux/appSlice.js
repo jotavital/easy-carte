@@ -1,18 +1,25 @@
 const SELECT_CITY = 'app/selectCity';
+const SET_USER_LOCATION = 'app/setUserLocation';
 
-var cityFromLocalStorage = (localStorage.getItem('selected_city'));
-cityFromLocalStorage = JSON.parse(cityFromLocalStorage) ?? null;
+var cityFromLocalStorage = (JSON.parse(localStorage.getItem('selected_city')) ?? null);
+var userLocationFromLocalStorage = localStorage.getItem('user_location') ?? null;
+
+const initialState = {
+    isCitySelected: !!cityFromLocalStorage,
+    selectedCity: cityFromLocalStorage ?? null,
+    cityUrl: (cityFromLocalStorage) ? cityFromLocalStorage.city_url : null,
+    userLocation: userLocationFromLocalStorage ?? null
+};
+
+export const setUserLocation = (payload) => ({
+    type: SET_USER_LOCATION,
+    payload
+});
 
 export const selectCity = (payload) => ({
     type: SELECT_CITY,
     payload
 });
-
-const initialState = {
-    isCitySelected: !!cityFromLocalStorage,
-    selectedCity: cityFromLocalStorage ?? null,
-    cityUrl: (cityFromLocalStorage) ? cityFromLocalStorage.city_url : null
-};
 
 export default function appReducer(state = initialState, action) {
     switch (action.type) {
@@ -21,6 +28,17 @@ export default function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isCitySelected: true
+            };
+        case SET_USER_LOCATION:
+            // ? additional code is located in the file setUserLocationLocalStorageMiddleware.js
+            (action.payload === '' || action.payload == null) ?
+                localStorage.removeItem('user_location')
+                :
+                localStorage.setItem('user_location', action.payload);
+
+            return {
+                ...state,
+                userLocation: action.payload
             };
         default:
             return state

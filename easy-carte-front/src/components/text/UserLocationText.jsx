@@ -1,12 +1,19 @@
 import { Button, Typography } from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useDispatch, useSelector } from "react-redux";
+import { setUserLocation } from "../../redux/appSlice";
 
-function UserLocationText({ handleUserLocationChanged }) {
-    const userLocation = localStorage.getItem('user_location') ?? null;
+function UserLocationText() {
+    const dispatch = useDispatch();
+    const userLocation = useSelector((state) => state.app.userLocation);
+
+    const handleUserLocationChanged = (location) => {
+        dispatch(setUserLocation(location));
+    }
 
     return (
         <Typography>
-            <Button onClick={handleUserLocationChanged}>
+            <Button onClick={() => handleUserLocationChanged('')}>
                 <LocationOnIcon />
                 Você está em: {(userLocation === 'home') ? 'casa' : 'restaurante'}
             </Button>

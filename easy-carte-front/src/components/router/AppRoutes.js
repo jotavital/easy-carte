@@ -4,7 +4,6 @@ import RegisterPage from '../pages/RegisterPage';
 import SelectCityPage from '../pages/SelectCityPage';
 import PageNotFound from '../pages/PageNotFound';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
-import RestaurantsListPage from '../pages/RestaurantsListPage';
 import MainWrapper from '../MainWrapper';
 import RestaurantPage from './../pages/RestaurantPage';
 import WhereAreYou from '../sections/WhereAreYou';
@@ -36,7 +35,6 @@ function AppRoutes() {
             } />
             <Route path='/:city_url' element={
                 <MainWrapper>
-                    {/* <RestaurantsListPage /> */}
                     <WhereAreYou />
                 </MainWrapper>
             } />

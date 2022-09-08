@@ -6,8 +6,9 @@ import { apiClient } from "../../providers/apiClient";
 import { useNavigate } from "react-router-dom";
 import { setSnackbar } from '../../redux/snackbars/snackbarsSlice';
 import { useDispatch } from "react-redux";
+import { setUserLocation } from "../../redux/appSlice";
 
-function EnterRestaurantCode({ handleUserLocationChanged }) {
+function EnterRestaurantCode() {
     const { handleSubmit, formState: { errors }, register, setError } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,6 +24,10 @@ function EnterRestaurantCode({ handleUserLocationChanged }) {
                     setError('code');
                 }
             });
+    }
+
+    const handleUserLocationChanged = (location) => {
+        dispatch(setUserLocation(location));
     }
 
     return (

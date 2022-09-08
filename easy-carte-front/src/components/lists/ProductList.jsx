@@ -33,6 +33,7 @@ function ProductList({ restaurantId }) {
     useEffect(() => {
         apiClient.get('/restaurants/' + restaurantId + '/products?category=' + searchParams.get('category'))
             .then(({ data }) => {
+                console.log(data);
                 setProducts(data);
                 setAreProductsLoaded(true);
             });

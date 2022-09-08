@@ -33,11 +33,10 @@ class RestaurantController extends Controller
 
     public function getProducts(Request $request, $id)
     {
-        // !!! está pegando produtos de outros restaurantes
         $categoryId = ($request->category !== 'null' && $request->category !== '') ? $request->category : null;
 
         if ($categoryId) {
-            return response()->json(ProductCategory::find($categoryId)->products);
+            return response()->json(ProductCategory::find($categoryId)->products->where('restaurant_id', 10)->values());
         }
 
         return response()->json(Restaurant::find($id)->products);

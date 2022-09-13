@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { AuthProvider } from './contexts/auth';
 import CustomSnackBar from './components/snackbars/CustomSnackbar';
 import { themeOptions } from './providers/themeOptions';
+import { HelpersProvider } from './contexts/helpers';
 
 const theme = createTheme(themeOptions);
 
@@ -16,13 +17,15 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <div className="App">
-                <CustomSnackBar />
-                <BrowserRouter>
-                    <AuthProvider>
-                        <NavBar />
-                        <AppRoutes />
-                    </AuthProvider>
-                </BrowserRouter>
+                <HelpersProvider>
+                    <CustomSnackBar />
+                    <BrowserRouter>
+                        <AuthProvider>
+                            <NavBar />
+                            <AppRoutes />
+                        </AuthProvider>
+                    </BrowserRouter>
+                </HelpersProvider>
             </div>
         </ThemeProvider>
     );

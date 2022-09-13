@@ -17,7 +17,6 @@ function EnterRestaurantCode() {
         apiClient.get('/restaurants/check-code/' + code)
             .then(({ data }) => {
                 if (data) {
-                    localStorage.setItem('current_restaurant', data.id);
                     navigate('/restaurants/' + data.id + '/products');
                 } else {
                     dispatch(setSnackbar(true, 'error', 'Código de restaurante inválido', 'right'));

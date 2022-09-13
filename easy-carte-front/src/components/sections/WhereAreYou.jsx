@@ -1,17 +1,15 @@
 import { Grid } from '@mui/material';
 import CardWithImage from './../cards/CardWithImage';
-import { useNavigate } from 'react-router-dom';
 import EnterRestaurantCode from "../sections/EnterRestaurantCode";
 import RestaurantsListPage from '../pages/RestaurantsListPage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUserLocation } from '../../redux/appSlice';
-import { useEffect } from 'react';
+import { useContext } from 'react';
+import { HelpersContext } from '../../contexts/helpers';
 
 function WhereAreYou() {
-    const currentRestaurant = localStorage.getItem('current_restaurant') ?? null;
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userLocation = useSelector((state) => state.app.userLocation);
+    const { isUserAtHome, isUserAtRestaurant } = useContext(HelpersContext);
 
     const handleUserLocationChanged = (location) => {
         dispatch(setUserLocation(location));
@@ -19,10 +17,10 @@ function WhereAreYou() {
 
     return (
         <Grid container>
-            {(userLocation === 'home') ?
+            {isUserAtHome ?
                 <RestaurantsListPage />
                 :
-                (userLocation === 'restaurant') ?
+                isUserAtRestaurant ?
                     <EnterRestaurantCode />
                     :
                     <>

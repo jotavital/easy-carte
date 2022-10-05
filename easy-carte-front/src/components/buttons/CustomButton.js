@@ -3,14 +3,13 @@ import { Grid, Button } from "@mui/material";
 function CustomButton({
     text,
     color = 'success',
-    justifyContent = 'center',
     variant = 'contained',
     type = 'button',
     onClick = null,
     startIcon = null
 }) {
     return (
-        <Grid item justifyContent={justifyContent}>
+        <Grid item>
             <Button
                 variant={variant}
                 color={color}

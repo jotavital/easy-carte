@@ -36,7 +36,11 @@ class RestaurantController extends Controller
         $categoryId = ($request->category !== 'null' && $request->category !== '') ? $request->category : null;
 
         if ($categoryId) {
-            return response()->json(ProductCategory::find($categoryId)->products->where('restaurant_id', 10)->values());
+            return response()->json(
+                ProductCategory::find($categoryId)->products
+                    ->where('restaurant_id', $request->id)
+                    ->values()
+            );
         }
 
         return response()->json(Restaurant::find($id)->products);

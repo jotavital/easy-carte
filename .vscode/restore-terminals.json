@@ -6,22 +6,6 @@
         {
             "splitTerminals": [
                 {
-                    "name": "start back",
-                    "commands": [
-                        "start-back.bat"
-                    ]
-                },
-                {
-                    "name": "start front",
-                    "commands": [
-                        "start-front.bat"
-                    ]
-                }
-            ]
-        },
-        {
-            "splitTerminals": [
-                {
                     "name": "compose up",
                     "commands": [
                         "docker-compose up"

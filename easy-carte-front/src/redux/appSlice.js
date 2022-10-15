@@ -1,8 +1,8 @@
 const SELECT_CITY = 'app/selectCity';
 const SET_USER_LOCATION = 'app/setUserLocation';
 
-var cityFromLocalStorage = (JSON.parse(localStorage.getItem('selected_city')) ?? null);
-var userLocationFromLocalStorage = localStorage.getItem('user_location') ?? null;
+var cityFromLocalStorage = (JSON.parse(localStorage.getItem('easycarte@selected_city')) ?? null);
+var userLocationFromLocalStorage = localStorage.getItem('easycarte@user_location') ?? null;
 
 const initialState = {
     isCitySelected: !!cityFromLocalStorage,
@@ -32,9 +32,9 @@ export default function appReducer(state = initialState, action) {
         case SET_USER_LOCATION:
             // ? additional code is located in the file setUserLocationLocalStorageMiddleware.js
             (action.payload === '' || action.payload == null) ?
-                localStorage.removeItem('user_location')
+                localStorage.removeItem('easycarte@user_location')
                 :
-                localStorage.setItem('user_location', action.payload);
+                localStorage.setItem('easycarte@user_location', action.payload);
 
             return {
                 ...state,

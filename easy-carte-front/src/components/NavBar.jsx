@@ -47,11 +47,7 @@ const NavBar = () => {
             {
                 name: 'Login',
                 action: '/login'
-            },
-            // {
-            //     name: 'Cadastro',
-            //     action: '/register'
-            // }
+            }
         );
     }
 

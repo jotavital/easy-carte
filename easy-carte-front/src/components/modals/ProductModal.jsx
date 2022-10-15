@@ -8,9 +8,49 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useContext } from "react";
 import { HelpersContext } from "../../contexts/helpers";
 import QuantityPicker from "../forms/inputs/QuantityPicker";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
 
 function ProductModal({ open, handleCloseModal, product }) {
+    const min = 1;
+    const max = 5;
     const { isUserAtRestaurant } = useContext(HelpersContext);
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
+
+    const handleIncrement = () => {
+        if (quantity < max) {
+            setQuantity(quantity + 1);
+        }
+    };
+
+    const handleDecrement = () => {
+        if (quantity > min) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const handleAddToOrder = () => {
+        let orderTab = localStorage.getItem("easycarte@order_tab")
+            ? JSON.parse(localStorage.getItem("easycarte@order_tab"))
+            : [];
+
+        orderTab.push({
+            product_id: product.id,
+            quantity: quantity,
+        });
+
+        localStorage.setItem("easycarte@order_tab", JSON.stringify(orderTab));
+        dispatch(
+            setSnackbar(
+                true,
+                "success",
+                "Adicionado ao pedido",
+                "right"
+            )
+        );
+    };
 
     return (
         <CustomModal
@@ -48,10 +88,15 @@ function ProductModal({ open, handleCloseModal, product }) {
 
                                 {isUserAtRestaurant && (
                                     <Grid container rowGap={2} marginTop={3}>
-                                        <QuantityPicker />
+                                        <QuantityPicker
+                                            handleIncrement={handleIncrement}
+                                            handleDecrement={handleDecrement}
+                                            value={quantity}
+                                        />
                                         <CustomButton
                                             text="Adicionar ao pedido"
                                             startIcon={<PlaylistAddIcon />}
+                                            onClick={() => handleAddToOrder()}
                                         />
                                     </Grid>
                                 )}

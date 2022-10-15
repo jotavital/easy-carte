@@ -11,7 +11,7 @@ export const setCityLocalStorageMiddleware = (store) => (next) => (action) => {
             if (!app.isCitySelected) {
                 apiClient.get('/cities/' + selectedCityId)
                     .then(({ data }) => {
-                        localStorage.setItem('selected_city', JSON.stringify(data));
+                        localStorage.setItem('easycarte@selected_city', JSON.stringify(data));
                         next(action);
                     })
                     .catch(() => {

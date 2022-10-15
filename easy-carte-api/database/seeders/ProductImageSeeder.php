@@ -16,7 +16,7 @@ class ProductImageSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <= env('COUNT_PRODUCTS_TO_SEED'); $i++) {
-            for ($j = 1; $j <= 3; $j++) {
+            for ($j = 1; $j <= env('COUNT_IMAGES_PER_PRODUCT'); $j++) {
                 ProductImage::factory(1)->create([
                     'product_id' => $i
                 ]);

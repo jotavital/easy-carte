@@ -33,7 +33,7 @@ function EnterRestaurantCode() {
         <Grid marginBottom={3} item container justifyContent='center' alignItems='center'>
             <Grid container item sm={8} justifyContent='center' padding={2}>
                 <Grid item padding sm={5}>
-                    <Image src="./illustrations/woman_cellphone.svg" />
+                    <Image src={process.env.PUBLIC_URL + "/illustrations/woman_cellphone.svg"} />
                 </Grid>
                 <Grid container padding justifyContent='center'>
                     <Typography variant="h5" fontWeight='bold'>

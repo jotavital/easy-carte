@@ -9,15 +9,13 @@ import { useContext } from "react";
 import { HelpersContext } from "../../contexts/helpers";
 import QuantityPicker from "../forms/inputs/QuantityPicker";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
+import { toast } from "react-toastify";
 
 function ProductModal({ open, handleCloseModal, product }) {
     const min = 1;
     const max = 5;
     const { isUserAtRestaurant } = useContext(HelpersContext);
     const [quantity, setQuantity] = useState(1);
-    const dispatch = useDispatch();
 
     const handleIncrement = () => {
         if (quantity < max) {
@@ -38,18 +36,13 @@ function ProductModal({ open, handleCloseModal, product }) {
 
         orderTab.push({
             product_id: product.id,
+            product_name: product.name,
+            product_price: product.price,
             quantity: quantity,
         });
 
         localStorage.setItem("easycarte@order_tab", JSON.stringify(orderTab));
-        dispatch(
-            setSnackbar(
-                true,
-                "success",
-                "Adicionado ao pedido",
-                "right"
-            )
-        );
+        toast.success("Adicionado ao pedido");
     };
 
     return (

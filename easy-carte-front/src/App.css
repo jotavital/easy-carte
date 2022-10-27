@@ -2,8 +2,8 @@
     --navBarHeight: 60px !important;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
+*:not(.material-icons) {
+    font-family: 'Space Grotesk', sans-serif !important;
 }
 
 .app-navbar {

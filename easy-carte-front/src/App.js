@@ -9,6 +9,8 @@ import { AuthProvider } from "./contexts/auth";
 import CustomSnackBar from "./components/snackbars/CustomSnackbar";
 import { themeOptions } from "./providers/themeOptions";
 import { HelpersProvider } from "./contexts/helpers";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme(themeOptions);
 
@@ -17,6 +19,18 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <div className="App">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <HelpersProvider>
                     <CustomSnackBar />
                     <BrowserRouter>

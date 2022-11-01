@@ -4,8 +4,8 @@ import { apiClient } from "../../providers/apiClient";
 import ProductCard from "../cards/ProductCard";
 import CustomLoading from "../misc/CustomLoading";
 import CategoriesListWithIcon from "./CategoriesListWithIcon";
-import { useSearchParams } from 'react-router-dom';
-import ProductModal from '../modals/ProductModal';
+import { useSearchParams } from "react-router-dom";
+import ProductModal from "../modals/ProductModal";
 
 function ProductList({ restaurantId }) {
     const [searchParams] = useSearchParams();
@@ -17,27 +17,35 @@ function ProductList({ restaurantId }) {
     const [productDataForModal, setProductDataForModal] = useState(null);
 
     const handleOpenModal = (productId) => {
-        apiClient.get('products/' + productId + '?withimages=1')
+        apiClient
+            .get("products/" + productId + "?withimages=1")
             .then(({ data }) => {
                 setProductDataForModal(data);
                 setIsModalOpen(true);
             });
-    }
+    };
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setTimeout(() => {
             setProductDataForModal(null);
         }, 100);
-    }
+    };
 
     useEffect(() => {
-        apiClient.get('/restaurants/' + restaurantId + '/products?category=' + searchParams.get('category'))
+        apiClient
+            .get(
+                "/restaurants/" +
+                    restaurantId +
+                    "/products?category=" +
+                    searchParams.get("category")
+            )
             .then(({ data }) => {
                 setProducts(data);
                 setAreProductsLoaded(true);
             });
 
-        apiClient.get('/restaurants/' + restaurantId + '/product-categories')
+        apiClient
+            .get("/restaurants/" + restaurantId + "/product-categories")
             .then(({ data }) => {
                 setCategories(data);
                 setAreCategoriesLoaded(true);
@@ -45,22 +53,35 @@ function ProductList({ restaurantId }) {
     }, [restaurantId, searchParams]);
 
     return (
-        <Grid container item justifyContent='center' paddingY>
-            <CategoriesListWithIcon categories={categories} areCategoriesLoaded={areCategoriesLoaded} />
-            <Grid justifyContent='center' container item padding>
-                {!areProductsLoaded
-                    ?
+        <Grid container item justifyContent="center" paddingY>
+            <CategoriesListWithIcon
+                categories={categories}
+                areCategoriesLoaded={areCategoriesLoaded}
+            />
+            <Grid justifyContent="center" container item padding>
+                {!areProductsLoaded ? (
                     <CustomLoading />
-                    :
-                    (!products.length) ?
-                        <Typography marginY={3} variant="h5">Nenhum produto encontrado.</Typography>
-                        :
-                        products.map((product) => {
-                            return <ProductCard key={product.id} product={product} handleOpenModal={handleOpenModal} />
-                        })
-                }
+                ) : !products.length ? (
+                    <Typography marginY={3} variant="h5">
+                        Nenhum produto encontrado.
+                    </Typography>
+                ) : (
+                    products.map((product) => {
+                        return (
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                handleOpenModal={handleOpenModal}
+                            />
+                        );
+                    })
+                )}
             </Grid>
-            <ProductModal open={isModalOpen} product={productDataForModal} handleCloseModal={handleCloseModal} />
+            <ProductModal
+                open={isModalOpen}
+                product={productDataForModal}
+                handleCloseModal={handleCloseModal}
+            />
         </Grid>
     );
 }

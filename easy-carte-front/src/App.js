@@ -10,7 +10,7 @@ import CustomSnackBar from "./components/snackbars/CustomSnackbar";
 import { themeOptions } from "./providers/themeOptions";
 import { HelpersProvider } from "./contexts/helpers";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme(themeOptions);
 

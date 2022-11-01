@@ -1,7 +1,14 @@
-import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
-import RestaurantOpenClosed from '../text/RestaurantOpenClosed';
-import RestaurantOpeningHours from '../text/RestaurantOpeningHours';
-import { useNavigate } from 'react-router-dom';
+import {
+    Grid,
+    Card,
+    CardActionArea,
+    CardMedia,
+    CardContent,
+    Typography,
+} from "@mui/material";
+import RestaurantOpenClosed from "../text/RestaurantOpenClosed";
+import RestaurantOpeningHours from "../text/RestaurantOpeningHours";
+import { useNavigate } from "react-router-dom";
 
 function HomeRestaurantCard({ restaurant }) {
     const navigate = useNavigate();
@@ -9,7 +16,11 @@ function HomeRestaurantCard({ restaurant }) {
     return (
         <Grid padding item lg={2}>
             <Card>
-                <CardActionArea onClick={() => navigate('/restaurants/' + restaurant.id + '/products')}>
+                <CardActionArea
+                    onClick={() =>
+                        navigate("/restaurants/" + restaurant.id + "/products")
+                    }
+                >
                     <CardMedia
                         component="img"
                         height="100"
@@ -17,11 +28,13 @@ function HomeRestaurantCard({ restaurant }) {
                         alt={restaurant.logo_url}
                     />
                     <CardContent>
-                        <Typography textAlign='center' fontWeight='bold'>
+                        <Typography textAlign="center" fontWeight="bold">
                             {restaurant.name}
                         </Typography>
-                        <Grid container justifyContent='center'>
-                            <RestaurantOpeningHours opening_hours={restaurant.opening_hours} />
+                        <Grid container justifyContent="center">
+                            <RestaurantOpeningHours
+                                opening_hours={restaurant.opening_hours}
+                            />
                         </Grid>
                         <RestaurantOpenClosed isOpen={restaurant.is_open} />
                     </CardContent>

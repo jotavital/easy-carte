@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 
-function Image({ src, alt = 'Imagem', title, wrapperClass = '' }) {
+function Image({ src, alt = "Imagem", title, wrapperClass = "" }) {
     return (
-        <Grid className={wrapperClass} justifyContent='center' container>
+        <Grid className={wrapperClass} justifyContent="center" container>
             <img
                 title={title}
                 src={src}

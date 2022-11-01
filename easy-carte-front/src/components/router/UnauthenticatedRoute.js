@@ -3,13 +3,12 @@ import { AuthContext } from "../../contexts/auth";
 import { Navigate } from "react-router-dom";
 
 const UnauthenticatedRoute = ({ children }) => {
-
     const { isUserAuthenticated } = useContext(AuthContext);
 
     if (isUserAuthenticated()) {
-        return <Navigate to='/' replace={true} />
+        return <Navigate to="/" replace={true} />;
     }
     return children;
-}
+};
 
 export default UnauthenticatedRoute;

@@ -1,16 +1,15 @@
-import { DatePicker } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import ptBrLocale from 'date-fns/locale/pt-BR';
-import { Controller } from 'react-hook-form';
-import { TextField } from '@mui/material';
+import { DatePicker } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import ptBrLocale from "date-fns/locale/pt-BR";
+import { Controller } from "react-hook-form";
+import { TextField } from "@mui/material";
 
 function BirthDateInput({ control, defaultValue }) {
-
-    defaultValue = (defaultValue) ? defaultValue : null;
+    defaultValue = defaultValue ? defaultValue : null;
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBrLocale} >
+        <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBrLocale}>
             <Controller
                 control={control}
                 name="birth_date"
@@ -18,15 +17,10 @@ function BirthDateInput({ control, defaultValue }) {
                 render={({ field: { onChange, value } }) => (
                     <DatePicker
                         label="Data de nascimento"
-                        views={['day', 'month', 'year']}
+                        views={["day", "month", "year"]}
                         onChange={onChange}
                         value={value}
-                        renderInput={
-                            (props) =>
-                                <TextField
-                                    {...props}
-                                />
-                        }
+                        renderInput={(props) => <TextField {...props} />}
                     />
                 )}
             />

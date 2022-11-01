@@ -5,27 +5,27 @@ import RoundedCategoryIcon from "../misc/RoundedCategoryIcon";
 function CategoriesListWithIcon({ categories, areCategoriesLoaded }) {
     if (!areCategoriesLoaded) {
         return (
-            <Grid container gap padding justifyContent='center'>
+            <Grid container gap padding justifyContent="center">
                 <CustomLoading />
             </Grid>
-        )
+        );
     } else {
         return (
-            <Grid container gap padding justifyContent='center'>
+            <Grid container gap padding justifyContent="center">
                 <RoundedCategoryIcon
                     icon={<Icon>star</Icon>}
-                    subtitle='Todas'
+                    subtitle="Todas"
                 />
-                {
-                    categories.map((category) => {
-                        return <RoundedCategoryIcon
+                {categories.map((category) => {
+                    return (
+                        <RoundedCategoryIcon
                             key={category.id}
                             categoryId={category.id}
                             icon={<Icon>{category.icon}</Icon>}
                             subtitle={category.name}
                         />
-                    })
-                }
+                    );
+                })}
             </Grid>
         );
     }

@@ -6,20 +6,18 @@ function EmailInput({ errors, register }) {
             fullWidth
             error={!!errors.email}
             helperText={errors.email?.message}
-            label='E-mail'
-            type='email'
-            {...register('email',
-                {
-                    required: {
-                        value: true,
-                        message: "Informe um e-mail"
-                    },
-                    pattern: {
-                        message: "Informe um e-mail válido",
-                        value: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
-                    }
-                }
-            )}
+            label="E-mail"
+            type="email"
+            {...register("email", {
+                required: {
+                    value: true,
+                    message: "Informe um e-mail",
+                },
+                pattern: {
+                    message: "Informe um e-mail válido",
+                    value: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi,
+                },
+            })}
         />
     );
 }

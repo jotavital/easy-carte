@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useState } from "react";
 
 function RestaurantMoreInfoModal({ restaurant }) {
@@ -15,7 +15,10 @@ function RestaurantMoreInfoModal({ restaurant }) {
 
     return (
         <>
-            <Button startIcon={<AddCircleOutlineIcon />} onClick={handleOpenModal}>
+            <Button
+                startIcon={<AddCircleOutlineIcon />}
+                onClick={handleOpenModal}
+            >
                 <Typography>Mais informações</Typography>
             </Button>
             <CustomModal

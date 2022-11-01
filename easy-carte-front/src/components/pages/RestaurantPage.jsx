@@ -17,7 +17,7 @@ function RestaurantPage() {
     const navigate = useNavigate();
 
     const handleSeeOrderTab = () => {
-        navigate('/order-tab');
+        navigate("/order-tab");
     };
 
     useEffect(() => {

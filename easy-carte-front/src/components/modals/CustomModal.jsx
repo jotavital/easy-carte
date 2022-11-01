@@ -1,14 +1,27 @@
-import CloseIcon from '@mui/icons-material/Close';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton } from '@mui/material';
+import CloseIcon from "@mui/icons-material/Close";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    IconButton,
+} from "@mui/material";
 
-export default function CustomModal({ title = "Informação", content, open, handleCloseModal }) {
+export default function CustomModal({
+    title = "Informação",
+    content,
+    open,
+    handleCloseModal,
+}) {
     return (
         <Grid item container>
             <Dialog
                 onClose={handleCloseModal}
                 aria-labelledby="customized-dialog-title"
                 open={open}
-                scroll='body'
+                scroll="body"
             >
                 <DialogTitle sx={{ m: 0, p: 2 }}>
                     {title}
@@ -16,7 +29,7 @@ export default function CustomModal({ title = "Informação", content, open, han
                         aria-label="close"
                         onClick={handleCloseModal}
                         sx={{
-                            position: 'absolute',
+                            position: "absolute",
                             right: 8,
                             top: 8,
                             color: (theme) => theme.palette.grey[500],
@@ -25,9 +38,7 @@ export default function CustomModal({ title = "Informação", content, open, han
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
-                <DialogContent dividers>
-                    {content}
-                </DialogContent>
+                <DialogContent dividers>{content}</DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleCloseModal}>
                         Fechar

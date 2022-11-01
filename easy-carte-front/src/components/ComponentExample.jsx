@@ -1,8 +1,5 @@
 function ComponentExample() {
-    return (
-        <>
-        </>
-    );
+    return <></>;
 }
 
 export default ComponentExample;

@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserLocation } from "../../redux/appSlice";
 
@@ -9,13 +9,13 @@ function UserLocationText() {
 
     const handleUserLocationChanged = (location) => {
         dispatch(setUserLocation(location));
-    }
+    };
 
     return (
         <Typography>
-            <Button onClick={() => handleUserLocationChanged('')}>
+            <Button onClick={() => handleUserLocationChanged("")}>
                 <LocationOnIcon />
-                Você está em: {(userLocation === 'home') ? 'casa' : 'restaurante'}
+                Você está em: {userLocation === "home" ? "casa" : "restaurante"}
             </Button>
         </Typography>
     );

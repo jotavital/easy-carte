@@ -1,17 +1,18 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Typography,
+} from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function CustomAccordion({ title, content }) {
     return (
         <Accordion>
-            <AccordionSummary expandIcon={<AddCircleOutlineIcon />} >
-                <Typography>
-                    {title}
-                </Typography>
+            <AccordionSummary expandIcon={<AddCircleOutlineIcon />}>
+                <Typography>{title}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-                {content}
-            </AccordionDetails>
+            <AccordionDetails>{content}</AccordionDetails>
         </Accordion>
     );
 }

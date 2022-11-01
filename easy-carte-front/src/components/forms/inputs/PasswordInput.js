@@ -6,16 +6,14 @@ function PasswordInput({ errors, register }) {
             fullWidth
             error={!!errors.password}
             helperText={errors.password?.message}
-            label='Senha'
-            type='password'
-            {...register('password',
-                {
-                    required: {
-                        value: true,
-                        message: "Informe uma senha"
-                    }
-                }
-            )}
+            label="Senha"
+            type="password"
+            {...register("password", {
+                required: {
+                    value: true,
+                    message: "Informe uma senha",
+                },
+            })}
         />
     );
 }

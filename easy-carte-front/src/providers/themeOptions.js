@@ -1,20 +1,20 @@
 export const themeOptions = {
     typography: {
         button: {
-            textTransform: 'none'
-        }
+            textTransform: "none",
+        },
     },
     palette: {
-        type: 'light',
+        type: "light",
         primary: {
-            main: '#1976d2',
+            main: "#1976d2",
         },
         secondary: {
-            main: 'rgb(220, 0, 78)',
+            main: "#dc004e",
         },
         background: {
-            default: '#fff',
-            paper: '#fff',
+            default: "#fff",
+            paper: "#fff",
         },
     },
 };

@@ -1,26 +1,30 @@
 import { apiClient } from "../../providers/apiClient";
-import { setSnackbar } from '../snackbars/snackbarsSlice';
+import { setSnackbar } from "../snackbars/snackbarsSlice";
 
 export const setCityLocalStorageMiddleware = (store) => (next) => (action) => {
     const { app } = store.getState();
 
     switch (action.type) {
-        case 'app/selectCity':
+        case "app/selectCity":
             const selectedCityId = action.payload;
 
             if (!app.isCitySelected) {
-                apiClient.get('/cities/' + selectedCityId)
+                apiClient
+                    .get("/cities/" + selectedCityId)
                     .then(({ data }) => {
-                        localStorage.setItem('easycarte@selected_city', JSON.stringify(data));
+                        localStorage.setItem(
+                            "easycarte@selected_city",
+                            JSON.stringify(data)
+                        );
                         next(action);
                     })
                     .catch(() => {
                         store.dispatch(
                             setSnackbar(
                                 true,
-                                'error',
-                                'Erro desconhecido ao selecionar a cidade.',
-                                'center'
+                                "error",
+                                "Erro desconhecido ao selecionar a cidade.",
+                                "center"
                             )
                         );
                         return false;
@@ -31,4 +35,4 @@ export const setCityLocalStorageMiddleware = (store) => (next) => (action) => {
             next(action);
             break;
     }
-}
+};

@@ -1,9 +1,9 @@
-import { Grid, Typography } from '@mui/material';
-import CustomLoading from '../misc/CustomLoading';
-import HomeRestaurantCard from '../cards/HomeRestaurantCard';
-import { apiClient } from '../../providers/apiClient';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Grid, Typography } from "@mui/material";
+import CustomLoading from "../misc/CustomLoading";
+import HomeRestaurantCard from "../cards/HomeRestaurantCard";
+import { apiClient } from "../../providers/apiClient";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function HomeRestaurantsSection({ cityUrl }) {
     const [searchParams] = useSearchParams();
@@ -11,7 +11,15 @@ function HomeRestaurantsSection({ cityUrl }) {
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     useEffect(() => {
-        apiClient.get('cities/' + cityUrl + '/restaurants?search=' + searchParams.get('search') + '&category=' + searchParams.get('category'))
+        apiClient
+            .get(
+                "cities/" +
+                    cityUrl +
+                    "/restaurants?search=" +
+                    searchParams.get("search") +
+                    "&category=" +
+                    searchParams.get("category")
+            )
             .then(({ data }) => {
                 setRestaurants(data);
                 setIsDataLoaded(true);
@@ -19,15 +27,30 @@ function HomeRestaurantsSection({ cityUrl }) {
     }, [cityUrl, searchParams]);
 
     return (
-        <Grid container justifyContent='center' alignItems='center' spacing={1} sx={{ minHeight: 200 }} paddingY={3}>
-            {!isDataLoaded
-                ? <CustomLoading />
-                : (restaurants.length)
-                    ? restaurants.map((restaurant) => {
-                        return <HomeRestaurantCard key={restaurant.id} restaurant={restaurant} />
-                    })
-                    : <Typography variant='h6'>Nenhum resultado encontrado.</Typography>
-            }
+        <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            spacing={1}
+            sx={{ minHeight: 200 }}
+            paddingY={3}
+        >
+            {!isDataLoaded ? (
+                <CustomLoading />
+            ) : restaurants.length ? (
+                restaurants.map((restaurant) => {
+                    return (
+                        <HomeRestaurantCard
+                            key={restaurant.id}
+                            restaurant={restaurant}
+                        />
+                    );
+                })
+            ) : (
+                <Typography variant="h6">
+                    Nenhum resultado encontrado.
+                </Typography>
+            )}
         </Grid>
     );
 }

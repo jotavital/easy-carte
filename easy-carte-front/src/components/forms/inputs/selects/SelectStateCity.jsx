@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material';
-import SelectStates from './SelectStates';
-import SelectCities from './SelectCities';
-import { useState } from 'react';
+import { Grid } from "@mui/material";
+import SelectStates from "./SelectStates";
+import SelectCities from "./SelectCities";
+import { useState } from "react";
 
 function SelectStateCity() {
     const [selectedStateId, setSelectedStateId] = useState(0);
@@ -9,7 +9,10 @@ function SelectStateCity() {
     return (
         <Grid item container spacing={1} xs={12}>
             <Grid item xs={12} sm={6} marginBottom={{ xs: 3 }}>
-                <SelectStates selectedStateId={selectedStateId} setSelectedStateId={setSelectedStateId} />
+                <SelectStates
+                    selectedStateId={selectedStateId}
+                    setSelectedStateId={setSelectedStateId}
+                />
             </Grid>
             <Grid item xs={12} sm={6}>
                 <SelectCities selectedStateId={selectedStateId} />

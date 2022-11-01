@@ -1,4 +1,11 @@
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    Grid,
+    Typography,
+} from "@mui/material";
 
 function ProductCard({ product, handleOpenModal }) {
     return (
@@ -8,14 +15,16 @@ function ProductCard({ product, handleOpenModal }) {
                     <CardMedia
                         component="img"
                         height="100"
-                        image={product.main_image ?? '/img/no_picture_product.webp'}
-                        alt='alt'
+                        image={
+                            product.main_image ?? "/img/no_picture_product.webp"
+                        }
+                        alt="alt"
                     />
                     <CardContent>
-                        <Typography textAlign='center' variant="h6">
+                        <Typography textAlign="center" variant="h6">
                             {product.name}
                         </Typography>
-                        <Typography textAlign='center' fontWeight='bold'>
+                        <Typography textAlign="center" fontWeight="bold">
                             {product.formatted_price}
                         </Typography>
                     </CardContent>

@@ -1,4 +1,10 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+    Card,
+    CardActionArea,
+    CardContent,
+    CardMedia,
+    Typography,
+} from "@mui/material";
 
 function CardWithImage({ action, src, cardTitle, cardText }) {
     return (
@@ -11,10 +17,19 @@ function CardWithImage({ action, src, cardTitle, cardText }) {
                     sx={{ maxHeight: 150 }}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" textAlign='center' component="div">
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        textAlign="center"
+                        component="div"
+                    >
                         {cardTitle}
                     </Typography>
-                    <Typography variant="body2" textAlign='center' color="text.secondary">
+                    <Typography
+                        variant="body2"
+                        textAlign="center"
+                        color="text.secondary"
+                    >
                         {cardText}
                     </Typography>
                 </CardContent>

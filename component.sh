@@ -1,1 +1,0 @@
-cp ./easy-carte-front/src/components/ComponentExample.jsx ./easy-carte-front/src/components/$1.jsx && code ./easy-carte-front/src/components/$1.jsx

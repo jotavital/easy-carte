@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        
+
         if ($user->save()) {
             return response()->json(true, 200);
         } else {

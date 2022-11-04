@@ -12,8 +12,8 @@ function RegisterPage() {
             justifyContent="center"
         >
             <Grid item xs={10} sm={6} md={4} lg={3}>
-                <Typography variant="h3" mb={3} textAlign="center">
-                    Cadastro
+                <Typography variant="h4" mb={3} textAlign="center">
+                    Cadastre-se
                 </Typography>
                 <RegisterForm />
             </Grid>

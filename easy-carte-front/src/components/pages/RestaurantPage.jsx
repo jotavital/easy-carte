@@ -69,7 +69,7 @@ function RestaurantPage() {
                                     <Typography variant="h6">
                                         {restaurant.category.name}
                                     </Typography>
-                                    <RestaurantRating />
+                                    {/* <RestaurantRating /> */}
                                     <Typography variant="body2">
                                         {restaurant.description}
                                     </Typography>

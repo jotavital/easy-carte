@@ -30,18 +30,7 @@ function ProductModal({ open, handleCloseModal, product }) {
     };
 
     const handleAddToOrder = () => {
-        let orderTab = localStorage.getItem("easycarte@order_tab")
-            ? JSON.parse(localStorage.getItem("easycarte@order_tab"))
-            : [];
-
-        orderTab.push({
-            product_id: product.id,
-            product_name: product.name,
-            product_price: product.price,
-            quantity: quantity,
-        });
-
-        localStorage.setItem("easycarte@order_tab", JSON.stringify(orderTab));
+        
         toast.success("Adicionado ao pedido");
     };
 

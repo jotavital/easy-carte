@@ -4,8 +4,8 @@ function FullNameInput({ errors, register }) {
     return (
         <TextField
             fullWidth
-            error={!!errors.name}
-            helperText={errors.name?.message}
+            error={!!errors.full_name}
+            helperText={errors.full_name?.message}
             label="Nome completo"
             type="text"
             {...register("full_name", {

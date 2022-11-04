@@ -43,14 +43,16 @@ function ProductList({ restaurantId }) {
                 setProducts(data);
                 setAreProductsLoaded(true);
             });
+    }, [restaurantId, searchParams]);
 
+    useEffect(() => {
         apiClient
             .get("/restaurants/" + restaurantId + "/product-categories")
             .then(({ data }) => {
                 setCategories(data);
                 setAreCategoriesLoaded(true);
             });
-    }, [restaurantId, searchParams]);
+    }, [restaurantId]);
 
     return (
         <Grid container item justifyContent="center" paddingY>

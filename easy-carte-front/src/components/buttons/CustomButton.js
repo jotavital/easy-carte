@@ -7,6 +7,7 @@ function CustomButton({
     type = "button",
     onClick = null,
     startIcon = null,
+    endIcon = null
 }) {
     return (
         <Grid item>
@@ -16,6 +17,7 @@ function CustomButton({
                 type={type}
                 onClick={onClick}
                 startIcon={startIcon}
+                endIcon={endIcon}
             >
                 {text}
             </Button>

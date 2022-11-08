@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasOpenOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,4 +15,12 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
+    use HasOpenOrder;
+
+    protected $hidden = ['password', 'remember_token'];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

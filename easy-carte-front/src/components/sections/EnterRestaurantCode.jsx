@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserLocation } from "../../redux/appSlice";
 import { toast } from "react-toastify";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 function EnterRestaurantCode() {
     const {
@@ -21,6 +23,8 @@ function EnterRestaurantCode() {
     const onSubmit = ({ code }) => {
         apiClient.get("/restaurants/check-code/" + code).then(({ data }) => {
             if (data) {
+                localStorage.setItem("easycarte@current_restaurant", data.id);
+
                 navigate("/restaurants/" + data.id + "/products");
             } else {
                 toast.error("Código de restaurante inválido");
@@ -85,11 +89,16 @@ function EnterRestaurantCode() {
                         />
                         <Grid container justifyContent="center" gap>
                             <CustomButton
-                                text="Voltar"
+                                startIcon={<LocationOnIcon />}
+                                text="Mudar localização"
                                 color="primary"
                                 onClick={() => handleUserLocationChanged("")}
                             />
-                            <CustomButton text="Pronto" type="submit" />
+                            <CustomButton
+                                text="Pronto"
+                                type="submit"
+                                endIcon={<ArrowForwardIcon />}
+                            />
                         </Grid>
                     </Stack>
                 </form>

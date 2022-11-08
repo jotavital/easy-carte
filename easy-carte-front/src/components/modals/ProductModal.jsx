@@ -10,12 +10,17 @@ import { HelpersContext } from "../../contexts/helpers";
 import QuantityPicker from "../forms/inputs/QuantityPicker";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
+import { apiClient } from "../../providers/apiClient";
 
 function ProductModal({ open, handleCloseModal, product }) {
     const min = 1;
     const max = 5;
     const { isUserAtRestaurant } = useContext(HelpersContext);
     const [quantity, setQuantity] = useState(1);
+    const { isUserAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleIncrement = () => {
         if (quantity < max) {
@@ -30,8 +35,24 @@ function ProductModal({ open, handleCloseModal, product }) {
     };
 
     const handleAddToOrder = () => {
-        
-        toast.success("Adicionado ao pedido");
+        if (!isUserAuthenticated()) {
+            return navigate("/login");
+        }
+
+        apiClient
+            .post("/order-products", {
+                product_id: product?.id,
+                quantity: quantity,
+            })
+            .then((response) => {
+                console.log(response);
+                toast.success("Adicionado ao pedido");
+
+                handleCloseModal();
+            })
+            .catch((error) => {
+                toast.error("Erro ao adicionar ao pedido");
+            });
     };
 
     return (

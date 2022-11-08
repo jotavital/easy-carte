@@ -7,6 +7,9 @@ export const HelpersProvider = ({ children }) => {
     const userLocation = useSelector((state) => state.app.userLocation);
     const isUserAtHome = userLocation === "home";
     const isUserAtRestaurant = userLocation === "restaurant";
+    const currentRestaurant = localStorage.getItem(
+        "easycarte@current_restaurant"
+    );
 
     const convertToBrl = (value) => {
         return Number(value).toLocaleString("pt-br", {
@@ -17,7 +20,12 @@ export const HelpersProvider = ({ children }) => {
 
     return (
         <HelpersContext.Provider
-            value={{ isUserAtHome, isUserAtRestaurant, convertToBrl }}
+            value={{
+                isUserAtHome,
+                isUserAtRestaurant,
+                convertToBrl,
+                currentRestaurant,
+            }}
         >
             {children}
         </HelpersContext.Provider>

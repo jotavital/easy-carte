@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RestaurantCategoriesController;
 use App\Http\Controllers\RestaurantCategoryController;
@@ -57,3 +59,10 @@ Route::get('/cities/{idOrUrl}', [CityController::class, 'show']);
 // !! state routes
 Route::get('/states', [StateController::class, 'index']);
 Route::get('/states/{stateId}/cities', [StateController::class, 'getCitiesByState']);
+
+// !! orders routes
+Route::resource('orders', OrderController::class);
+Route::post('orders/{orderId}/close', [OrderController::class, 'close']);
+
+// !! order-products routes
+Route::resource('order-products', OrderProductController::class);

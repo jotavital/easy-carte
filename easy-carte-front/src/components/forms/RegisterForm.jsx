@@ -4,8 +4,6 @@ import { format as formatDate } from "date-fns";
 import { apiClient } from "../../providers/apiClient";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
-import { useDispatch } from "react-redux";
-import { setSnackbar } from "../../redux/snackbars/snackbarsSlice";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import ptBrLocale from "date-fns/locale/pt-BR";
@@ -14,6 +12,7 @@ import EmailInput from "./inputs/EmailInput";
 import PasswordInput from "./inputs/PasswordInput";
 import BirthDateInput from "./inputs/BirthDateInput";
 import CustomButton from "../buttons/CustomButton";
+import { toast } from "react-toastify";
 
 function RegisterForm() {
     const {
@@ -22,7 +21,7 @@ function RegisterForm() {
         control,
         formState: { errors },
     } = useForm();
-    const dispatch = useDispatch();
+
     const navigate = useNavigate();
     const theme = useTheme();
 
@@ -33,18 +32,11 @@ function RegisterForm() {
             .post("/users", data)
             .then((response) => {
                 if (response.status === 200 && response.data === true) {
-                    navigate("/login");
+                    navigate("/login?registerSuccess=1");
                 }
             })
             .catch((error) => {
-                dispatch(
-                    setSnackbar(
-                        true,
-                        "error",
-                        "Erro ao realizar cadastro! Tente novamente.",
-                        "left"
-                    )
-                );
+                toast.error("Erro ao realizar cadastro! Tente novamente.");
             });
     };
 
@@ -58,13 +50,15 @@ function RegisterForm() {
                     <PasswordInput register={register} errors={errors} />
                     <Grid container>
                         <Typography color={theme.palette.info.main}>
-                            Já é cadastrado?
+                            Já tem login?
                             <Link marginLeft={1} href="/login">
                                 Entrar
                             </Link>
                         </Typography>
                     </Grid>
-                    <CustomButton text="Enviar" type="submit" />
+                    <Grid container justifyContent="center">
+                        <CustomButton text="Cadastrar" type="submit" />
+                    </Grid>
                 </Stack>
             </form>
         </LocalizationProvider>

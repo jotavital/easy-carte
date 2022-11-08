@@ -26,7 +26,7 @@ const NavBar = () => {
 
     if (isUserAuthenticated()) {
         pages.push({
-            name: "Home",
+            name: "Restaurantes",
             action: "/",
         });
 
@@ -121,13 +121,13 @@ const NavBar = () => {
                                 </MenuItem>
                             ))}
                         </Menu>
-                        <Grid
+                        {/* <Grid
                             container
                             alignItems="center"
                             justifyContent="right"
                         >
                             <NavBarLogo />
-                        </Grid>
+                        </Grid> */}
                     </Box>
                     <Box
                         sx={{
@@ -136,20 +136,20 @@ const NavBar = () => {
                             justifyContent: "right",
                         }}
                     >
-                        <Grid
+                        {/* <Grid
                             container
-                            alignItems="center"
                             justifyContent="center"
+                            md={6}
                         >
                             <NavBarLogo />
-                        </Grid>
+                        </Grid> */}
                         {pages.map((page) => (
                             <Button
                                 component={RouterLink}
                                 to={page.action}
                                 key={page.name}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: "white", display: "block" }}
+                                sx={{ margin: 2, color: "white", display: "block" }}
                             >
                                 {page.name}
                             </Button>

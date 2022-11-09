@@ -10,13 +10,11 @@ import {
     MenuItem,
     Tooltip,
     Button,
-    Grid,
 } from "@mui/material";
 import { useState, useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
-import NavBarLogo from "./images/NavBarLogo";
 
 const NavBar = () => {
     const { isUserAuthenticated, logout } = useContext(AuthContext);

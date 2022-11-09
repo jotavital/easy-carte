@@ -18,6 +18,10 @@ export const HelpersProvider = ({ children }) => {
         });
     };
 
+    const redirectToCurrentRestaurant = () => {
+        window.location.href = `/restaurants/${currentRestaurant}/products`;
+    };
+
     return (
         <HelpersContext.Provider
             value={{
@@ -25,6 +29,7 @@ export const HelpersProvider = ({ children }) => {
                 isUserAtRestaurant,
                 convertToBrl,
                 currentRestaurant,
+                redirectToCurrentRestaurant
             }}
         >
             {children}

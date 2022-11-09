@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const { isUserAtRestaurant, currentRestaurant } =
+    const { isUserAtRestaurant, redirectToCurrentRestaurant } =
         useContext(HelpersContext);
     const navigate = useNavigate();
 
@@ -30,9 +30,7 @@ export const AuthProvider = ({ children }) => {
                 );
 
                 if (isUserAtRestaurant) {
-                    return navigate(
-                        `/restaurants/${currentRestaurant}/products`
-                    );
+                    return redirectToCurrentRestaurant();
                 }
 
                 navigate("/");
@@ -51,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (isUserAtRestaurant) {
-            return navigate(`/restaurants/${currentRestaurant}/products`);
+            return redirectToCurrentRestaurant();
         }
 
         navigate("/");

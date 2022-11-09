@@ -5,7 +5,7 @@ function RoundedCategoryIcon({ categoryId = 0, icon, subtitle }) {
     const [searchParams, setSearchParams] = useSearchParams();
     // eslint-disable-next-line
     const isCategorySelected =
-        !!(searchParams.get("category") == categoryId) ||
+        !!(searchParams.get("category") === categoryId) ||
         (!searchParams.get("category") && subtitle === "Todas");
 
     const handleCategoryChange = (categoryId) => {

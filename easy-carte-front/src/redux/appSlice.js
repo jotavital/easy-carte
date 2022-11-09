@@ -33,7 +33,7 @@ export default function appReducer(state = initialState, action) {
             };
         case SET_USER_LOCATION:
             // ? additional code is located in the file setUserLocationLocalStorageMiddleware.js
-            action.payload === "" || action.payload == null
+            action.payload === "" || action.payload === null
                 ? localStorage.removeItem("easycarte@user_location")
                 : localStorage.setItem(
                       "easycarte@user_location",

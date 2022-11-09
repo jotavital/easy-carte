@@ -1,24 +1,20 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Card, Grid, Typography, CardContent, Box, Fab } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Card, Grid, Typography, CardContent, Box } from "@mui/material";
 import CustomLoading from "../misc/CustomLoading";
 import { apiClient } from "../../providers/apiClient";
 import RestaurantOpeningHours from "../text/RestaurantOpeningHours";
-import RestaurantRating from "../misc/RestaurantRating";
 import CustomDivider from "../misc/CustomDivider";
 import RestaurantMoreInfoModal from "../modals/RestaurantMoreInfoModal";
 import ProductList from "../lists/ProductList";
-import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import SeeOrderTabButton from "../buttons/SeeOrderTabButton";
+import { HelpersContext } from "../../contexts/helpers";
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
     const [restaurant, setRestaurant] = useState({});
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const navigate = useNavigate();
-
-    const handleSeeOrderTab = () => {
-        navigate("/order-tab");
-    };
+    const { isUserAtRestaurant } = useContext(HelpersContext);
 
     useEffect(() => {
         apiClient.get("/restaurants/" + restaurant_id).then(({ data }) => {
@@ -92,23 +88,7 @@ function RestaurantPage() {
                 )}
             </CardContent>
 
-            <Fab
-                sx={{
-                    position: "fixed",
-                    bottom: 16,
-                    right: 16,
-                }}
-                color="primary"
-                aria-label="add"
-                variant="extended"
-                onClick={() => handleSeeOrderTab()}
-            >
-                <PlaylistAddCheckIcon
-                    sx={{ marginRight: 1 }}
-                    fontSize="large"
-                />
-                Ver pedido
-            </Fab>
+            {isUserAtRestaurant && <SeeOrderTabButton />}
         </Card>
     );
 }

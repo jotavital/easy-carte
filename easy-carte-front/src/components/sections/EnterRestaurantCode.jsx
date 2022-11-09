@@ -55,12 +55,12 @@ function EnterRestaurantCode() {
                     />
                 </Grid>
                 <Grid container padding justifyContent="center">
-                    <Typography variant="h5" fontWeight="bold">
+                    <Typography variant="h5" fontWeight="bold" textAlign="center">
                         Código do restaurante
                     </Typography>
                 </Grid>
                 <Grid container justifyContent="center">
-                    <Typography marginBottom>
+                    <Typography marginBottom textAlign="center">
                         Você deve encontrar o código do restaurante nas mesas ou
                         no balcão
                     </Typography>

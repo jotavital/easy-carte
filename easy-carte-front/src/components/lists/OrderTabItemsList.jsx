@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { apiClient } from "../../providers/apiClient";
 import "./index.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function OrderTabItemsList() {
     const [orderTabItems, setOrderTabItems] = useState();
@@ -16,12 +18,13 @@ function OrderTabItemsList() {
         palette: { primary, success, error },
     } = useTheme();
 
-    const { convertToBrl } = useContext(HelpersContext);
+    const { convertToBrl, redirectToCurrentRestaurant } =
+        useContext(HelpersContext);
 
     const handleOrder = () => {
         Swal.fire({
-            title: "Deseja fechar esta comanda?",
-            text: "Depois que você fechar a comanda, será necessário abrir outra para pedir mais produtos",
+            title: "Deseja fechar este pedido?",
+            text: "Depois que você fechar o pedido, será necessário abrir outro para pedir mais produtos",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: primary.main,
@@ -39,7 +42,7 @@ function OrderTabItemsList() {
                         );
                     })
                     .catch((error) => {
-                        toast.error("Erro ao fechar comanda.");
+                        toast.error("Erro ao fechar pedido.");
                     });
             }
         });
@@ -51,13 +54,15 @@ function OrderTabItemsList() {
         });
     };
 
+    const handleBackToMenu = () => {
+        redirectToCurrentRestaurant();
+    };
+
     useEffect(() => {
         handleFetchOrder();
     }, []);
 
-    return !orderTabItems ? (
-        <Empty />
-    ) : (
+    return orderTabItems && orderTabItems.length > 0 ? (
         <Grid item container>
             <Grid padding marginBottom>
                 <Typography variant="h5">
@@ -68,7 +73,11 @@ function OrderTabItemsList() {
                 return (
                     <Grid container key={item.id}>
                         <Grid padding container>
-                            <Grid xs={1} display={{ xs: "none", sm: "flex" }}>
+                            <Grid
+                                item
+                                xs={1}
+                                display={{ xs: "none", sm: "flex" }}
+                            >
                                 <img
                                     src={item?.product?.main_image}
                                     alt={item?.product?.name}
@@ -97,10 +106,26 @@ function OrderTabItemsList() {
                 );
             })}
 
-            <Grid marginTop={3} container justifyContent="center">
-                <CustomButton text="Pedir" onClick={handleOrder} />
+            <Grid marginTop={3} container justifyContent="center" gap={2}>
+                <Grid item>
+                    <CustomButton
+                        color="primary"
+                        text="Voltar ao cardápio"
+                        onClick={handleBackToMenu}
+                        startIcon={<ArrowBackIcon />}
+                    />
+                </Grid>
+                <Grid item>
+                    <CustomButton
+                        text="Pedir"
+                        onClick={handleOrder}
+                        endIcon={<CheckCircleIcon />}
+                    />
+                </Grid>
             </Grid>
         </Grid>
+    ) : (
+        <Empty />
     );
 }
 

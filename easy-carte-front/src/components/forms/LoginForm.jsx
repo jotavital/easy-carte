@@ -30,7 +30,7 @@ function LoginForm() {
 
             setSearchParams(searchParams.delete("registerSuccess"));
         }
-    }, []);
+    });
 
     return (
         <form noValidate onSubmit={handleSubmit(onSubmit)}>

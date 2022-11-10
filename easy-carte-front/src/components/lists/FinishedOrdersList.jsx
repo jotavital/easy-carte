@@ -2,9 +2,9 @@ import { useTheme } from "@emotion/react";
 import { Grid, Typography } from "@mui/material";
 import CustomDivider from "../misc/CustomDivider";
 
-function UnpaidOrdersList() {
+function FinishedOrdersList() {
     const {
-        palette: { warning },
+        palette: { success },
     } = useTheme();
 
     return (
@@ -16,9 +16,7 @@ function UnpaidOrdersList() {
                 <Grid item xs={6} padding>
                     <Typography textAlign="center">
                         Status:{" "}
-                        <span style={{ color: warning.main }}>
-                            Enviado à cozinha
-                        </span>
+                        <span style={{ color: success.main }}>Finalizado</span>
                     </Typography>
                 </Grid>
             </Grid>
@@ -27,4 +25,4 @@ function UnpaidOrdersList() {
     );
 }
 
-export default UnpaidOrdersList;
+export default FinishedOrdersList;

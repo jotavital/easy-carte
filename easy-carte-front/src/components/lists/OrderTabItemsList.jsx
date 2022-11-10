@@ -9,17 +9,19 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { apiClient } from "../../providers/apiClient";
 import "./index.css";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useOrders } from "../../contexts/orders";
 
 function OrderTabItemsList() {
-    const [orderTabItems, setOrderTabItems] = useState();
+    let orderTotal = 0;
+
     const {
         palette: { primary, success, error },
     } = useTheme();
 
-    const { convertToBrl, redirectToCurrentRestaurant } =
-        useContext(HelpersContext);
+    const { convertToBrl } = useContext(HelpersContext);
+
+    const { handleFetchOrder, orderTabItems } = useOrders();
 
     const handleOrder = () => {
         Swal.fire({
@@ -36,26 +38,17 @@ function OrderTabItemsList() {
                 apiClient
                     .post(`/orders/${orderTabItems[0]?.order_id}/close`)
                     .then((response) => {
-                        console.log(response);
                         toast.success(
                             "Pronto! Seu pedido foi enviado para a cozinha."
                         );
+
+                        handleFetchOrder();
                     })
                     .catch((error) => {
                         toast.error("Erro ao fechar pedido.");
                     });
             }
         });
-    };
-
-    const handleFetchOrder = () => {
-        apiClient.get("orders").then(({ data }) => {
-            setOrderTabItems(data);
-        });
-    };
-
-    const handleBackToMenu = () => {
-        redirectToCurrentRestaurant();
     };
 
     useEffect(() => {
@@ -65,11 +58,12 @@ function OrderTabItemsList() {
     return orderTabItems && orderTabItems.length > 0 ? (
         <Grid item container>
             <Grid padding marginBottom>
-                <Typography variant="h5">
-                    Pedido: #{orderTabItems[0]?.order?.hash}
+                <Typography>
+                    Pedido: <strong>#{orderTabItems[0]?.order?.hash}</strong>
                 </Typography>
             </Grid>
             {orderTabItems.map((item) => {
+                orderTotal += Number(item.product.price * item.quantity);
                 return (
                     <Grid container key={item.id}>
                         <Grid padding container>
@@ -84,13 +78,15 @@ function OrderTabItemsList() {
                                     className="img-responsive"
                                 />
                             </Grid>
-                            <Grid item sm={8} xs={6} padding>
-                                <span style={{ color: primary.main }}>
-                                    {item.quantity}x
-                                </span>{" "}
-                                - {item?.product?.name}
+                            <Grid item sm={8} xs={12} padding>
+                                <Typography>
+                                    <strong style={{ color: primary.main }}>
+                                        {item.quantity}x
+                                    </strong>{" "}
+                                    - {item?.product?.name}
+                                </Typography>
                             </Grid>
-                            <Grid item xs={2} padding>
+                            <Grid item sm={2} xs={12} padding>
                                 <Typography
                                     textAlign="center"
                                     color={success.main}
@@ -106,15 +102,18 @@ function OrderTabItemsList() {
                 );
             })}
 
-            <Grid marginTop={3} container justifyContent="center" gap={2}>
-                <Grid item>
-                    <CustomButton
-                        color="primary"
-                        text="Voltar ao cardápio"
-                        onClick={handleBackToMenu}
-                        startIcon={<ArrowBackIcon />}
-                    />
+            <Grid container justifyContent={{ md: "right", xs: "center" }}>
+                <Grid item md={3}>
+                    <Typography>
+                        Total:{" "}
+                        <span style={{ color: success.main }}>
+                            {convertToBrl(orderTotal)}
+                        </span>
+                    </Typography>
                 </Grid>
+            </Grid>
+
+            <Grid marginTop={3} container justifyContent="center" gap={2}>
                 <Grid item>
                     <CustomButton
                         text="Pedir"

@@ -11,6 +11,7 @@ import { themeOptions } from "./providers/themeOptions";
 import { HelpersProvider } from "./contexts/helpers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { OrdersProvider } from "./contexts/orders";
 
 const theme = createTheme(themeOptions);
 
@@ -32,13 +33,15 @@ function App() {
                     theme="light"
                 />
                 <HelpersProvider>
-                    <CustomSnackBar />
-                    <BrowserRouter>
-                        <AuthProvider>
-                            <NavBar />
-                            <AppRoutes />
-                        </AuthProvider>
-                    </BrowserRouter>
+                    <OrdersProvider>
+                        <CustomSnackBar />
+                        <BrowserRouter>
+                            <AuthProvider>
+                                <NavBar />
+                                <AppRoutes />
+                            </AuthProvider>
+                        </BrowserRouter>
+                    </OrdersProvider>
                 </HelpersProvider>
             </div>
         </ThemeProvider>

@@ -19,7 +19,7 @@ function ProductModal({ open, handleCloseModal, product }) {
     const max = 5;
     const { isUserAtRestaurant } = useContext(HelpersContext);
     const [quantity, setQuantity] = useState(1);
-    const { isUserAuthenticated } = useContext(AuthContext);
+    const { isUserAuthenticated, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleIncrement = () => {
@@ -45,13 +45,16 @@ function ProductModal({ open, handleCloseModal, product }) {
                 quantity: quantity,
             })
             .then((response) => {
-                console.log(response);
                 toast.success("Adicionado ao pedido");
 
                 handleCloseModal();
             })
-            .catch((error) => {
+            .catch(({ response }) => {
                 toast.error("Erro ao adicionar ao pedido");
+
+                if (response.status === 401) {
+                    logout();
+                }
             });
     };
 

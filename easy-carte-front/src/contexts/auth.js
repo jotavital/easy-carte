@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
             return redirectToCurrentRestaurant();
         }
 
-        navigate("/");
+        navigate("/login");
     };
 
     const isUserAuthenticated = () => {

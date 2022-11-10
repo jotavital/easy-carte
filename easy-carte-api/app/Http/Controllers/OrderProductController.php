@@ -12,9 +12,13 @@ class OrderProductController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(false, 401);
+        }
+
         $order = $user->openOrder();
         $orderProduct = new OrderProduct();
-
 
         try {
             if (!$order) {

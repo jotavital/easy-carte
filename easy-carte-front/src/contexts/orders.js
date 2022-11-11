@@ -5,10 +5,24 @@ export const OrdersContext = createContext();
 
 export const OrdersProvider = ({ children }) => {
     const [orderTabItems, setOrderTabItems] = useState();
+    const [unpaidOrders, setUnpaidOrders] = useState();
+    const [finishedOrders, setFinishedOrders] = useState();
 
     const handleFetchOrder = () => {
         apiClient.get("orders").then(({ data }) => {
             setOrderTabItems(data);
+        });
+    };
+
+    const fetchUnpaidOrders = () => {
+        apiClient.get("orders/unpaid").then(({ data }) => {
+            setUnpaidOrders(data);
+        });
+    };
+
+    const fetchFinishedOrders = () => {
+        apiClient.get("orders/finished").then(({ data }) => {
+            setFinishedOrders(data);
         });
     };
 
@@ -17,6 +31,10 @@ export const OrdersProvider = ({ children }) => {
             value={{
                 orderTabItems,
                 handleFetchOrder,
+                fetchUnpaidOrders,
+                fetchFinishedOrders,
+                unpaidOrders,
+                finishedOrders,
             }}
         >
             {children}

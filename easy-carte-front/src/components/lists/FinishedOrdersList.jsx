@@ -1,27 +1,59 @@
-import { useTheme } from "@emotion/react";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
+import { useOrders } from "../../contexts/orders";
+import Empty from "../Empty";
 import CustomDivider from "../misc/CustomDivider";
+import OrderStatus from "../text/OrderStatus";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function FinishedOrdersList() {
-    const {
-        palette: { success },
-    } = useTheme();
+    const { fetchFinishedOrders, finishedOrders } = useOrders();
 
-    return (
+    useEffect(() => {
+        fetchFinishedOrders();
+    }, []);
+
+    return finishedOrders && finishedOrders.length > 0 ? (
         <Grid container>
-            <Grid padding container>
-                <Grid item xs={6} padding>
-                    <Typography>Pedido: #136267</Typography>
-                </Grid>
-                <Grid item xs={6} padding>
-                    <Typography textAlign="center">
-                        Status:{" "}
-                        <span style={{ color: success.main }}>Finalizado</span>
-                    </Typography>
-                </Grid>
-            </Grid>
-            <CustomDivider />
+            {finishedOrders.map((order) => {
+                return (
+                    <Grid
+                        key={order.id}
+                        padding
+                        container
+                        item
+                        justifyContent="center"
+                    >
+                        <Grid item sm={6} padding>
+                            <Typography
+                                textAlign={{ sm: "left", xs: "center" }}
+                                style={{ fontWeight: "500" }}
+                            >
+                                #{order.hash}
+                            </Typography>
+                            <Button
+                                startIcon={<AddCircleOutlineIcon />}
+                                onClick={() => null}
+                            >
+                                <Typography>Detalhes</Typography>
+                            </Button>
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            justifyContent="center"
+                            sm={6}
+                            padding
+                        >
+                            <OrderStatus status={order.status} />
+                        </Grid>
+                        <CustomDivider />
+                    </Grid>
+                );
+            })}
         </Grid>
+    ) : (
+        <Empty />
     );
 }
 

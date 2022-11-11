@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import OrderTabItemsList from "../lists/OrderTabItemsList";
 import UnpaidOrdersList from "../lists/UnpaidOrdersList";

@@ -61,6 +61,8 @@ Route::get('/states', [StateController::class, 'index']);
 Route::get('/states/{stateId}/cities', [StateController::class, 'getCitiesByState']);
 
 // !! orders routes
+Route::get('orders/unpaid', [OrderController::class, 'unpaidOrders']);
+Route::get('orders/finished', [OrderController::class, 'finishedOrders']);
 Route::resource('orders', OrderController::class);
 Route::post('orders/{orderId}/close', [OrderController::class, 'close']);
 

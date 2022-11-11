@@ -39,6 +39,28 @@ class OrderController extends Controller
         }
     }
 
+    public function unpaidOrders()
+    {
+        try {
+            $orders = Auth::user()->orders->where('is_paid', 0)->values();
+
+            return response()->json($orders, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 400);
+        }
+    }
+
+    public function finishedOrders()
+    {
+        try {
+            $orders = Auth::user()->orders->where('is_paid', 1)->values();
+
+            return response()->json($orders, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 400);
+        }
+    }
+
     public function close($orderId)
     {
         try {

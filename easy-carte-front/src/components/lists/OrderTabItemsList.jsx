@@ -3,7 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import Empty from "../Empty";
 import CustomDivider from "../misc/CustomDivider";
-import { HelpersContext } from "../../contexts/helpers";
+import { HelpersContext, useHelpers } from "../../contexts/helpers";
 import CustomButton from "../buttons/CustomButton";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -19,9 +19,14 @@ function OrderTabItemsList() {
         palette: { primary, success, error },
     } = useTheme();
 
-    const { convertToBrl } = useContext(HelpersContext);
+    const { convertToBrl } = useHelpers();
 
-    const { handleFetchOrder, orderTabItems } = useOrders();
+    const {
+        handleFetchOrder,
+        orderTabItems,
+        fetchUnpaidOrders,
+        fetchFinishedOrders,
+    } = useOrders();
 
     const handleOrder = () => {
         Swal.fire({
@@ -43,6 +48,8 @@ function OrderTabItemsList() {
                         );
 
                         handleFetchOrder();
+                        fetchUnpaidOrders();
+                        fetchFinishedOrders();
                     })
                     .catch((error) => {
                         toast.error("Erro ao fechar pedido.");
@@ -56,10 +63,13 @@ function OrderTabItemsList() {
     }, []);
 
     return orderTabItems && orderTabItems.length > 0 ? (
-        <Grid item container>
-            <Grid padding marginBottom>
-                <Typography>
-                    Pedido: <strong>#{orderTabItems[0]?.order?.hash}</strong>
+        <Grid item container justifyContent={{ sm: "start", xs: "center" }}>
+            <Grid item padding marginBottom>
+                <Typography
+                    textAlign={{ sm: "left", xs: "center" }}
+                    style={{ fontWeight: "500" }}
+                >
+                    #{orderTabItems[0]?.order?.hash}
                 </Typography>
             </Grid>
             {orderTabItems.map((item) => {

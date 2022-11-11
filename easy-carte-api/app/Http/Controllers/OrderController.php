@@ -42,7 +42,7 @@ class OrderController extends Controller
     public function unpaidOrders()
     {
         try {
-            $orders = Auth::user()->orders->where('is_paid', 0)->values();
+            $orders = Auth::user()->orders->where('is_paid', 0)->where('is_open', 0)->values();
 
             return response()->json($orders, 200);
         } catch (\Throwable $th) {
@@ -66,6 +66,7 @@ class OrderController extends Controller
         try {
             $order = Order::find($orderId);
             $order->is_open = 0;
+            $order->status = 'sent_to_kitchen';
 
             if ($order->save()) {
                 return response()->json(true, 200);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,7 @@ class OrderProductController extends Controller
                 $order = new Order();
                 $order->user_id = Auth::user()->id;
                 $order->hash = time();
+                $order->amount = Product::find($request->product_id)->first()->price * $request->quantity;
 
                 $order->save();
             }

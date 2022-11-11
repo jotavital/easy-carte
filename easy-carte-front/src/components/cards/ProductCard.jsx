@@ -6,8 +6,11 @@ import {
     Grid,
     Typography,
 } from "@mui/material";
+import { useHelpers } from "../../contexts/helpers";
 
 function ProductCard({ product, handleOpenModal }) {
+    const { convertToBrl } = useHelpers();
+
     return (
         <Grid padding item>
             <Card>
@@ -25,7 +28,7 @@ function ProductCard({ product, handleOpenModal }) {
                             {product.name}
                         </Typography>
                         <Typography textAlign="center" fontWeight="bold">
-                            {product.formatted_price}
+                            {convertToBrl(product.price)}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

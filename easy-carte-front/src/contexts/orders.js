@@ -15,8 +15,10 @@ export const OrdersProvider = ({ children }) => {
     };
 
     const fetchUnpaidOrders = () => {
+        console.log("to fexan");
         apiClient.get("orders/unpaid").then(({ data }) => {
             setUnpaidOrders(data);
+            console.log(data);
         });
     };
 

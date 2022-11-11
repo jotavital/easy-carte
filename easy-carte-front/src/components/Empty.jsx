@@ -7,7 +7,7 @@ function Empty() {
                 <Typography variant="h5">Ops!</Typography>
             </Grid>
             <Grid item xs={12} container justifyContent="center" padding>
-                <Typography variant="h6">
+                <Typography variant="h6" textAlign="center">
                     Não há nada para exibir aqui
                 </Typography>
             </Grid>

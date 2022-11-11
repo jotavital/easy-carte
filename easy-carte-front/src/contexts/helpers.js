@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useSelector } from "react-redux";
 
 export const HelpersContext = createContext();
@@ -12,7 +12,7 @@ export const HelpersProvider = ({ children }) => {
     );
 
     const convertToBrl = (value) => {
-        return Number(value).toLocaleString("pt-br", {
+        return Number(value / 100).toLocaleString("pt-br", {
             style: "currency",
             currency: "BRL",
         });
@@ -29,10 +29,14 @@ export const HelpersProvider = ({ children }) => {
                 isUserAtRestaurant,
                 convertToBrl,
                 currentRestaurant,
-                redirectToCurrentRestaurant
+                redirectToCurrentRestaurant,
             }}
         >
             {children}
         </HelpersContext.Provider>
     );
+};
+
+export const useHelpers = () => {
+    return useContext(HelpersContext);
 };

@@ -1,11 +1,9 @@
-import { Button, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
 import { useOrders } from "../../contexts/orders";
 import Empty from "../Empty";
 import CustomDivider from "../misc/CustomDivider";
 import OrderStatus from "../text/OrderStatus";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { apiClient } from "../../providers/apiClient";
 import CustomAccordion from "../misc/CustomAccordion";
 import { useTheme } from "@emotion/react";
 import { useHelpers } from "../../contexts/helpers";
@@ -85,7 +83,12 @@ function UnpaidOrdersList() {
                                                     xs={12}
                                                     padding
                                                 >
-                                                    <Typography>
+                                                    <Typography
+                                                        textAlign={{
+                                                            sm: "left",
+                                                            xs: "center",
+                                                        }}
+                                                    >
                                                         <strong
                                                             style={{
                                                                 color: primary.main,

@@ -5,15 +5,24 @@ import RestaurantsListPage from "../pages/RestaurantsListPage";
 import { useDispatch } from "react-redux";
 import { setUserLocation } from "../../redux/appSlice";
 import { useContext } from "react";
-import { HelpersContext } from "../../contexts/helpers";
+import { HelpersContext, useHelpers } from "../../contexts/helpers";
+import { useEffect } from "react";
 
 function WhereAreYou() {
     const dispatch = useDispatch();
     const { isUserAtHome, isUserAtRestaurant } = useContext(HelpersContext);
+    const { currentRestaurant, redirectToCurrentRestaurant } = useHelpers();
 
     const handleUserLocationChanged = (location) => {
         dispatch(setUserLocation(location));
     };
+
+    useEffect(() => {
+        console.log(currentRestaurant);
+        if (currentRestaurant) {
+            redirectToCurrentRestaurant();
+        }
+    }, []);
 
     return (
         <Grid container>

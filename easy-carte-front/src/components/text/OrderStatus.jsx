@@ -20,7 +20,7 @@ function OrderStatus({ status }) {
                 setColor(info.main);
                 break;
             case "finished":
-                setText("Entregue");
+                setText("Finalizado");
                 setColor(success.main);
                 break;
             default:

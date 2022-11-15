@@ -68,7 +68,8 @@ class OrderController extends Controller
     public function finishedOrders()
     {
         try {
-            $orders = Auth::user()->orders->where('is_paid', 1)->values();
+            $orders = Order::where("user_id", Auth::user()->id)
+                ->with('orderProducts.product')->where('is_paid', 1)->get();
 
             return response()->json($orders, 200);
         } catch (\Throwable $th) {

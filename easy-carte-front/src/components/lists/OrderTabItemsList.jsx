@@ -27,7 +27,7 @@ function OrderTabItemsList() {
         orderTabItems,
         fetchUnpaidOrders,
         fetchFinishedOrders,
-        handleRemoveProduct
+        handleRemoveProduct,
     } = useOrders();
 
     const handleOrder = () => {
@@ -83,6 +83,7 @@ function OrderTabItemsList() {
                                 item
                                 xs={1}
                                 display={{ xs: "none", sm: "flex" }}
+                                margin
                             >
                                 <img
                                     src={item?.product?.main_image}
@@ -90,7 +91,14 @@ function OrderTabItemsList() {
                                     className="img-responsive"
                                 />
                             </Grid>
-                            <Grid item sm={7} xs={12} padding>
+                            <Grid
+                                container
+                                item
+                                sm={7}
+                                xs={12}
+                                padding
+                                alignItems="center"
+                            >
                                 <Typography
                                     textAlign={{ sm: "left", xs: "center" }}
                                 >
@@ -100,7 +108,15 @@ function OrderTabItemsList() {
                                     - {item?.product?.name}
                                 </Typography>
                             </Grid>
-                            <Grid item sm={2} xs={12} padding>
+                            <Grid
+                                container
+                                item
+                                sm={2}
+                                xs={12}
+                                justifyContent="center"
+                                alignItems="center"
+                                padding
+                            >
                                 <Typography
                                     textAlign="center"
                                     color={success.main}
@@ -110,8 +126,17 @@ function OrderTabItemsList() {
                                     )}
                                 </Typography>
                             </Grid>
-                            <Grid container item sm={1} xs={12} padding justifyContent="center">
-                                <IconButton onClick={() => handleRemoveProduct(item.id)}>
+                            <Grid
+                                container
+                                item
+                                sm={1}
+                                xs={12}
+                                padding
+                                justifyContent="center"
+                            >
+                                <IconButton
+                                    onClick={() => handleRemoveProduct(item.id)}
+                                >
                                     <DeleteIcon color="error" />
                                 </IconButton>
                             </Grid>

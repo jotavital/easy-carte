@@ -15,18 +15,27 @@ import { useState, useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
+import { useHelpers } from "../contexts/helpers";
 
 const NavBar = () => {
     const { isUserAuthenticated, logout } = useContext(AuthContext);
+    const { isUserAtRestaurant } = useHelpers();
 
     const pages = [];
     const settings = [];
 
     if (isUserAuthenticated()) {
-        pages.push({
-            name: "Restaurantes",
-            action: "/",
-        });
+        if (isUserAtRestaurant) {
+            pages.push({
+                name: "Cardápio",
+                action: "/",
+            });
+        } else {
+            pages.push({
+                name: "Restaurantes",
+                action: "/",
+            });
+        }
 
         settings.push(
             {
@@ -147,7 +156,11 @@ const NavBar = () => {
                                 to={page.action}
                                 key={page.name}
                                 onClick={handleCloseNavMenu}
-                                sx={{ margin: 2, color: "white", display: "block" }}
+                                sx={{
+                                    margin: 2,
+                                    color: "white",
+                                    display: "block",
+                                }}
                             >
                                 {page.name}
                             </Button>

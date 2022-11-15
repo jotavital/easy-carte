@@ -6,9 +6,9 @@ import {
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-function CustomAccordion({ title, content }) {
+function CustomAccordion({ title, content, defaultExpanded = false }) {
     return (
-        <Accordion>
+        <Accordion defaultExpanded={defaultExpanded}>
             <AccordionSummary expandIcon={<AddCircleOutlineIcon />}>
                 <Typography>{title}</Typography>
             </AccordionSummary>

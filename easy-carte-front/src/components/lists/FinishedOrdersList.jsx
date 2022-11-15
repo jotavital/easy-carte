@@ -12,14 +12,14 @@ function FinishedOrdersList() {
     const { fetchFinishedOrders, finishedOrders } = useOrders();
 
     const {
-        palette: { primary, success, error },
+        palette: { primary, success },
     } = useTheme();
 
     const { convertToBrl } = useHelpers();
 
     useEffect(() => {
         fetchFinishedOrders();
-    }, []);
+    }, [fetchFinishedOrders]);
 
     return finishedOrders && finishedOrders.length > 0 ? (
         <Grid container>

@@ -2,11 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import SelectStateCity from "../forms/inputs/selects/SelectStateCity";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { useHelpers } from "../../contexts/helpers";
 
 function SelectCityPage() {
     const isCitySelected = useSelector((state) => state.app.isCitySelected);
-    const { currentRestaurant } = useHelpers();
 
     if (isCitySelected) {
         const { city_url } = JSON.parse(

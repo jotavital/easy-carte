@@ -18,11 +18,10 @@ function WhereAreYou() {
     };
 
     useEffect(() => {
-        console.log(currentRestaurant);
         if (currentRestaurant) {
             redirectToCurrentRestaurant();
         }
-    }, []);
+    });
 
     return (
         <Grid container>

@@ -1,9 +1,9 @@
 import { useTheme } from "@emotion/react";
 import { Grid, IconButton, Typography } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import Empty from "../Empty";
 import CustomDivider from "../misc/CustomDivider";
-import { HelpersContext, useHelpers } from "../../contexts/helpers";
+import { useHelpers } from "../../contexts/helpers";
 import CustomButton from "../buttons/CustomButton";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -62,7 +62,7 @@ function OrderTabItemsList() {
 
     useEffect(() => {
         handleFetchOrder();
-    }, []);
+    }, [handleFetchOrder]);
 
     return orderTabItems && orderTabItems.length > 0 ? (
         <Grid item container justifyContent={{ sm: "start", xs: "center" }}>

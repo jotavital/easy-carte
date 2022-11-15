@@ -27,7 +27,7 @@ function OrderStatus({ status }) {
                 setText("Não informado");
                 setColor(secondary.main);
         }
-    }, []);
+    }, [status, warning, info, success, secondary, setText, setColor]);
 
     return (
         <Typography textAlign="center">

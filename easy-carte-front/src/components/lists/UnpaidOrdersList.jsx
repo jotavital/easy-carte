@@ -12,16 +12,14 @@ function UnpaidOrdersList() {
     const { fetchUnpaidOrders, unpaidOrders } = useOrders();
 
     const {
-        palette: { primary, success, error },
+        palette: { primary, success },
     } = useTheme();
 
     const { convertToBrl } = useHelpers();
 
     useEffect(() => {
         fetchUnpaidOrders();
-    }, []);
-
-    console.log(unpaidOrders);
+    }, [fetchUnpaidOrders]);
 
     return unpaidOrders && unpaidOrders.length > 0 ? (
         <Grid container>

@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import CustomButton from "../buttons/CustomButton";
 import OrderTabItemsList from "../lists/OrderTabItemsList";
 import UnpaidOrdersList from "../lists/UnpaidOrdersList";
@@ -24,6 +24,7 @@ function OrderTabPage() {
                             <OrderTabItemsList />
                         </Grid>
                     }
+                    defaultExpanded={true}
                 />
                 <CustomAccordion
                     title="Pedidos em andamento"

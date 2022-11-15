@@ -22,7 +22,7 @@ function SeeOrderTabButton() {
             onClick={() => handleSeeOrderTab()}
         >
             <PlaylistAddCheckIcon sx={{ marginRight: 1 }} fontSize="large" />
-            Ver pedido
+            Ver pedidos
         </Fab>
     );
 }

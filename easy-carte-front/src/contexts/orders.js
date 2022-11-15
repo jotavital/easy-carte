@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { apiClient } from "../providers/apiClient";
 
 export const OrdersContext = createContext();
@@ -15,10 +16,8 @@ export const OrdersProvider = ({ children }) => {
     };
 
     const fetchUnpaidOrders = () => {
-        console.log("to fexan");
         apiClient.get("orders/unpaid").then(({ data }) => {
             setUnpaidOrders(data);
-            console.log(data);
         });
     };
 
@@ -26,6 +25,19 @@ export const OrdersProvider = ({ children }) => {
         apiClient.get("orders/finished").then(({ data }) => {
             setFinishedOrders(data);
         });
+    };
+
+    const handleRemoveProduct = (orderProductId) => {
+        apiClient
+            .delete(`order-products/${orderProductId}`)
+            .then(({ data }) => {
+                if (data) {
+                    toast.success("Produto removido do pedido");
+                    handleFetchOrder();
+                } else {
+                    toast.error("Erro ao remover produto do pedido");
+                }
+            });
     };
 
     return (
@@ -37,6 +49,7 @@ export const OrdersProvider = ({ children }) => {
                 fetchFinishedOrders,
                 unpaidOrders,
                 finishedOrders,
+                handleRemoveProduct,
             }}
         >
             {children}

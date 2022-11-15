@@ -39,10 +39,25 @@ class OrderController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $order = Order::where("id", $id)->with('orderProducts.product')->first();
+
+            return response()->json($order, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 400);
+        }
+    }
+
     public function unpaidOrders()
     {
         try {
-            $orders = Auth::user()->orders->where('is_paid', 0)->where('is_open', 0)->values();
+            $orders = Order::where("user_id", Auth::user()->id)
+                ->with('orderProducts.product')
+                ->where('is_paid', 0)
+                ->where('is_open', 0)
+                ->get();
 
             return response()->json($orders, 200);
         } catch (\Throwable $th) {

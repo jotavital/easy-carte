@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insertOrIgnore([
             'full_name' => 'João Vital',
             'birth_date' => '2000-07-21',
-            'email' => 'jota@g.com',
-            'password' => Hash::make('123')
+            'email' => 'dev_produtor2@ticto.com.br',
+            'password' => Hash::make('password')
         ]);
     }
 }

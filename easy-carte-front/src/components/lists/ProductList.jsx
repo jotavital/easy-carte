@@ -24,6 +24,7 @@ function ProductList({ restaurantId }) {
                 setIsModalOpen(true);
             });
     };
+
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setTimeout(() => {

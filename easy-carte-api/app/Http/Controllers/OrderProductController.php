@@ -42,4 +42,17 @@ class OrderProductController extends Controller
             return response()->json($th->getMessage(), 400);
         }
     }
+
+    public function destroy($id)
+    {
+        try {
+            $orderProduct = OrderProduct::find($id);
+
+            if ($orderProduct->delete()) {
+                return response()->json(true);
+            }
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 400);
+        }
+    }
 }

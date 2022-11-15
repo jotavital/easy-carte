@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import Empty from "../Empty";
 import CustomDivider from "../misc/CustomDivider";
@@ -11,6 +11,7 @@ import { apiClient } from "../../providers/apiClient";
 import "./index.css";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useOrders } from "../../contexts/orders";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function OrderTabItemsList() {
     let orderTotal = 0;
@@ -26,6 +27,7 @@ function OrderTabItemsList() {
         orderTabItems,
         fetchUnpaidOrders,
         fetchFinishedOrders,
+        handleRemoveProduct
     } = useOrders();
 
     const handleOrder = () => {
@@ -88,8 +90,10 @@ function OrderTabItemsList() {
                                     className="img-responsive"
                                 />
                             </Grid>
-                            <Grid item sm={8} xs={12} padding>
-                                <Typography>
+                            <Grid item sm={7} xs={12} padding>
+                                <Typography
+                                    textAlign={{ sm: "left", xs: "center" }}
+                                >
                                     <strong style={{ color: primary.main }}>
                                         {item.quantity}x
                                     </strong>{" "}
@@ -105,6 +109,11 @@ function OrderTabItemsList() {
                                         item.quantity * item?.product?.price
                                     )}
                                 </Typography>
+                            </Grid>
+                            <Grid container item sm={1} xs={12} padding justifyContent="center">
+                                <IconButton onClick={() => handleRemoveProduct(item.id)}>
+                                    <DeleteIcon color="error" />
+                                </IconButton>
                             </Grid>
                         </Grid>
                         <CustomDivider />

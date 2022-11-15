@@ -14,10 +14,14 @@ export default function CustomModal({
     content,
     open,
     handleCloseModal,
+    maxWidth = "sm",
+    fullWidth = true,
 }) {
     return (
         <Grid item container>
             <Dialog
+                maxWidth={maxWidth}
+                fullWidth={fullWidth}
                 onClose={handleCloseModal}
                 aria-labelledby="customized-dialog-title"
                 open={open}

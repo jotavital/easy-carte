@@ -4,6 +4,7 @@ import RegisterPage from "../pages/RegisterPage";
 import SelectCityPage from "../pages/SelectCityPage";
 import PageNotFound from "../pages/PageNotFound";
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
+import PrivateRoute from "./PrivateRoute";
 import MainWrapper from "../MainWrapper";
 import RestaurantPage from "./../pages/RestaurantPage";
 import WhereAreYou from "../sections/WhereAreYou";
@@ -65,9 +66,11 @@ function AppRoutes() {
             <Route
                 path="/order-tab"
                 element={
-                    <MainWrapper>
-                        <OrderTabPage />
-                    </MainWrapper>
+                    <PrivateRoute>
+                        <MainWrapper>
+                            <OrderTabPage />
+                        </MainWrapper>
+                    </PrivateRoute>
                 }
             />
 

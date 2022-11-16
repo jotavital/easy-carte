@@ -38,7 +38,7 @@ function LoginForm() {
                 <EmailInput register={register} errors={errors} />
                 <PasswordInput register={register} errors={errors} />
                 <Grid container>
-                    <Typography color={theme.palette.info.main}>
+                    <Typography textAlign="center" color={theme.palette.info.main}>
                         Ainda não tem login?
                         <Link marginLeft={1} href="/register">
                             Cadastre-se

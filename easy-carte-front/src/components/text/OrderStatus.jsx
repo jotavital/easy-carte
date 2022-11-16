@@ -19,6 +19,10 @@ function OrderStatus({ status }) {
                 setText("Em preparo");
                 setColor(info.main);
                 break;
+            case "waiting_payment":
+                setText("Aguardando pagamento");
+                setColor(secondary.main);
+                break;
             case "finished":
                 setText("Finalizado");
                 setColor(success.main);

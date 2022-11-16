@@ -19,7 +19,7 @@ function FinishedOrdersList() {
 
     useEffect(() => {
         fetchFinishedOrders();
-    }, [fetchFinishedOrders]);
+    }, []);
 
     return finishedOrders && finishedOrders.length > 0 ? (
         <Grid container>

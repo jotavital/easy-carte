@@ -19,7 +19,7 @@ function UnpaidOrdersList() {
 
     useEffect(() => {
         fetchUnpaidOrders();
-    }, [fetchUnpaidOrders]);
+    }, []);
 
     return unpaidOrders && unpaidOrders.length > 0 ? (
         <Grid container>

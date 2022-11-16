@@ -32,7 +32,7 @@ function OrderTabItemsList() {
 
     const handleOrder = () => {
         Swal.fire({
-            title: "Deseja fechar este pedido?",
+            title: "Deseja fechar o pedido?",
             text: "Depois que você fechar o pedido, será necessário abrir outro para pedir mais produtos",
             icon: "warning",
             showCancelButton: true,
@@ -40,10 +40,18 @@ function OrderTabItemsList() {
             cancelButtonColor: error.main,
             confirmButtonText: "Sim, fechar",
             cancelButtonText: "Voltar",
+            input: "text",
+            inputAttributes: {
+                required: true,
+                placeholder: "Mesa"
+            },
+            validationMessage: "Informe o número da mesa"
         }).then((result) => {
             if (result.isConfirmed) {
                 apiClient
-                    .post(`/orders/${orderTabItems[0]?.order_id}/close`)
+                    .post(`/orders/${orderTabItems[0]?.order_id}/close`, {
+                        table: result.value,
+                    })
                     .then((response) => {
                         toast.success(
                             "Pronto! Seu pedido foi enviado para a cozinha."
@@ -62,7 +70,7 @@ function OrderTabItemsList() {
 
     useEffect(() => {
         handleFetchOrder();
-    }, [handleFetchOrder]);
+    }, []);
 
     return orderTabItems && orderTabItems.length > 0 ? (
         <Grid item container justifyContent={{ sm: "start", xs: "center" }}>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -77,11 +78,12 @@ class OrderController extends Controller
         }
     }
 
-    public function close($orderId)
+    public function close($orderId, Request $request)
     {
         try {
             $order = Order::find($orderId);
             $order->is_open = 0;
+            $order->table = $request->table;
             $order->status = 'sent_to_kitchen';
 
             if ($order->save()) {

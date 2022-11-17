@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Grid, Typography, Box, IconButton } from "@mui/material";
+import { Grid, Typography, Box, IconButton, Button } from "@mui/material";
 import CustomLoading from "../misc/CustomLoading";
-import { apiClient } from "../../providers/apiClient";
 import RestaurantMoreInfoModal from "../modals/RestaurantMoreInfoModal";
 import ProductList from "../lists/ProductList";
 import SeeOrderTabButton from "../buttons/SeeOrderTabButton";
-import { useHelpers } from "../../contexts/helpers";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useRestaurants } from "../../contexts/restaurants";
+import { useUserLocation } from "../../contexts/userLocation";
+import CustomButton from "../buttons/CustomButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
-    const { isUserAtRestaurant } = useHelpers();
+    const { isUserAtRestaurant, handleSetUserLocation } = useUserLocation();
     const { fetchRestaurantData, restaurant, isDataLoaded } = useRestaurants();
     const [isModalInfoOpen, setIsModalInfoOpen] = useState(false);
 
@@ -31,9 +32,17 @@ function RestaurantPage() {
     return (
         <>
             {!isDataLoaded ? (
-                <CustomLoading />
+                <Grid container justifyContent="center" paddingTop={6}>
+                    <CustomLoading />
+                </Grid>
             ) : (
                 <Grid>
+                    <Button
+                        startIcon={<ArrowBackIcon />}
+                        onClick={() => handleSetUserLocation()}
+                    >
+                        Voltar
+                    </Button>
                     <Grid container justifyContent="center">
                         <Grid container>
                             <Grid

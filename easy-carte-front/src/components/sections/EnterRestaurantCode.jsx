@@ -4,11 +4,10 @@ import Image from "../images/Image";
 import { useForm } from "react-hook-form";
 import { apiClient } from "../../providers/apiClient";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUserLocation } from "../../redux/appSlice";
 import { toast } from "react-toastify";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useUserLocation } from "../../contexts/userLocation";
 
 function EnterRestaurantCode() {
     const {
@@ -18,7 +17,8 @@ function EnterRestaurantCode() {
         setError,
     } = useForm();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+
+    const { handleSetUserLocation } = useUserLocation();
 
     const onSubmit = ({ code }) => {
         apiClient.get("/restaurants/check-code/" + code).then(({ data }) => {
@@ -31,10 +31,6 @@ function EnterRestaurantCode() {
                 setError("code");
             }
         });
-    };
-
-    const handleUserLocationChanged = (location) => {
-        dispatch(setUserLocation(location));
     };
 
     return (
@@ -55,7 +51,11 @@ function EnterRestaurantCode() {
                     />
                 </Grid>
                 <Grid container padding justifyContent="center">
-                    <Typography variant="h5" fontWeight="bold" textAlign="center">
+                    <Typography
+                        variant="h5"
+                        fontWeight="bold"
+                        textAlign="center"
+                    >
                         Código do restaurante
                     </Typography>
                 </Grid>
@@ -93,7 +93,7 @@ function EnterRestaurantCode() {
                                 startIcon={<LocationOnIcon />}
                                 text="Mudar localização"
                                 color="primary"
-                                onClick={() => handleUserLocationChanged("")}
+                                onClick={() => handleSetUserLocation()}
                             />
                             <CustomButton
                                 text="Pronto"

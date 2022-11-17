@@ -1,7 +1,11 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 function CustomLoading() {
-    return <CircularProgress />;
+    return (
+        <Grid container justifyContent="center" margin>
+            <CircularProgress />
+        </Grid>
+    );
 }
 
 export default CustomLoading;

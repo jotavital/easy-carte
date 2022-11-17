@@ -6,13 +6,13 @@ import AppRoutes from "./components/router/AppRoutes";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthProvider } from "./contexts/auth";
-import CustomSnackBar from "./components/snackbars/CustomSnackbar";
 import { themeOptions } from "./providers/themeOptions";
 import { HelpersProvider } from "./contexts/helpers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { OrdersProvider } from "./contexts/orders";
 import { RestaurantsProvider } from "./contexts/restaurants";
+import { UserLocationProvider } from "./contexts/userLocation";
 
 const theme = createTheme(themeOptions);
 
@@ -33,19 +33,20 @@ function App() {
                     pauseOnHover
                     theme="light"
                 />
-                <HelpersProvider>
-                    <RestaurantsProvider>
-                        <OrdersProvider>
-                            <CustomSnackBar />
-                            <BrowserRouter>
-                                <AuthProvider>
-                                    <NavBar />
-                                    <AppRoutes />
-                                </AuthProvider>
-                            </BrowserRouter>
-                        </OrdersProvider>
-                    </RestaurantsProvider>
-                </HelpersProvider>
+                <UserLocationProvider>
+                    <HelpersProvider>
+                        <RestaurantsProvider>
+                            <OrdersProvider>
+                                <BrowserRouter>
+                                    <AuthProvider>
+                                        <NavBar />
+                                        <AppRoutes />
+                                    </AuthProvider>
+                                </BrowserRouter>
+                            </OrdersProvider>
+                        </RestaurantsProvider>
+                    </HelpersProvider>
+                </UserLocationProvider>
             </div>
         </ThemeProvider>
     );

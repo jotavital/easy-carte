@@ -16,10 +16,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 import { useHelpers } from "../contexts/helpers";
+import { useUserLocation } from "../contexts/userLocation";
 
 const NavBar = () => {
     const { isUserAuthenticated, logout } = useContext(AuthContext);
-    const { isUserAtRestaurant } = useHelpers();
+    const { currentRestaurant } = useHelpers();
+    const { isUserAtRestaurant } = useUserLocation();
 
     const pages = [];
     const settings = [];
@@ -27,8 +29,16 @@ const NavBar = () => {
     if (isUserAuthenticated()) {
         if (isUserAtRestaurant) {
             pages.push({
+                name: "Mudar localização",
+                action: currentRestaurant
+                    ? `/restaurants/${currentRestaurant}/products`
+                    : "/",
+            });
+            pages.push({
                 name: "Cardápio",
-                action: "/",
+                action: currentRestaurant
+                    ? `/restaurants/${currentRestaurant}/products`
+                    : "/",
             });
         } else {
             pages.push({

@@ -14,11 +14,13 @@ import { useNavigate } from "react-router-dom";
 import { apiClient } from "../../providers/apiClient";
 import Empty from "../Empty";
 import { useRestaurants } from "../../contexts/restaurants";
+import { useUserLocation } from "../../contexts/userLocation";
 
 function ProductModal({ open, handleCloseModal, product }) {
     const min = 1;
     const max = 5;
-    const { isUserAtRestaurant, convertToBrl } = useHelpers();
+    const { convertToBrl } = useHelpers();
+    const { isUserAtRestaurant } = useUserLocation();
     const [quantity, setQuantity] = useState(1);
     const { isUserAuthenticated, logout } = useContext(AuthContext);
     const { restaurantSettings } = useRestaurants();

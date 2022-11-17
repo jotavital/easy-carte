@@ -2,20 +2,14 @@ import { Grid } from "@mui/material";
 import CardWithImage from "./../cards/CardWithImage";
 import EnterRestaurantCode from "../sections/EnterRestaurantCode";
 import RestaurantsListPage from "../pages/RestaurantsListPage";
-import { useDispatch } from "react-redux";
-import { setUserLocation } from "../../redux/appSlice";
-import { useContext } from "react";
-import { HelpersContext, useHelpers } from "../../contexts/helpers";
+import { useHelpers } from "../../contexts/helpers";
 import { useEffect } from "react";
+import { useUserLocation } from "../../contexts/userLocation";
 
 function WhereAreYou() {
-    const dispatch = useDispatch();
-    const { isUserAtHome, isUserAtRestaurant } = useContext(HelpersContext);
+    const { handleSetUserLocation, isUserAtHome, isUserAtRestaurant } =
+        useUserLocation();
     const { currentRestaurant, redirectToCurrentRestaurant } = useHelpers();
-
-    const handleUserLocationChanged = (location) => {
-        dispatch(setUserLocation(location));
-    };
 
     useEffect(() => {
         if (currentRestaurant) {
@@ -39,22 +33,14 @@ function WhereAreYou() {
                         gap={3}
                     >
                         <CardWithImage
-                            action={() => handleUserLocationChanged("home")}
-                            src={
-                                process.env.PUBLIC_URL +
-                                "/illustrations/house.svg"
-                            }
+                            action={() => handleSetUserLocation("home")}
+                            src="/illustrations/house.svg"
                             cardTitle="Estou em casa"
                             cardText="Quero ver o cardápio dos restaurantes"
                         />
                         <CardWithImage
-                            action={() =>
-                                handleUserLocationChanged("restaurant")
-                            }
-                            src={
-                                process.env.PUBLIC_URL +
-                                "/illustrations/restaurant.svg"
-                            }
+                            action={() => handleSetUserLocation("restaurant")}
+                            src="/illustrations/restaurant.svg"
                             cardTitle="Estou no restaurante"
                             cardText="Quero fazer o meu pedido"
                         />

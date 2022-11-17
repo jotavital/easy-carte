@@ -1,15 +1,16 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { apiClient } from "../providers/apiClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { HelpersContext } from "./helpers";
+import { useHelpers } from "./helpers";
+import { useUserLocation } from "./userLocation";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const { isUserAtRestaurant, redirectToCurrentRestaurant } =
-        useContext(HelpersContext);
+    const { redirectToCurrentRestaurant } = useHelpers();
+    const { isUserAtRestaurant } = useUserLocation();
     const navigate = useNavigate();
 
     useEffect(() => {

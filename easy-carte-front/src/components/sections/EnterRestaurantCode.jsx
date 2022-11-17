@@ -72,6 +72,7 @@ function EnterRestaurantCode() {
                             error={!!errors.code}
                             helperText={errors.code?.message}
                             label="Código do restaurante"
+                            type="number"
                             {...register("code", {
                                 required: {
                                     value: true,

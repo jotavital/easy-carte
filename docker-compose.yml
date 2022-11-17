@@ -24,7 +24,6 @@ services:
       - "3000:3000"
     volumes:
       - ./easy-carte-front:/easy-carte-front
-      # - /easy-carte-front/node_modules
     networks:
       - easy-carte-network
     depends_on:

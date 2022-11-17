@@ -19,6 +19,7 @@ class RestaurantFactory extends Factory
         return [
             'name' => $this->faker->firstName(),
             'description' => $this->faker->text(150),
+            'logo' => 'default_logo.png',
             'opening_time' => fake()->time('H:i'),
             'closing_time' => fake()->time('H:i'),
             'restaurant_category_id' => rand(1, 5),
@@ -27,7 +28,11 @@ class RestaurantFactory extends Factory
             'street' => 'Av. Luiz Boali Porto Salman',
             'neighborhood' => 'Manoel Pimenta',
             'number' => 1730,
-            'code' => mt_rand(1111, 9999)
+            'code' => mt_rand(1111, 9999),
+            'settings' => json_encode([
+                'show_on_catalog' => 1,
+                'show_products_price' => rand(0, 1)
+            ])
         ];
     }
 }

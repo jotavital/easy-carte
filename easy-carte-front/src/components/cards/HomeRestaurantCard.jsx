@@ -14,7 +14,7 @@ function HomeRestaurantCard({ restaurant }) {
     const navigate = useNavigate();
 
     return (
-        <Grid padding item lg={2}>
+        <Grid padding item lg={2} md={2} sm={3} xs={6}>
             <Card>
                 <CardActionArea
                     onClick={() =>

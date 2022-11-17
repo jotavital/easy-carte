@@ -7,9 +7,11 @@ import {
     Typography,
 } from "@mui/material";
 import { useHelpers } from "../../contexts/helpers";
+import { useRestaurants } from "../../contexts/restaurants";
 
 function ProductCard({ product, handleOpenModal }) {
     const { convertToBrl } = useHelpers();
+    const { restaurantSettings } = useRestaurants();
 
     return (
         <Grid padding item>
@@ -27,9 +29,12 @@ function ProductCard({ product, handleOpenModal }) {
                         <Typography textAlign="center" variant="h6">
                             {product.name}
                         </Typography>
-                        <Typography textAlign="center" fontWeight="bold">
-                            {convertToBrl(product.price)}
-                        </Typography>
+
+                        {restaurantSettings.show_products_price ? (
+                            <Typography textAlign="center" fontWeight="bold">
+                                {convertToBrl(product.price)}
+                            </Typography>
+                        ) : null}
                     </CardContent>
                 </CardActionArea>
             </Card>

@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 
 function Empty() {
     return (
-        <Grid container justifyContent="center" flexDirection="column">
+        <Grid>
             <Grid item xs={12} container justifyContent="center" padding>
                 <Typography variant="h5">Ops!</Typography>
             </Grid>

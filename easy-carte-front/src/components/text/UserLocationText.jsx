@@ -12,12 +12,10 @@ function UserLocationText() {
     };
 
     return (
-        <Typography>
-            <Button onClick={() => handleUserLocationChanged("")}>
-                <LocationOnIcon />
-                Você está em: {userLocation === "home" ? "casa" : "restaurante"}
-            </Button>
-        </Typography>
+        <Button onClick={() => handleUserLocationChanged("")}>
+            <LocationOnIcon />
+            Você está em: {userLocation === "home" ? "casa" : "restaurante"}
+        </Button>
     );
 }
 

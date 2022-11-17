@@ -6,6 +6,7 @@ import CustomLoading from "../misc/CustomLoading";
 import CategoriesListWithIcon from "./CategoriesListWithIcon";
 import { useSearchParams } from "react-router-dom";
 import ProductModal from "../modals/ProductModal";
+import Empty from "../Empty";
 
 function ProductList({ restaurantId }) {
     const [searchParams] = useSearchParams();
@@ -56,30 +57,32 @@ function ProductList({ restaurantId }) {
     }, [restaurantId]);
 
     return (
-        <Grid container item justifyContent="center" paddingY>
+        <Grid>
             <CategoriesListWithIcon
                 categories={categories}
                 areCategoriesLoaded={areCategoriesLoaded}
             />
-            <Grid justifyContent="center" container item padding>
-                {!areProductsLoaded ? (
-                    <CustomLoading />
-                ) : !products.length ? (
-                    <Typography marginY={3} variant="h5">
-                        Nenhum produto encontrado.
-                    </Typography>
-                ) : (
-                    products.map((product) => {
+            {!areProductsLoaded ? (
+                <CustomLoading />
+            ) : !products.length ? (
+                <Empty />
+            ) : (
+                <Grid
+                    container
+                >
+                    {products.map((product) => {
                         return (
-                            <ProductCard
-                                key={product.id}
-                                product={product}
-                                handleOpenModal={handleOpenModal}
-                            />
+                            <Grid item xs={6}>
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}
+                                    handleOpenModal={handleOpenModal}
+                                />
+                            </Grid>
                         );
-                    })
-                )}
-            </Grid>
+                    })}
+                </Grid>
+            )}
             <ProductModal
                 open={isModalOpen}
                 product={productDataForModal}

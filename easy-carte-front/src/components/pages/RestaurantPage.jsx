@@ -1,95 +1,85 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { Card, Grid, Typography, CardContent, Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Grid, Typography, Box, IconButton } from "@mui/material";
 import CustomLoading from "../misc/CustomLoading";
 import { apiClient } from "../../providers/apiClient";
-import RestaurantOpeningHours from "../text/RestaurantOpeningHours";
-import CustomDivider from "../misc/CustomDivider";
 import RestaurantMoreInfoModal from "../modals/RestaurantMoreInfoModal";
 import ProductList from "../lists/ProductList";
 import SeeOrderTabButton from "../buttons/SeeOrderTabButton";
-import { HelpersContext } from "../../contexts/helpers";
+import { useHelpers } from "../../contexts/helpers";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useRestaurants } from "../../contexts/restaurants";
 
 function RestaurantPage() {
     const { restaurant_id } = useParams();
-    const [restaurant, setRestaurant] = useState({});
-    const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const { isUserAtRestaurant } = useContext(HelpersContext);
+    const { isUserAtRestaurant } = useHelpers();
+    const { fetchRestaurantData, restaurant, isDataLoaded } = useRestaurants();
+    const [isModalInfoOpen, setIsModalInfoOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalInfoOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalInfoOpen(false);
+    };
 
     useEffect(() => {
-        apiClient.get("/restaurants/" + restaurant_id).then(({ data }) => {
-            setRestaurant(data);
-            setIsDataLoaded(true);
-        });
+        fetchRestaurantData(restaurant_id);
     }, [restaurant_id]);
 
     return (
-        <Card>
-            <CardContent
-                component={Grid}
-                container
-                item
-                justifyContent="center"
-                paddingY={1}
-            >
-                {!isDataLoaded ? (
-                    <CustomLoading />
-                ) : (
-                    <Grid>
-                        <Grid
-                            container
-                            justifyContent="center"
-                            marginBottom={3}
-                        >
-                            <Grid container>
-                                <Grid
-                                    item
-                                    container
-                                    alignItems="center"
-                                    padding
-                                    xs={12}
-                                    sm={3}
-                                    md={2}
-                                >
-                                    <Box
-                                        component="img"
-                                        src={restaurant.logo_url}
-                                        alt={restaurant.name}
-                                        className="img-responsive img-rounded"
-                                    />
-                                </Grid>
-                                <Grid item padding xs={12} sm={8}>
-                                    <Typography variant="h5">
-                                        {restaurant.name}
-                                    </Typography>
-                                    <Typography variant="h6">
-                                        {restaurant.category.name}
-                                    </Typography>
-                                    {/* <RestaurantRating /> */}
-                                    <Typography variant="body2">
-                                        {restaurant.description}
-                                    </Typography>
-                                    <Grid container item marginTop>
-                                        <RestaurantOpeningHours
-                                            opening_hours={
-                                                restaurant.opening_hours
-                                            }
-                                        />
-                                    </Grid>
-                                    <RestaurantMoreInfoModal
-                                        restaurant={restaurant}
-                                    />
-                                </Grid>
+        <>
+            {!isDataLoaded ? (
+                <CustomLoading />
+            ) : (
+                <Grid>
+                    <Grid container justifyContent="center">
+                        <Grid container>
+                            <Grid
+                                item
+                                container
+                                alignItems="center"
+                                padding
+                                xs={12}
+                                sm={3}
+                                md={2}
+                            >
+                                <Box
+                                    component="img"
+                                    src={restaurant.logo_url}
+                                    alt={restaurant.name}
+                                    className="img-responsive img-rounded"
+                                />
+                            </Grid>
+                            <Grid item padding xs={12} sm={8}>
+                                <Typography variant="h5">
+                                    <strong>{restaurant.name}</strong>
+                                    <IconButton
+                                        onClick={handleOpenModal}
+                                        color="primary"
+                                    >
+                                        <AddCircleOutlineIcon />
+                                    </IconButton>
+                                </Typography>
+                                <Typography variant="subtitle">
+                                    {restaurant.category.name}
+                                </Typography>
+                                {/* <RestaurantRating /> */}
+                                <RestaurantMoreInfoModal
+                                    restaurant={restaurant}
+                                    open={isModalInfoOpen}
+                                    handleCloseModal={handleCloseModal}
+                                />
                             </Grid>
                         </Grid>
-                        <CustomDivider />
-                        <ProductList restaurantId={restaurant_id} />
                     </Grid>
-                )}
-            </CardContent>
+                    <ProductList restaurantId={restaurant_id} />
+                </Grid>
+            )}
 
             {isUserAtRestaurant && <SeeOrderTabButton />}
-        </Card>
+        </>
     );
 }
 

@@ -4,6 +4,7 @@ import HomeRestaurantCard from "../cards/HomeRestaurantCard";
 import { apiClient } from "../../providers/apiClient";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import Empty from "../Empty";
 
 function HomeRestaurantsSection({ cityUrl }) {
     const [searchParams] = useSearchParams();
@@ -47,9 +48,7 @@ function HomeRestaurantsSection({ cityUrl }) {
                     );
                 })
             ) : (
-                <Typography variant="h6">
-                    Nenhum resultado encontrado.
-                </Typography>
+                <Empty />
             )}
         </Grid>
     );

@@ -70,6 +70,7 @@ class RestaurantController extends Controller
                     $query->where('restaurant_category_id', '=', $categoryId);
                 }
             })
+            ->where('settings->show_on_catalog', 1)
             ->get();
 
         return response()->json($restaurants);

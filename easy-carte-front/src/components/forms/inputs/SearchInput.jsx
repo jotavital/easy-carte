@@ -22,7 +22,7 @@ function SearchInput() {
     return (
         <form onSubmit={handleSearch}>
             <TextField
-                label="Onde você vai comer hoje?"
+                label="Encontre restaurantes"
                 fullWidth
                 InputProps={{
                     endAdornment: (

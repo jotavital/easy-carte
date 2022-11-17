@@ -1,17 +1,12 @@
 import { Typography } from "@mui/material";
 
 function RestaurantOpenClosed({ isOpen }) {
-    if (!isOpen) {
-        return (
-            <Typography color="error.main" textAlign="center">
-                Fechado
-            </Typography>
-        );
-    }
-
     return (
-        <Typography color="success.main" textAlign="center">
-            Aberto
+        <Typography
+            color={isOpen ? "success.main" : "error.main"}
+            textAlign="center"
+        >
+            <strong>{isOpen ? "Aberto" : "Fechado"}</strong>
         </Typography>
     );
 }

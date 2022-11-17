@@ -1,25 +1,27 @@
 import { Grid, Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
-import CustomDivider from "../misc/CustomDivider";
 import CustomAccordion from "../misc/CustomAccordion";
 import ImageSliderWithThumbs from "../images/ImageSliderWithThumbs";
 import CustomButton from "../buttons/CustomButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useContext } from "react";
-import { HelpersContext } from "../../contexts/helpers";
+import { useHelpers } from "../../contexts/helpers";
 import QuantityPicker from "../forms/inputs/QuantityPicker";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 import { apiClient } from "../../providers/apiClient";
+import Empty from "../Empty";
+import { useRestaurants } from "../../contexts/restaurants";
 
 function ProductModal({ open, handleCloseModal, product }) {
     const min = 1;
     const max = 5;
-    const { isUserAtRestaurant } = useContext(HelpersContext);
+    const { isUserAtRestaurant, convertToBrl } = useHelpers();
     const [quantity, setQuantity] = useState(1);
     const { isUserAuthenticated, logout } = useContext(AuthContext);
+    const { restaurantSettings } = useRestaurants();
     const navigate = useNavigate();
 
     const handleIncrement = () => {
@@ -66,9 +68,7 @@ function ProductModal({ open, handleCloseModal, product }) {
             content={
                 <Grid justifyContent="center" padding container>
                     {!product ? (
-                        <Typography>
-                            Erro ao carregar dados, tente novamente.
-                        </Typography>
+                        <Empty />
                     ) : (
                         <>
                             <Grid padding item xs={12} sm={6}>
@@ -78,7 +78,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 />
                             </Grid>
                             <Grid padding item sm={6}>
-                                <Typography marginY variant="h4">
+                                <Typography variant="h5">
                                     {product.name}
                                 </Typography>
                                 <Typography marginY variant="body">
@@ -86,10 +86,12 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 </Typography>
                                 <Typography
                                     marginY
-                                    variant="h5"
+                                    variant="h6"
                                     fontWeight="bold"
+                                    color="success.main"
                                 >
-                                    {product.formatted_price}
+                                    {restaurantSettings.show_products_price &&
+                                        convertToBrl(product.price)}
                                 </Typography>
 
                                 {isUserAtRestaurant && (
@@ -107,9 +109,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                                     </Grid>
                                 )}
                             </Grid>
-                            <CustomDivider />
                             <Grid padding item sm={12}>
-                                <Typography variant="h6">Detalhes</Typography>
                                 {product.ingredients && (
                                     <CustomAccordion
                                         title="Ingredientes"

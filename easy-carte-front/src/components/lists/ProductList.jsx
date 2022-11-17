@@ -72,7 +72,7 @@ function ProductList({ restaurantId }) {
                 >
                     {products.map((product) => {
                         return (
-                            <Grid item xs={6}>
+                            <Grid item md={2} sm={3} xs={6}>
                                 <ProductCard
                                     key={product.id}
                                     product={product}

@@ -44,6 +44,7 @@ function RestaurantPage() {
                                 xs={12}
                                 sm={3}
                                 md={2}
+                                justifyContent={{ sm: "left", xs: "center" }}
                             >
                                 <Box
                                     component="img"

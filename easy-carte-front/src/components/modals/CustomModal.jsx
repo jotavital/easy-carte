@@ -27,15 +27,15 @@ export default function CustomModal({
                 open={open}
                 scroll="body"
             >
-                <DialogTitle sx={{ m: 0, p: 2 }}>
+                <DialogTitle>
                     {title}
                     <IconButton
                         aria-label="close"
                         onClick={handleCloseModal}
                         sx={{
                             position: "absolute",
-                            right: 8,
-                            top: 8,
+                            right: 10,
+                            top: 12,
                             color: (theme) => theme.palette.grey[500],
                         }}
                     >

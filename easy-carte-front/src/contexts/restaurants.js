@@ -22,7 +22,9 @@ export const RestaurantsProvider = ({ children }) => {
                 restaurant,
                 fetchRestaurantData,
                 isDataLoaded,
-                restaurantSettings
+                restaurantSettings,
+                setRestaurant,
+                setIsDataLoaded,
             }}
         >
             {children}

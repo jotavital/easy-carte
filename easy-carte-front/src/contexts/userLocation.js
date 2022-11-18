@@ -3,16 +3,17 @@ import { createContext, useContext, useState } from "react";
 export const UserLocationContext = createContext();
 
 export const UserLocationProvider = ({ children }) => {
-    const [userLocation, setUserLocation] = useState(null);
+    const [userLocation, setUserLocation] = useState(
+        localStorage.getItem("easycarte@user_location")
+    );
     const isUserAtHome = userLocation === "home";
     const isUserAtRestaurant = userLocation === "restaurant";
 
     const handleSetUserLocation = (location = null) => {
-        console.log("setando");
         if (location) {
             localStorage.setItem(
                 "easycarte@user_location",
-                JSON.stringify(location)
+                location
             );
         } else {
             localStorage.removeItem("easycarte@user_location");

@@ -2,8 +2,6 @@ const SELECT_CITY = "app/selectCity";
 
 var cityFromLocalStorage =
     JSON.parse(localStorage.getItem("easycarte@selected_city")) ?? null;
-var userLocationFromLocalStorage =
-    localStorage.getItem("easycarte@user_location") ?? null;
 
 const initialState = {
     isCitySelected: !!cityFromLocalStorage,

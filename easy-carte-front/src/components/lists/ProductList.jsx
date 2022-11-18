@@ -72,9 +72,8 @@ function ProductList({ restaurantId }) {
                 >
                     {products.map((product) => {
                         return (
-                            <Grid item md={2} sm={3} xs={6}>
+                            <Grid key={product.id} item md={2} sm={3} xs={6}>
                                 <ProductCard
-                                    key={product.id}
                                     product={product}
                                     handleOpenModal={handleOpenModal}
                                 />

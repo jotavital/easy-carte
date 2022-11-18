@@ -78,9 +78,17 @@ function EnterRestaurantCode() {
                                     value: true,
                                     message: "Informe o código do restaurante",
                                 },
+                                minLength: {
+                                    value: 4,
+                                    message: "No mínimo 4 dígitos",
+                                },
                                 maxLength: {
                                     value: 4,
-                                    message: "Até 4 caracteres",
+                                    message: "Até 4 dígitos",
+                                },
+                                min: {
+                                    value: 1,
+                                    message: "Não existem códigos negativos"
                                 },
                                 pattern: {
                                     value: /^[0-9]+$/,

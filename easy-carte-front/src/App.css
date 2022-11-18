@@ -17,11 +17,8 @@
 }
 
 .main-wrapper {
-    background-color: #f8f9fa;
-    width: 100vw;
     min-height: calc(100vh - var(--navBarHeight));
-    height: calc(100vh - var(--navBarHeight));
-    padding: 10px;
+    height: auto;
 }
 
 .navbar-logo {

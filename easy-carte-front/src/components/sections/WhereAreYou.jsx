@@ -12,7 +12,7 @@ function WhereAreYou() {
     const { currentRestaurant, redirectToCurrentRestaurant } = useHelpers();
 
     useEffect(() => {
-        if (currentRestaurant) {
+        if (isUserAtRestaurant && currentRestaurant) {
             redirectToCurrentRestaurant();
         }
     });

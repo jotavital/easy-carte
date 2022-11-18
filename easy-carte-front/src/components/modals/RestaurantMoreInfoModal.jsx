@@ -7,19 +7,19 @@ function RestaurantMoreInfoModal({ open, handleCloseModal, restaurant }) {
             <CustomModal
                 open={open}
                 handleCloseModal={handleCloseModal}
-                title={"Mais informações de " + restaurant.name}
+                title={"Mais informações de " + restaurant?.name}
                 content={
                     <>
                         <Typography variant="body2">
-                            {restaurant.description}
+                            {restaurant?.description}
                         </Typography>
                         <Typography marginY>
                             <strong>Horário de funcionamento: </strong>
-                            {restaurant.opening_hours}
+                            {restaurant?.opening_hours}
                         </Typography>
                         <Typography marginY>
                             <strong>Endereço: </strong>
-                            {restaurant.formatted_address}
+                            {restaurant?.formatted_address}
                         </Typography>
                     </>
                 }

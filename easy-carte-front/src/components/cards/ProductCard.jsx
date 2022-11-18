@@ -26,12 +26,12 @@ function ProductCard({ product, handleOpenModal }) {
                         alt="alt"
                     />
                     <CardContent>
-                        <Typography textAlign="center" variant="h6">
+                        <Typography textAlign="center" fontWeight="bold">
                             {product.name}
                         </Typography>
 
                         {restaurantSettings.show_products_price ? (
-                            <Typography textAlign="center" fontWeight="bold">
+                            <Typography textAlign="center">
                                 {convertToBrl(product.price)}
                             </Typography>
                         ) : null}

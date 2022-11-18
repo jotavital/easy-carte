@@ -13,34 +13,31 @@ import {
 } from "@mui/material";
 import { useState, useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
-import { useHelpers } from "../contexts/helpers";
 import { useUserLocation } from "../contexts/userLocation";
 
 const NavBar = () => {
     const { isUserAuthenticated, logout } = useContext(AuthContext);
-    const { currentRestaurant } = useHelpers();
-    const { isUserAtRestaurant } = useUserLocation();
+    const { isUserAtRestaurant, isUserAtHome, handleSetUserLocation } =
+        useUserLocation();
 
     const pages = [];
     const settings = [];
 
+    const handleChangeLocation = () => {
+        handleSetUserLocation();
+
+        window.location.href = "/";
+    };
+
     if (isUserAuthenticated()) {
-        if (isUserAtRestaurant) {
-            pages.push({
-                name: "Mudar localização",
-                action: currentRestaurant
-                    ? `/restaurants/${currentRestaurant}/products`
-                    : "/",
-            });
-            pages.push({
-                name: "Cardápio",
-                action: currentRestaurant
-                    ? `/restaurants/${currentRestaurant}/products`
-                    : "/",
-            });
-        } else {
+        pages.push({
+            name: "Mudar localização",
+            action: handleChangeLocation,
+        });
+
+        if (isUserAtHome) {
             pages.push({
                 name: "Restaurantes",
                 action: "/",
@@ -97,47 +94,58 @@ const NavBar = () => {
                             display: { xs: "flex", sm: "none", md: "none" },
                         }}
                     >
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "left",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: "block", md: "none" },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page.name}
-                                    onClick={handleCloseNavMenu}
-                                    component={RouterLink}
-                                    to={page.action}
+                        {pages.length > 0 && (
+                            <>
+                                <IconButton
+                                    size="large"
+                                    onClick={handleOpenNavMenu}
+                                    color="inherit"
                                 >
-                                    <Typography textAlign="center">
-                                        {page.name}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                                    <MenuIcon />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorElNav}
+                                    anchorOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    }}
+                                    open={Boolean(anchorElNav)}
+                                    onClose={handleCloseNavMenu}
+                                    sx={{
+                                        display: { xs: "block", md: "none" },
+                                    }}
+                                >
+                                    {pages.map((page) => {
+                                        return (
+                                            <MenuItem
+                                                key={page.name}
+                                                onClick={() =>
+                                                    typeof page.action ===
+                                                    "function"
+                                                        ? page.action()
+                                                        : handleCloseNavMenu
+                                                }
+                                                component={RouterLink}
+                                                to={
+                                                    typeof page.action ===
+                                                        "string" && page.action
+                                                }
+                                            >
+                                                <Typography textAlign="center">
+                                                    {page.name}
+                                                </Typography>
+                                            </MenuItem>
+                                        );
+                                    })}
+                                </Menu>
+                            </>
+                        )}
                         {/* <Grid
                             container
                             alignItems="center"
@@ -163,9 +171,16 @@ const NavBar = () => {
                         {pages.map((page) => (
                             <Button
                                 component={RouterLink}
-                                to={page.action}
+                                to={
+                                    typeof page.action === "string" &&
+                                    page.action
+                                }
                                 key={page.name}
-                                onClick={handleCloseNavMenu}
+                                onClick={
+                                    typeof page.action === "function"
+                                        ? () => page.action()
+                                        : handleCloseNavMenu
+                                }
                                 sx={{
                                     margin: 2,
                                     color: "white",

@@ -112,26 +112,28 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 )}
                             </Grid>
                             <Grid padding item sm={12}>
-                                {product.ingredients && (
-                                    <CustomAccordion
-                                        title="Ingredientes"
-                                        content={
-                                            <Typography>
-                                                {product.ingredients}
-                                            </Typography>
-                                        }
-                                    />
-                                )}
-                                {product.notes && (
-                                    <CustomAccordion
-                                        title="Observações"
-                                        content={
-                                            <Typography>
-                                                {product.notes}
-                                            </Typography>
-                                        }
-                                    />
-                                )}
+                                <CustomAccordion
+                                    title="Ingredientes"
+                                    content={
+                                        <Typography>
+                                            {product.ingredients &&
+                                            product.ingredients !== ""
+                                                ? product.ingredients
+                                                : "Não informado"}
+                                        </Typography>
+                                    }
+                                />
+                                <CustomAccordion
+                                    title="Observações"
+                                    content={
+                                        <Typography>
+                                            {product.notes &&
+                                            product.notes !== ""
+                                                ? product.notes
+                                                : "Não informado"}
+                                        </Typography>
+                                    }
+                                />
                             </Grid>
                         </>
                     )}

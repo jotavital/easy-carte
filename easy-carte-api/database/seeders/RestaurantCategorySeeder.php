@@ -16,25 +16,24 @@ class RestaurantCategorySeeder extends Seeder
     public function run()
     {
         DB::table('restaurant_categories')->insertOrIgnore([
-            'id' => 1,
-            'name' => 'Geral',
-            'icon' => 'star'
+            'name' => 'Tradicional',
+            'icon' => 'restaurant_menu'
         ]);
         DB::table('restaurant_categories')->insertOrIgnore([
-            'name' => 'Sorveteria',
-            'icon' => 'local_pizza'
+            'name' => 'Fast Food',
+            'icon' => 'lunch_dining'
         ]);
         DB::table('restaurant_categories')->insertOrIgnore([
             'name' => 'Japonês',
-            'icon' => 'local_pizza'
+            'icon' => 'ramen_dining'
         ]);
         DB::table('restaurant_categories')->insertOrIgnore([
             'name' => 'Italiano',
             'icon' => 'local_pizza'
         ]);
         DB::table('restaurant_categories')->insertOrIgnore([
-            'name' => 'Tradicional',
-            'icon' => 'local_pizza'
+            'name' => 'Sorveteria',
+            'icon' => 'icecream'
         ]);
     }
 }

@@ -78,7 +78,7 @@ class RestaurantController extends Controller
 
     public function getProductCategories($id)
     {
-        $categories = Restaurant::find($id)->productCategories->where('products_count', '>', 0)->values();
+        $categories = Restaurant::find($id)->productCategories->values();
 
         return response()->json($categories);
     }

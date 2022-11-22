@@ -13,7 +13,7 @@ function CategoriesListWithIcon({ categories, areCategoriesLoaded }) {
         return (
             <Grid container gap padding justifyContent="center">
                 <RoundedCategoryIcon
-                    icon={<Icon>star</Icon>}
+                    icon={<Icon>clear_all</Icon>}
                     subtitle="Todas"
                 />
                 {categories.map((category) => {

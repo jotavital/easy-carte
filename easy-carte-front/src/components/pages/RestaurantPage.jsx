@@ -79,7 +79,7 @@ function RestaurantPage() {
                             >
                                 <Box
                                     component="img"
-                                    src={restaurant?.logo_url}
+                                    src={restaurant?.logo}
                                     alt={restaurant?.name}
                                     className="img-responsive img-rounded"
                                 />

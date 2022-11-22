@@ -12,7 +12,7 @@ class Restaurant extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $appends = ['logo_url', 'opening_hours', 'is_open', 'formatted_address'];
+    protected $appends = ['opening_hours', 'is_open', 'formatted_address'];
 
     public function products()
     {
@@ -61,10 +61,5 @@ class Restaurant extends Model
         }
 
         return $formattedOpeningTime . " às " . $formattedClosingTime;
-    }
-
-    public function getLogoUrlAttribute()
-    {
-        return "/img/" . $this->logo;
     }
 }

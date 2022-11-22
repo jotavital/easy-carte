@@ -24,8 +24,8 @@ function HomeRestaurantCard({ restaurant }) {
                     <CardMedia
                         component="img"
                         height="100"
-                        image={restaurant.logo_url}
-                        alt={restaurant.logo_url}
+                        src={restaurant.logo}
+                        alt={restaurant.logo}
                     />
                     <CardContent>
                         <Typography textAlign="center" fontWeight="bold">

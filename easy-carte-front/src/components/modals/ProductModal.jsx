@@ -81,7 +81,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                             </Grid>
                             <Grid padding item sm={6}>
                                 <Typography variant="h5">
-                                    {product.name}
+                                    <strong>{product.name}</strong>
                                 </Typography>
                                 <Typography marginY variant="body">
                                     {product.description}
@@ -97,7 +97,7 @@ function ProductModal({ open, handleCloseModal, product }) {
                                 </Typography>
 
                                 {isUserAtRestaurant && (
-                                    <Grid container rowGap={2} marginTop={3}>
+                                    <Grid container rowGap={2} marginTop={2}>
                                         <QuantityPicker
                                             handleIncrement={handleIncrement}
                                             handleDecrement={handleDecrement}

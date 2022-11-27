@@ -121,7 +121,7 @@ function UnpaidOrdersList() {
                                 })}
                             />
                         </Grid>
-                        <CustomDivider />
+                        {/* <CustomDivider /> */}
                     </Grid>
                 );
             })}

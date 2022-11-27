@@ -43,9 +43,9 @@ function OrderTabItemsList() {
             input: "text",
             inputAttributes: {
                 required: true,
-                placeholder: "Mesa"
+                placeholder: "Mesa",
             },
-            validationMessage: "Informe o número da mesa"
+            validationMessage: "Informe o número da mesa",
         }).then((result) => {
             if (result.isConfirmed) {
                 apiClient
@@ -74,7 +74,7 @@ function OrderTabItemsList() {
 
     return orderTabItems && orderTabItems.length > 0 ? (
         <Grid item container justifyContent={{ sm: "start", xs: "center" }}>
-            <Grid item padding marginBottom>
+            <Grid item marginBottom>
                 <Typography
                     textAlign={{ sm: "left", xs: "center" }}
                     style={{ fontWeight: "500" }}
@@ -86,7 +86,7 @@ function OrderTabItemsList() {
                 orderTotal += Number(item.product.price * item.quantity);
                 return (
                     <Grid container key={item.id}>
-                        <Grid padding container>
+                        <Grid container>
                             <Grid
                                 item
                                 xs={1}
@@ -104,12 +104,10 @@ function OrderTabItemsList() {
                                 item
                                 sm={7}
                                 xs={12}
-                                padding
                                 alignItems="center"
+                                justifyContent={{ sm: "left", xs: "center" }}
                             >
-                                <Typography
-                                    textAlign={{ sm: "left", xs: "center" }}
-                                >
+                                <Typography>
                                     <strong style={{ color: primary.main }}>
                                         {item.quantity}x
                                     </strong>{" "}
@@ -139,7 +137,6 @@ function OrderTabItemsList() {
                                 item
                                 sm={1}
                                 xs={12}
-                                padding
                                 justifyContent="center"
                             >
                                 <IconButton

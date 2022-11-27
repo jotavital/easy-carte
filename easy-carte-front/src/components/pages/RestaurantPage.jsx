@@ -8,7 +8,7 @@ import SeeOrderTabButton from "../buttons/SeeOrderTabButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useRestaurants } from "../../contexts/restaurants";
 import { useUserLocation } from "../../contexts/userLocation";
-import CustomButton from "../buttons/CustomButton";
+import RestaurantRating from "../misc/RestaurantRating";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function RestaurantPage() {
@@ -67,22 +67,21 @@ function RestaurantPage() {
                     </Grid>
                     <Grid container justifyContent="center">
                         <Grid container>
-                            <Grid
-                                item
-                                container
-                                alignItems="center"
-                                padding
-                                xs={12}
-                                sm={3}
-                                md={2}
-                                justifyContent={{ sm: "left", xs: "center" }}
-                            >
-                                <Box
-                                    component="img"
-                                    src={restaurant?.logo}
-                                    alt={restaurant?.name}
-                                    className="img-responsive img-rounded"
-                                />
+                            <Grid container justifyContent="center" padding>
+                                <Grid
+                                    item
+                                    alignItems="center"
+                                    xs={8}
+                                    sm={3}
+                                    md={2}
+                                >
+                                    <Box
+                                        component="img"
+                                        src={restaurant?.logo}
+                                        alt={restaurant?.name}
+                                        className="img-responsive img-rounded"
+                                    />
+                                </Grid>
                             </Grid>
                             <Grid item padding xs={12} sm={8}>
                                 <Typography variant="h5">
@@ -94,10 +93,10 @@ function RestaurantPage() {
                                         <AddCircleOutlineIcon />
                                     </IconButton>
                                 </Typography>
-                                <Typography variant="subtitle">
+                                {/* <Typography variant="subtitle">
                                     {restaurant?.category.name}
-                                </Typography>
-                                {/* <RestaurantRating /> */}
+                                </Typography> */}
+                                <RestaurantRating />
                                 <RestaurantMoreInfoModal
                                     restaurant={restaurant}
                                     open={isModalInfoOpen}
